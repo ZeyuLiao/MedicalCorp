@@ -90,26 +90,33 @@ public class UpdatePatientJFrame extends javax.swing.JFrame {
         setTitle("Update Profile");
         setIconImage(Entrance.logo.getImage());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Name:");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Community Name:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Year of Birth (yyyy):");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Phone Number:");
 
+        jTextFieldName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldNameMouseClicked(evt);
             }
         });
 
+        jTextFieldPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldPhoneNumber.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldPhoneNumberMouseClicked(evt);
             }
         });
 
+        jTextFieldDOB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldDOB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldDOBMouseClicked(evt);
@@ -125,10 +132,15 @@ public class UpdatePatientJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelName.setForeground(new java.awt.Color(255, 0, 0));
 
+        jComboBoxCName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabelPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPhoneNumber.setForeground(new java.awt.Color(255, 0, 0));
 
+        jLabelDOB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelDOB.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -148,7 +160,7 @@ public class UpdatePatientJFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabelPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

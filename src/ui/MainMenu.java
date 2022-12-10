@@ -16,6 +16,7 @@ import ui.patient.MyEncounter;
 import ui.patient.Appointment;
 import ui.patient.MyProfile;
 import ui.patient.PatientCrud;
+import ui.patient.Shopping;
 
 
 /**
@@ -50,7 +51,9 @@ public class MainMenu extends javax.swing.JFrame {
                 //jTabbedPaneMenu.addTab("Appointment", ap);
                 MyEncounter me = new MyEncounter(id);
                 jTabbedPaneMenu.addTab("My Encounter", new javax.swing.ImageIcon("src//icon//icon_home.png"), me);
-
+                
+                Shopping sh = new Shopping(id);
+                jTabbedPaneMenu.addTab("Online Pharmacy", new javax.swing.ImageIcon("src//icon//heroicons-ui_66.png"), sh);
                 
             }
             //Choose Doctor
