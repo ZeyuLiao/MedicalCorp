@@ -44,12 +44,11 @@ public class MyOrder extends javax.swing.JPanel {
         }
     }
     private Object[] addTableRow(Object[] row,Order o) throws Exception{
-        row[0] = o.getId();
-        row[1] = o.getOrderNo();
-        row[2] = sDao.getStoreById(o.getStoreId()).getStoreName();
-        row[3] = o.getTotalPrice();
-        row[4] = o.getPaymentTime().toString();
-        row[5] = o.getStatus();
+        row[0] = o.getOrderNo();
+        row[1] = sDao.getStoreById(o.getStoreId()).getStoreName();
+        row[2] = o.getTotalPrice()+"";
+        row[3] = o.getPaymentTime();
+        row[4] = o.getStatus();
         return row;
     }
     private Object[] addTableRowDetail(Object[] row,OrderDetail o) throws Exception{
@@ -69,7 +68,7 @@ public class MyOrder extends javax.swing.JPanel {
             
             model.addRow(row);     
         }
-        //System.out.print(model.getRowCount());
+//        System.out.print(model.getRowCount());
         
     }
     private void showTableDetail(ArrayList<OrderDetail> list) throws Exception{
@@ -133,7 +132,7 @@ public class MyOrder extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

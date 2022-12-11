@@ -102,7 +102,7 @@
               <Table columnCount="5" rowCount="4">
                 <Column editable="true" title="Order No." type="java.lang.String"/>
                 <Column editable="true" title="Pharmancy" type="java.lang.String"/>
-                <Column editable="true" title="Total Price" type="java.lang.Double"/>
+                <Column editable="true" title="Total Price" type="java.lang.String"/>
                 <Column editable="true" title="Payment time" type="java.lang.String"/>
                 <Column editable="true" title="Delivery State" type="java.lang.String"/>
               </Table>

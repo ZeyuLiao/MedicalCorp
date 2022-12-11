@@ -46,7 +46,7 @@ delivery_status
 		
 	Order s = null;
 	initConnection();
-	String sql = "SELECT * FROM Order WHERE idfororder=?";
+	String sql = "SELECT * FROM `order` WHERE idfororder=?";
 	PreparedStatement ps = conn.prepareStatement(sql);
 	ps.setString(1, id+"");
 	ResultSet rs = ps.executeQuery();
@@ -67,7 +67,7 @@ delivery_status
 		
 	int orderId = 0;
 	initConnection();
-	String sql = "SELECT * FROM Order WHERE order_no=?";
+	String sql = "SELECT * FROM `order` WHERE order_no=?";
 	PreparedStatement ps = conn.prepareStatement(sql);
 	ps.setString(1, orderNo+"");
 	ResultSet rs = ps.executeQuery();
@@ -82,7 +82,7 @@ delivery_status
 		
 	Order s = null;
 	initConnection();
-	String sql = "SELECT * FROM Order WHERE order_no=?";
+	String sql = "SELECT * FROM `order` WHERE order_no=?";
 	PreparedStatement ps = conn.prepareStatement(sql);
 	ps.setString(1, orderNo+"");
 	ResultSet rs = ps.executeQuery();
@@ -123,16 +123,16 @@ delivery_status
 
         ArrayList<Order> list = new ArrayList<>();
         initConnection();
-        String sql = "SELECT * FROM Order WHERE patient_id = " +"'"+userId+"'";
+        String sql = "SELECT * FROM `order` WHERE patient_id = " +"'"+userId+"'";
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
             Order s = new Order();
-            s.setId(rs.getInt("infororder"));
+            s.setId(rs.getInt("idfororder"));
             s.setStoreId(rs.getInt("store_id"));
-            s.setOrderNo(rs.getString("Order"));
+            s.setOrderNo(rs.getString("order_no"));
             s.setPaymentTime(rs.getString("payment_time"));
-            s.setStatus(rs.getString("delivery_state"));
+            s.setStatus(rs.getString("delivery_status"));
             s.setTotalPrice(rs.getDouble("total_price"));
             s.setUserId(userId);
             list.add(s);
@@ -145,7 +145,7 @@ delivery_status
 
         boolean res = true;
         initConnection();
-        String sql = "INSERT INTO `order`( order_num, store_ID,Customer_id,total_price, delivery_status) "
+        String sql = "INSERT INTO `order`( order_no, store_Id,Patient_id,total_price, delivery_status) "
                         + "VALUES('"+order.getOrderNo() + "','" + order.getStoreId() + "','" + order.getUserId() + "','" + order.getTotalPrice()+"','" +order.getStatus() + "')";
 //        System.out.println(sql);
         try {
@@ -164,7 +164,7 @@ delivery_status
 
         boolean res = true;
         initConnection();
-        String sql = "DELETE FROM Order WHERE idfororder='" + orderId + "'";
+        String sql = "DELETE FROM `order` WHERE idfororder='" + orderId + "'";
 
         try {
             Statement stat = conn.createStatement();
@@ -182,7 +182,7 @@ delivery_status
 
         boolean res = true;
         initConnection();
-        String sql = "UPDATE Order SET delivery_status ='" + state +  "'" + "where idfororder = "+ orderId ;
+        String sql = "UPDATE `order` SET delivery_status ='" + state +  "'" + "where idfororder = "+ orderId ;
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);
@@ -199,7 +199,7 @@ delivery_status
 
         boolean res = true;
         initConnection();
-        String sql = "UPDATE Order SET total_price ='" + price +  "'" + "where idfororder = "+ orderId ;
+        String sql = "UPDATE `order` SET total_price ='" + price +  "'" + "where idfororder = "+ orderId ;
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);

@@ -38,7 +38,7 @@ public class OrderDetailDao {
 
         ArrayList<OrderDetail> list = new ArrayList<>();
         initConnection();
-        String sql = "SELECT * FROM Inventory WHERE order_no = " +"'"+orderId+"'";
+        String sql = "SELECT * FROM order_detail WHERE order_no = " +"'"+orderId+"'";
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
@@ -55,7 +55,7 @@ public class OrderDetailDao {
 
         boolean res = true;
         initConnection();
-        String sql = "INSERT INTO OrderDetail( order_no, goods_id,quantity) "
+        String sql = "INSERT INTO order_detail( order_no, goods_id,quantity) "
                         + "VALUES('"+orderDetail.getOrderId() + "','" + orderDetail.getGoodsId() + "','" + orderDetail.getGoodsQuantity() + "')";
 //        System.out.println(sql);
         try {
