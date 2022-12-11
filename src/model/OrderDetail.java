@@ -9,19 +9,9 @@ package model;
  * @author Ruolin
  */
 public class OrderDetail {
-    private int id;
     private int orderId;
     private int goodsId;
     private int goodsQuantity;
-    private double unitPrice;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getOrderId() {
         return orderId;
@@ -47,17 +37,12 @@ public class OrderDetail {
         this.goodsQuantity = goodsQuantity;
     }
 
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
     @Override
     public String toString() {
-        return "OrderDetail{" + "id=" + id + ", orderId=" + orderId + ", goodsId=" + goodsId + ", goodsQuantity=" + goodsQuantity + ", unitPrice=" + unitPrice + '}';
+        return "OrderDetail{" + "orderId=" + orderId + ", goodsId=" + goodsId + ", goodsQuantity=" + goodsQuantity + '}';
     }
+
+
+
     
 }

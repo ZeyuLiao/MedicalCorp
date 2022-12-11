@@ -45,6 +45,7 @@ public class StoreDao {
             s = new Store();
             s.setStoreId(id);
             s.setStoreName(rs.getString("store_name"));
+            s.setCommunity(rs.getString("community"));
 	}
 	closeConnection();
 	return s;
@@ -61,6 +62,7 @@ public class StoreDao {
             Store s = new Store();
             s.setStoreId(rs.getInt("store_id"));
             s.setStoreName(rs.getString("store_name"));
+            s.setCommunity(rs.getString("community"));
             list.add(s);
         }
         closeConnection();
@@ -79,6 +81,7 @@ public class StoreDao {
             s = new Store();
             s.setStoreId(rs.getInt("store_id"));
             s.setStoreName(rs.getString("store_name"));
+            s.setCommunity(rs.getString("community"));
 	}
 	closeConnection();
 	return s;

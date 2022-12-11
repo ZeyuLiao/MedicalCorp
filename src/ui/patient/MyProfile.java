@@ -155,9 +155,10 @@ public class MyProfile extends javax.swing.JPanel {
             jPanelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRightLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 150, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
+        jButtonUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_update.png"))); // NOI18N
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -178,7 +179,7 @@ public class MyProfile extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(321, Short.MAX_VALUE)
+                .addContainerGap(318, Short.MAX_VALUE)
                 .addComponent(jButtonRefresh)
                 .addGap(52, 52, 52)
                 .addComponent(jButtonUpdate)
@@ -201,7 +202,7 @@ public class MyProfile extends javax.swing.JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(3, 3, 3)
                     .addComponent(jPanelRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(145, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -18,7 +18,7 @@ import model.Encounter;
  *
  * @author Ruolin
  */
-public class MyEncounter extends javax.swing.JPanel {
+public class MyOrder extends javax.swing.JPanel {
 
     /**
      * Creates new form MyEncounter
@@ -26,7 +26,7 @@ public class MyEncounter extends javax.swing.JPanel {
     int patientId;
     EncounterDao eDao;
     DoctorDao dDao;
-    public MyEncounter(int id) {
+    public MyOrder(int id) {
         this.patientId = id;
         this.dDao = new DoctorDao();
         this.eDao = new EncounterDao();
@@ -55,7 +55,7 @@ public class MyEncounter extends javax.swing.JPanel {
         return row;
     }
     private void showTable() throws Exception{
-        DefaultTableModel model = (DefaultTableModel)jTableEncounter.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTableOrder.getModel();
         model.setRowCount(0);
         
         ArrayList<Encounter> eList = eDao.getEncounterByPatientId(this.patientId);
@@ -82,7 +82,7 @@ public class MyEncounter extends javax.swing.JPanel {
         jButtonSearch = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableEncounter = new javax.swing.JTable();
+        jTableOrder = new javax.swing.JTable();
         jComboBoxSearch = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
@@ -110,23 +110,23 @@ public class MyEncounter extends javax.swing.JPanel {
             }
         });
 
-        jTableEncounter.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTableEncounter.setModel(new javax.swing.table.DefaultTableModel(
+        jTableOrder.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTableOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "EncounterId", "Doctor", "Hospital", "symptom", "diagnosis", "Start Date", "End Date", "State"
+                "id", "Order No.", "Pharmancy", "Total Price", "Payment time", "Delivery State"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, false, true
+                false, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -137,7 +137,7 @@ public class MyEncounter extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableEncounter);
+        jScrollPane1.setViewportView(jTableOrder);
 
         jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Finished", "Unfinished" }));
         jComboBoxSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -188,12 +188,12 @@ public class MyEncounter extends javax.swing.JPanel {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-        int selectedIndex = jTableEncounter.getSelectedRow();
+        int selectedIndex = jTableOrder.getSelectedRow();
         if(selectedIndex < 0){
             JOptionPane.showMessageDialog(this,"Please select a row to cancel");
             return;
         }
-        DefaultTableModel model = (DefaultTableModel)jTableEncounter.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTableOrder.getModel();
         int encounterId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         try{
             Encounter e = eDao.getEncounterByEncounterId(encounterId);
@@ -229,7 +229,7 @@ public class MyEncounter extends javax.swing.JPanel {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        DefaultTableModel model = (DefaultTableModel)jTableEncounter.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTableOrder.getModel();
 
         model.setRowCount(0);
 
@@ -265,6 +265,6 @@ public class MyEncounter extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBoxSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableEncounter;
+    private javax.swing.JTable jTableOrder;
     // End of variables declaration//GEN-END:variables
 }

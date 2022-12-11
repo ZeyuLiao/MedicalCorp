@@ -17,7 +17,7 @@ public class Order {
     private double totalPrice;
     private LocalDate paymentTime;
     private int storeId;
-    private boolean status;
+    private String status;
 
     public int getId() {
         return id;
@@ -67,12 +67,11 @@ public class Order {
         this.storeId = storeId;
     }
 
-
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -80,6 +79,7 @@ public class Order {
     public String toString() {
         return "Order{" + "id=" + id + ", orderNo=" + orderNo + ", userId=" + userId + ", totalPrice=" + totalPrice + ", paymentTime=" + paymentTime + ", storeId=" + storeId + ", status=" + status + '}';
     }
+
 
     
 }
