@@ -4,15 +4,17 @@
  */
 package ui.patient;
 
-import dao.DoctorDao;
-import dao.EncounterDao;
+import dao.GoodsDao;
+import dao.OrderDao;
+import dao.OrderDetailDao;
+import dao.StoreDao;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Doctor;
-import model.Encounter;
+import model.Order;
+import model.OrderDetail;
 
 /**
  *
@@ -24,12 +26,16 @@ public class MyOrder extends javax.swing.JPanel {
      * Creates new form MyEncounter
      */
     int patientId;
-    EncounterDao eDao;
-    DoctorDao dDao;
+    OrderDao oDao;
+    OrderDetailDao odDao;
+    StoreDao sDao;
+    GoodsDao gDao;
     public MyOrder(int id) {
         this.patientId = id;
-        this.dDao = new DoctorDao();
-        this.eDao = new EncounterDao();
+        this.oDao = new OrderDao();
+        this.odDao = new OrderDetailDao();
+        this.sDao = new StoreDao();
+        this.gDao = new GoodsDao();
         initComponents();
         try {
             showTable();
@@ -37,32 +43,42 @@ public class MyOrder extends javax.swing.JPanel {
             ex.printStackTrace();
         }
     }
-    private Object[] addTableRow(Object[] row,Encounter e) throws Exception{
-        row[0] = e.getEncounterId();
-        Doctor d = dDao.getDoctorById(e.getDoctorId());
-        row[1] = d.getName();
-        row[2] = d.getHospitalName();
-        row[3] = e.getSymptom();
-        row[4] = e.getDiagnosis();
-        row[5] = e.getStartDate();
-        row[6] = e.getEndDate();
-        boolean state = e.getState();
-        if(state==true){
-            row[7] = "Finished";
-        }else{
-            row[7] = "Unfinished";
-        }
+    private Object[] addTableRow(Object[] row,Order o) throws Exception{
+        row[0] = o.getId();
+        row[1] = o.getOrderNo();
+        row[2] = sDao.getStoreById(o.getStoreId()).getStoreName();
+        row[3] = o.getTotalPrice();
+        row[4] = o.getPaymentTime().toString();
+        row[5] = o.getStatus();
+        return row;
+    }
+    private Object[] addTableRowDetail(Object[] row,OrderDetail o) throws Exception{
+        row[0] = gDao.getGoodsById(o.getGoodsId()).getGoodsName();
+        row[1] = o.getGoodsQuantity();
         return row;
     }
     private void showTable() throws Exception{
         DefaultTableModel model = (DefaultTableModel)jTableOrder.getModel();
         model.setRowCount(0);
         
-        ArrayList<Encounter> eList = eDao.getEncounterByPatientId(this.patientId);
+        ArrayList<Order> oList = oDao.getOrderByUserId(this.patientId);
         
-        for(Encounter e:eList){
-            Object[] row = new Object[8];
-            addTableRow(row,e);
+        for(Order o:oList){
+            Object[] row = new Object[6];
+            addTableRow(row,o);
+            
+            model.addRow(row);     
+        }
+        //System.out.print(model.getRowCount());
+        
+    }
+    private void showTableDetail(ArrayList<OrderDetail> list) throws Exception{
+        DefaultTableModel model = (DefaultTableModel)jTableDetail.getModel();
+        model.setRowCount(0); 
+        
+        for(OrderDetail o:list){
+            Object[] row = new Object[3];
+            addTableRowDetail(row,o);
             
             model.addRow(row);     
         }
@@ -78,30 +94,24 @@ public class MyOrder extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonDelete = new javax.swing.JButton();
-        jButtonSearch = new javax.swing.JButton();
+        jButtonView = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableOrder = new javax.swing.JTable();
-        jComboBoxSearch = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableDetail = new javax.swing.JTable();
+        jLabelOrderNo = new javax.swing.JLabel();
 
-        jButtonDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_delete.png"))); // NOI18N
-        jButtonDelete.setText("Cancel");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+        jButtonView.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_view.png"))); // NOI18N
+        jButtonView.setText("View Detail");
+        jButtonView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteActionPerformed(evt);
+                jButtonViewActionPerformed(evt);
             }
         });
 
-        jButtonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_search.png"))); // NOI18N
-        jButtonSearch.setText("Search");
-        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSearchActionPerformed(evt);
-            }
-        });
-
+        jButtonRefresh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_refresh.png"))); // NOI18N
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
@@ -113,40 +123,47 @@ public class MyOrder extends javax.swing.JPanel {
         jTableOrder.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTableOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "Order No.", "Pharmancy", "Total Price", "Payment time", "Delivery State"
+                "Order No.", "Pharmancy", "Total Price", "Payment time", "Delivery State"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
         jScrollPane1.setViewportView(jTableOrder);
 
-        jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Finished", "Unfinished" }));
-        jComboBoxSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxSearchActionPerformed(evt);
+        jTableDetail.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Name", "Quantity"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
+        jScrollPane2.setViewportView(jTableDetail);
 
-        jLabel1.setText("You can cancel unfinished appointment:");
+        jLabelOrderNo.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -154,95 +171,58 @@ public class MyOrder extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonRefresh)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonSearch))))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonRefresh)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonView))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabelOrderNo, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBoxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelOrderNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonView, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+    private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
         // TODO add your handling code here:
         int selectedIndex = jTableOrder.getSelectedRow();
         if(selectedIndex < 0){
-            JOptionPane.showMessageDialog(this,"Please select a row to cancel");
+            JOptionPane.showMessageDialog(this,"Please select a row");
             return;
         }
         DefaultTableModel model = (DefaultTableModel)jTableOrder.getModel();
-        int encounterId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
-        try{
-            Encounter e = eDao.getEncounterByEncounterId(encounterId);
-            if(e.getState()==false){
-                JOptionPane.showMessageDialog(this,"You can only cancel unfinished appointment.");
-                return;
-            }
-            int n = JOptionPane.showConfirmDialog(null, "Confirm to cancel this "+encounterId + "appointment?", "",JOptionPane.YES_NO_OPTION);//0/1
-            if(n==0)
-                eDao.deleteEncounterByEncounterId(encounterId);
-            showTable();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
-
-    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        // TODO add your handling code here:
-
-        String keyword = jComboBoxSearch.getSelectedItem().toString();
-        ArrayList<Encounter> eList = new ArrayList<>();
-        try{
-            switch(keyword){
-                case "Finished": {
-                    eList = eDao.getEncounterByState(1);
-                    break;}
-                case "Unfinished":{
-                    eList = eDao.getEncounterByState(0);
-                    break;}
-            }
+        //int orderId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
+        //System.out.println(doctorId);
+        String orderNo = model.getValueAt(selectedIndex,1).toString();
+        
+        
+        try {
+            int orderId = oDao.getOrderIdByOrderNo(orderNo);
+            jLabelOrderNo.setText(orderNo);
+            ArrayList<OrderDetail> list = odDao.getOrderDetailByOrderId(orderId);
+            showTableDetail(list);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        DefaultTableModel model = (DefaultTableModel)jTableOrder.getModel();
-
-        model.setRowCount(0);
-
-        for(Encounter e:eList){
-            Object[] row = new Object[8];
-            try {
-                addTableRow(row,e);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            model.addRow(row);
-        }
-    }//GEN-LAST:event_jButtonSearchActionPerformed
+    }//GEN-LAST:event_jButtonViewActionPerformed
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         try {
@@ -253,18 +233,14 @@ public class MyOrder extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
-    private void jComboBoxSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxSearchActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonRefresh;
-    private javax.swing.JButton jButtonSearch;
-    private javax.swing.JComboBox<String> jComboBoxSearch;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonView;
+    private javax.swing.JLabel jLabelOrderNo;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableDetail;
     private javax.swing.JTable jTableOrder;
     // End of variables declaration//GEN-END:variables
 }

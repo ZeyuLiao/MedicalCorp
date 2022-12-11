@@ -7,6 +7,7 @@ package ui.patient;
 import dao.GoodsDao;
 import dao.InventoryDao;
 import dao.OrderDao;
+import dao.OrderDetailDao;
 import dao.StoreDao;
 import static java.lang.Boolean.FALSE;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ import model.Inventory;
 import model.Store;
 import model.Cart;
 import model.Order;
+import model.OrderDetail;
 
 /**
  *
@@ -36,6 +38,7 @@ public class Shopping extends javax.swing.JPanel {
     InventoryDao iDao;
     GoodsDao gDao;
     OrderDao oDao;
+    OrderDetailDao odDao;
     Store store;
     Goods goods;
     HashMap<Integer,ArrayList<Cart>> cartList;
@@ -45,6 +48,7 @@ public class Shopping extends javax.swing.JPanel {
         this.sDao = new StoreDao();
         this.iDao = new InventoryDao();
         this.gDao = new GoodsDao();
+        this.odDao = new OrderDetailDao();
         this.store = new Store();
         this.goods = new Goods();
         this.oDao = new OrderDao();
@@ -503,6 +507,20 @@ public class Shopping extends javax.swing.JPanel {
             o.setTotalPrice(0);
             
             oDao.addOrder(o);
+            int orderId = oDao.getOrderIdByOrderNo(orderNo);
+            
+            double price = 0;
+            for(Cart c:cartList.get(storeId)){
+                OrderDetail od = new OrderDetail();
+                od.setGoodsId(c.getGoodsId());
+                od.setOrderId(orderId);
+                od.setGoodsQuantity(c.getQuantity());
+                price += c.getGoodsPrice()*c.getQuantity();
+                odDao.addOrderDetail(od);
+            }
+            
+            oDao.updateOrderPrice(orderId, price);
+            
             cartList.remove(storeId);
             showTableCart();
         } catch (Exception ex) {
