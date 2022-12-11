@@ -421,7 +421,6 @@ public class Shopping extends javax.swing.JPanel {
         
         JOptionPane.showMessageDialog(this,"Successfully.");
         jLabelGoodsName.setText("");
-        jLabelStoreName.setText("");
         jLabelPrice.setText("");
         
         try {
