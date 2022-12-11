@@ -39,6 +39,7 @@ public class OrderDetailDao {
         ArrayList<OrderDetail> list = new ArrayList<>();
         initConnection();
         String sql = "SELECT * FROM order_detail WHERE order_no = " +"'"+orderId+"'";
+        System.out.println(sql);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
