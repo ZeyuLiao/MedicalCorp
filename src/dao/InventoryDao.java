@@ -33,24 +33,6 @@ public class InventoryDao {
     	conn = DriverManager.getConnection(DB_URL, USER, PASS);
 	}
 	
-    public Inventory getInventoryById(int id) throws Exception{
-		
-	Inventory s = null;
-	initConnection();
-	String sql = "SELECT * FROM Inventory WHERE id=?";
-	PreparedStatement ps = conn.prepareStatement(sql);
-	ps.setString(1, id+"");
-	ResultSet rs = ps.executeQuery();
-	if (rs.next()){
-            s = new Inventory();
-            s.setId(id);
-            s.setStoreId(rs.getInt("store_id"));
-            s.setGoodsId(rs.getInt("goods_id"));
-            s.setSellingPrice(rs.getDouble("selling_price"));
-	}
-	closeConnection();
-	return s;
-    }
     
     public Inventory getInventoryByStoreIdAndGoodsId(int storeId,int goodsId) throws Exception{
 	Inventory s = null;
@@ -60,7 +42,6 @@ public class InventoryDao {
 	ResultSet rs = ps.executeQuery();
 	if (rs.next()){
             s = new Inventory();
-            s.setId(rs.getInt("id"));
             s.setStoreId(rs.getInt("store_id"));
             s.setGoodsId(rs.getInt("goods_id"));
             s.setSellingPrice(rs.getDouble("selling_price"));
@@ -78,7 +59,6 @@ public class InventoryDao {
         ResultSet rs = stat.executeQuery(sql);
         while(rs.next()){
             Inventory s = new Inventory();
-            s.setId(rs.getInt("id"));
             s.setStoreId(rs.getInt("store_id"));
             s.setGoodsId(rs.getInt("goods_id"));
             s.setSellingPrice(rs.getDouble("selling_price"));
@@ -92,12 +72,11 @@ public class InventoryDao {
 
         ArrayList<Inventory> list = new ArrayList<>();
         initConnection();
-        String sql = "SELECT * FROM Inventory WHERE store_id = " +"'"+storeId+"'";
+        String sql = "SELECT * FROM Inventory WHERE store_id = " + storeId;
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
             Inventory s = new Inventory();
-            s.setId(rs.getInt("id"));
             s.setStoreId(rs.getInt("store_id"));
             s.setGoodsId(rs.getInt("goods_id"));
             s.setSellingPrice(rs.getDouble("selling_price"));
@@ -126,11 +105,11 @@ public class InventoryDao {
         return res;
     }
 
-    public boolean deleteInventory(int inventoryId) throws Exception{
+    public boolean deleteInventoryByStoreAndGoods(int storeId,int goodsId) throws Exception{
 
         boolean res = true;
         initConnection();
-        String sql = "DELETE FROM Inventory WHERE id='" + inventoryId + "'";
+        String sql = "DELETE FROM Inventory WHERE store_id=" + storeId + "AND goods_id = "+ goodsId;
 
         try {
             Statement stat = conn.createStatement();
@@ -148,8 +127,7 @@ public class InventoryDao {
 
         boolean res = true;
         initConnection();
-        String sql = "UPDATE Inventory SET store_id ='" + inventory.getStoreId() + "', goods_id='" + inventory.getGoodsId() 
-                + "', selling_price='"+ inventory.getSellingPrice() +  "'" + "where id = "+ inventory.getId() ;
+        String sql = "UPDATE Inventory SET selling_price ="+ inventory.getSellingPrice() + "where store_id = "+ inventory.getStoreId()+" AND goods_id ="+inventory.getGoodsId();
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);

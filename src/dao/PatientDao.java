@@ -41,6 +41,7 @@ public class PatientDao {
 	ResultSet rs = ps.executeQuery();
 	if (rs.next()){
             p = new Patient();
+            p.setLogId(rs.getInt("logId"));
             p.setPatientId(id);
             p.setCommunityName(rs.getString("community_name"));
             p.setName(rs.getString("name"));
@@ -61,6 +62,7 @@ public class PatientDao {
         ResultSet rs = stat.executeQuery(sql);
         while(rs.next()){
             Patient patient = new Patient();
+            patient.setLogId(rs.getInt("logId"));
             patient.setPatientId(rs.getInt("patient_id"));
             patient.setName(rs.getString("name"));
             patient.setPhoneNumber(rs.getString("phone_number"));
@@ -83,6 +85,7 @@ public class PatientDao {
         while(rs.next()){
             Patient patient = new Patient();
             patient.setPatientId(rs.getInt("patient_id"));
+            patient.setLogId(rs.getInt("logId"));
             patient.setName(rs.getString("name"));
             patient.setPhoneNumber(rs.getString("phone_number"));
             patient.setDOB(rs.getString("DOB"));
@@ -104,6 +107,7 @@ public class PatientDao {
         while(rs.next()){
             Patient patient = new Patient();
             patient.setPatientId(rs.getInt("patient_id"));
+            patient.setLogId(rs.getInt("logId"));
             patient.setName(rs.getString("name"));
             patient.setPhoneNumber(rs.getString("phone_number"));
             patient.setDOB(rs.getString("DOB"));
@@ -125,6 +129,7 @@ public class PatientDao {
         while(rs.next()){
             Patient patient = new Patient();
             patient.setPatientId(rs.getInt("patient_id"));
+            patient.setLogId(rs.getInt("logId"));
             patient.setName(rs.getString("name"));
             patient.setPhoneNumber(rs.getString("phone_number"));
             patient.setDOB(rs.getString("DOB"));
@@ -149,6 +154,7 @@ public class PatientDao {
         while(rs.next()){
             Patient patient = new Patient();
             patient.setPatientId(rs.getInt("patient_id"));
+            patient.setLogId(rs.getInt("logId"));
             patient.setName(rs.getString("name"));
             patient.setPhoneNumber(rs.getString("phone_umber"));
             patient.setDOB(rs.getString("DOB"));
@@ -161,6 +167,7 @@ public class PatientDao {
         return pList;
     }
 
+    //logId? 
     public boolean addPatient(Patient patient) throws Exception{
 
         boolean res = true;

@@ -15,7 +15,7 @@ public class Order {
     private String orderNo;
     private int userId;
     private double totalPrice;
-    private LocalDate paymentTime;
+    private String paymentTime;
     private int storeId;
     private String status;
 
@@ -51,13 +51,14 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public LocalDate getPaymentTime() {
+    public String getPaymentTime() {
         return paymentTime;
     }
 
-    public void setPaymentTime(LocalDate paymentTime) {
+    public void setPaymentTime(String paymentTime) {
         this.paymentTime = paymentTime;
     }
+
 
     public int getStoreId() {
         return storeId;
@@ -79,6 +80,7 @@ public class Order {
     public String toString() {
         return "Order{" + "id=" + id + ", orderNo=" + orderNo + ", userId=" + userId + ", totalPrice=" + totalPrice + ", paymentTime=" + paymentTime + ", storeId=" + storeId + ", status=" + status + '}';
     }
+
 
 
     

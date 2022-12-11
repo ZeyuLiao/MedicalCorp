@@ -33,12 +33,12 @@ public class OrderDao {
     	conn = DriverManager.getConnection(DB_URL, USER, PASS);
 	}
 	/*
-    id
-order_num
-Customer_id
+    idfororder
+order_no
+Patient_id
 total_price
 payment_time
-store_ID
+store_id
 delivery_status
 
     */
@@ -46,7 +46,7 @@ delivery_status
 		
 	Order s = null;
 	initConnection();
-	String sql = "SELECT * FROM Order WHERE id=?";
+	String sql = "SELECT * FROM Order WHERE idfororder=?";
 	PreparedStatement ps = conn.prepareStatement(sql);
 	ps.setString(1, id+"");
 	ResultSet rs = ps.executeQuery();
@@ -54,11 +54,47 @@ delivery_status
             s = new Order();
             s.setId(id);
             s.setStoreId(rs.getInt("store_id"));
-            s.setOrderNo(rs.getString("order_num"));
+            s.setOrderNo(rs.getString("order_no"));
             s.setStatus(rs.getString("delivery_status"));
             s.setTotalPrice(rs.getDouble("total_price"));
-            s.setUserId(rs.getInt("Customer_id"));
-            s.setPaymentTime(rs.getDate("payment_time").toLocalDate());
+            s.setUserId(rs.getInt("Patient_id"));
+            s.setPaymentTime(rs.getString("payment_time"));
+	}
+	closeConnection();
+	return s;
+    }
+    public int getOrderIdByOrderNo(String orderNo) throws Exception{
+		
+	int orderId = 0;
+	initConnection();
+	String sql = "SELECT * FROM Order WHERE order_no=?";
+	PreparedStatement ps = conn.prepareStatement(sql);
+	ps.setString(1, orderNo+"");
+	ResultSet rs = ps.executeQuery();
+	if (rs.next()){
+            orderId = rs.getInt("idfororder");
+        }
+	closeConnection();
+	return orderId;
+    }
+        
+    public Order getOrderByOrderNo(String orderNo) throws Exception{
+		
+	Order s = null;
+	initConnection();
+	String sql = "SELECT * FROM Order WHERE order_no=?";
+	PreparedStatement ps = conn.prepareStatement(sql);
+	ps.setString(1, orderNo+"");
+	ResultSet rs = ps.executeQuery();
+	if (rs.next()){
+            s = new Order();
+            s.setId(rs.getInt("idfororder"));
+            s.setStoreId(rs.getInt("store_id"));
+            s.setOrderNo(rs.getString("order_no"));
+            s.setStatus(rs.getString("delivery_status"));
+            s.setTotalPrice(rs.getDouble("total_price"));
+            s.setUserId(rs.getInt("Patient_id"));
+            s.setPaymentTime(rs.getString("payment_time"));
 	}
 	closeConnection();
 	return s;
@@ -83,24 +119,27 @@ delivery_status
 //        return list;	
 //    }
 //
-//    public ArrayList<Inventory> getInventoryByUserId(int userId) throws Exception{
-//
-//        ArrayList<Inventory> list = new ArrayList<>();
-//        initConnection();
-//        String sql = "SELECT * FROM Inventory WHERE store_id = " +"'"+storeId+"'";
-//        PreparedStatement ps = conn.prepareStatement(sql);
-//        ResultSet rs = ps.executeQuery();
-//        while(rs.next()){
-//            Inventory s = new Inventory();
-//            s.setId(rs.getInt("id"));
-//            s.setStoreId(rs.getInt("store_id"));
-//            s.setGoodsId(rs.getInt("goods_id"));
-//            s.setSellingPrice(rs.getDouble("selling_price"));
-//            list.add(s);
-//        }
-//        closeConnection();
-//        return list;	
-//    }
+    public ArrayList<Order> getOrderByUserId(int userId) throws Exception{
+
+        ArrayList<Order> list = new ArrayList<>();
+        initConnection();
+        String sql = "SELECT * FROM Order WHERE patient_id = " +"'"+userId+"'";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Order s = new Order();
+            s.setId(rs.getInt("infororder"));
+            s.setStoreId(rs.getInt("store_id"));
+            s.setOrderNo(rs.getString("Order"));
+            s.setPaymentTime(rs.getString("payment_time"));
+            s.setStatus(rs.getString("delivery_state"));
+            s.setTotalPrice(rs.getDouble("total_price"));
+            s.setUserId(userId);
+            list.add(s);
+        }
+        closeConnection();
+        return list;	
+    }
 
     public boolean addOrder(Order order) throws Exception{
 
@@ -125,7 +164,7 @@ delivery_status
 
         boolean res = true;
         initConnection();
-        String sql = "DELETE FROM Order WHERE id='" + orderId + "'";
+        String sql = "DELETE FROM Order WHERE idfororder='" + orderId + "'";
 
         try {
             Statement stat = conn.createStatement();
@@ -143,7 +182,24 @@ delivery_status
 
         boolean res = true;
         initConnection();
-        String sql = "UPDATE Order SET delivery_status ='" + state +  "'" + "where id = "+ orderId ;
+        String sql = "UPDATE Order SET delivery_status ='" + state +  "'" + "where idfororder = "+ orderId ;
+        try {
+            Statement stat = conn.createStatement();
+            stat.executeUpdate(sql);
+        }catch(Exception e) {
+            e.printStackTrace();
+            res = false;
+        } finally {
+            closeConnection();
+        }
+        return res;
+    }
+    
+    public boolean updateOrderPrice(int orderId, double price) throws Exception{
+
+        boolean res = true;
+        initConnection();
+        String sql = "UPDATE Order SET total_price ='" + price +  "'" + "where idfororder = "+ orderId ;
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);

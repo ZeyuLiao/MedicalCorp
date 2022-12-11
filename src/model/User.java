@@ -10,9 +10,17 @@ package model;
  */
 public class User {
 
+    private int logId;
     private String name;
     private String phoneNumber;
 
+    public int getLogId() {
+        return logId;
+    }
+
+    public void setLogId(int logId) {
+        this.logId = logId;
+    }
 
     public String getName() {
         return name;
