@@ -500,7 +500,7 @@ public class Shopping extends javax.swing.JPanel {
             System.out.println(orderNo);
             o.setOrderNo(orderNo);
             
-            o.setStatus("Pending");
+            o.setStatus("pending");
             o.setStoreId(storeId);
             o.setUserId(this.customerId);
             o.setTotalPrice(0);
