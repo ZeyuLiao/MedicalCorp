@@ -147,6 +147,7 @@ public class Appointment extends javax.swing.JPanel {
         jLabel5.setText("Symptom:");
 
         jTextArea.setColumns(20);
+        jTextArea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextArea.setRows(5);
         jScrollPane1.setViewportView(jTextArea);
 

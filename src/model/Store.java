@@ -11,6 +11,15 @@ package model;
 public class Store {
     private int storeId;
     private String storeName;
+    private String Community;
+
+    public String getCommunity() {
+        return Community;
+    }
+
+    public void setCommunity(String Community) {
+        this.Community = Community;
+    }
 
     public int getStoreId() {
         return storeId;
@@ -30,9 +39,7 @@ public class Store {
 
     @Override
     public String toString() {
-        return "Store{" + "storeId=" + storeId + ", storeName=" + storeName + '}';
+        return "Store{" + "storeId=" + storeId + ", storeName=" + storeName + ", Community=" + Community + '}';
     }
-
-    
 
 }
