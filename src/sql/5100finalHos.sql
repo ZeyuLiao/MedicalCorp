@@ -82,7 +82,7 @@ CREATE TABLE patient (
 	CONSTRAINT fk_communityname FOREIGN KEY (community_name) REFERENCES CommunityList(community_name) ON UPDATE CASCADE ON DELETE CASCADE,
 	logID int not null,
 	CONSTRAINT fk_patient_logID FOREIGN KEY (logID) REFERENCES login(logid) ON UPDATE CASCADE ON DELETE CASCADE
-	
+	address VARCHAR(255) DEFAULT null
 );
 INSERT INTO patient ( `name`, phone_number, DOB, community_name, logID)
 VALUES
