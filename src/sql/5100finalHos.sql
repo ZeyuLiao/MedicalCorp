@@ -204,7 +204,7 @@ CREATE TABLE Delivery (
   delivery_NO VARCHAR(255) DEFAULT (CONCAT(date_format(now(), "%Y%c%d%H%i%S"),"DELIVER")),
   order_id INT NOT NULL,
   CONSTRAINT fk_delivery_orderid FOREIGN KEY (order_id) REFERENCES `order`(idfororder) ON UPDATE CASCADE,
-  delivery_company VARCHAR(255) NOT NULL,
+  delivery_company VARCHAR(255) default ("Not Assigned"),
   delivery_status VARCHAR(255) DEFAULT "pending",
   Delivered_time VARCHAR(50) DEFAULT NULL
 );

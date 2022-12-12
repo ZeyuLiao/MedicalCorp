@@ -8,7 +8,7 @@
       <Connection code="logo.getImage()" type="code"/>
     </Property>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
-      <Point value="[300, 150]"/>
+      <Point value="[0, 0]"/>
     </Property>
   </Properties>
   <SyntheticProperties>

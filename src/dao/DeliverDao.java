@@ -33,7 +33,7 @@ public class DeliverDao {
     	conn = DriverManager.getConnection(DB_URL, USER, PASS);
 	}
 
-    public Deliver getDeliverByNo(int Delivery_No) throws Exception{
+    public Deliver getDeliverByNo(String Delivery_No) throws Exception{
 		
 	Deliver d = null;
 	initConnection();
@@ -111,11 +111,11 @@ public class DeliverDao {
         return res;
     }
 	//update
-    public boolean updateDeliverState(int Delivery_No, String state) throws Exception{
+    public boolean updateDeliverState(String Delivery_No, String status,String company) throws Exception{
 
         boolean res = true;
         initConnection();
-        String sql = "UPDATE delivery SET delivery_status ='" + state +  "'" + "where Delivery_No = "+ Delivery_No ;
+        String sql = "UPDATE delivery SET delivery_status ='" + status + "', delivery_company ='" + company + "' WHERE Delivery_No = " + Delivery_No;
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);

@@ -33,7 +33,8 @@ public class Entrance extends javax.swing.JFrame {
     static public ImageIcon logo = new ImageIcon("src//image//ImageLogo.png");
 
     public Entrance() {
-        initComponents();  
+        initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -61,7 +62,7 @@ public class Entrance extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OnlineHospitalSystem");
         setIconImage(logo.getImage());
-        setLocation(new java.awt.Point(300, 150));
+        setLocation(new java.awt.Point(0, 0));
 
         jPanel2.setBackground(new java.awt.Color(149, 177, 182));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -223,6 +224,7 @@ public class Entrance extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
         }
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**     * @param args the command line arguments
