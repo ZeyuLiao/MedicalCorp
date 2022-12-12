@@ -33,13 +33,13 @@ public class ExaminationList extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "patientID", "Hospital Name", "Doctor Name", "Date"
+                "patientID", "Hospital Name", "Doctor Name"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
