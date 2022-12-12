@@ -85,6 +85,7 @@ public class PatientCrud extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(968, 429));
 
+        jTablePatient.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTablePatient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -113,6 +114,7 @@ public class PatientCrud extends javax.swing.JPanel {
             }
         });
 
+        jComboBoxSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Name", "DOB", "Phone Number", "Community Name" }));
 
         jButtonView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_view.png"))); // NOI18N
@@ -143,15 +145,30 @@ public class PatientCrud extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Patient Name:");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Patient Id:");
 
+        jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Community Name:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("DOB:");
 
+        jLabelDOB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabelId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabelCommunityName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("PhoneNumber:");
+
+        jLabelPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
