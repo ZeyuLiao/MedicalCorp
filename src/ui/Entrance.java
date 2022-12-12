@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import ui.deliver.DeliverPanel;
 import ui.patient.AddPatientJFrame;
 
 /**
@@ -54,6 +55,7 @@ public class Entrance extends javax.swing.JFrame {
         jButtonlogin = new javax.swing.JButton();
         jLabelSignUP = new javax.swing.JLabel();
         jLabelLogo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,6 +128,15 @@ public class Entrance extends javax.swing.JFrame {
         ImageIcon logoHospital = new ImageIcon("src//image//Logo.png");
         logoHospital.setImage(logoHospital.getImage().getScaledInstance(jLabelLogo.getWidth(),jLabelLogo.getHeight(),SCALE_DEFAULT));
         jLabelLogo.setIcon(logoHospital);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(220, 410, 79, 23);
 
         jPanel2.add(jPanel1);
         jPanel1.setBounds(530, 10, 460, 580);
@@ -204,6 +215,16 @@ public class Entrance extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_jLabelSignUPMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String Delivery_NO = "NotAssigned";
+        try {
+            new DeliverPanel(Delivery_NO);
+        } catch (Exception ex) {
+            Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**     * @param args the command line arguments
      */
     public static void main(String args[]) throws Exception {
@@ -224,6 +245,7 @@ public class Entrance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonlogin;
     private javax.swing.JComboBox<String> jComboBoxUserType;
     private javax.swing.JLabel jLabel1;
