@@ -82,11 +82,11 @@ CREATE TABLE patient (
 	CONSTRAINT fk_communityname FOREIGN KEY (community_name) REFERENCES CommunityList(community_name) ON UPDATE CASCADE ON DELETE CASCADE,
 	logID int not null,
 	CONSTRAINT fk_patient_logID FOREIGN KEY (logID) REFERENCES login(logid) ON UPDATE CASCADE ON DELETE CASCADE
-	
+	address VARCHAR(255) DEFAULT null
 );
 INSERT INTO patient ( `name`, phone_number, DOB, community_name, logID)
 VALUES
-	( 'Alex', '1111111111', '1990','Toronto Downtown', 11),
+	( 'Alex', '6477823360', '1990','Toronto Downtown', 11),
 	( 'Bob', '1211111111', '1980','Toronto Downtown', 12 ),
 	( 'Cathy', '1131111111', '1970','Markham', 13),
 	( 'Dana', '1114111111', '1960','Scarborough',14),
@@ -112,7 +112,9 @@ VALUES ('Aaron Hendler','Downtown Hospital','Emergency Clinic','4378861089','src
 	
 	CREATE table goods(
 	goods_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	goods_name VARCHAR ( 50 ) NOT NULL UNIQUE 
+	goods_name VARCHAR ( 50 ) NOT NULL UNIQUE,
+	goods_status int not null DEFAULT(0) #0表示有效，1表示无效
+	
 	);
 	
 	
@@ -130,6 +132,7 @@ CREATE TABLE Store(
 Store_id int PRIMARY KEY  not null AUTO_INCREMENT,
 store_name VARCHAR(255) UNIQUE,
 community VARCHAR(50) not null,
+store_status int not null DEFAULT(0), #0表示有效，1表示无效
 CONSTRAINT fk_store_community FOREIGN KEY (community) REFERENCES communityList(community_name) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -160,22 +163,21 @@ VALUES (1, 1, 10.00),
        idfororder int not null PRIMARY KEY AUTO_INCREMENT,
 			 order_no VARCHAR(255) DEFAULT (date_format(now(), "%Y%c%d%H%i%S")),
 			 store_id int not null,
-			 CONSTRAINT fk_order_storeid FOREIGN KEY (store_id) REFERENCES Store(store_id),
+			 CONSTRAINT fk_order_storeid FOREIGN KEY (store_id) REFERENCES Store(store_id) ON UPDATE CASCADE ON DELETE RESTRICT,
 			 Patient_id int not null,
-			 CONSTRAINT fk_order_Patientid FOREIGN KEY (Patient_id) REFERENCES Patient(patient_id),
+			 CONSTRAINT fk_order_Patientid FOREIGN KEY (Patient_id) REFERENCES Patient(patient_id) ON UPDATE CASCADE ON DELETE RESTRICT,
 			 total_price DOUBLE, 
 			 payment_time VARCHAR(50) DEFAULT (CURRENT_TIMESTAMP),
-			 delivery_status VARCHAR(255)		 	 
+			 delivery_status VARCHAR(255)			
 );
 
 
 
 INSERT INTO `ORDER` (store_id, Patient_id, total_price, delivery_status)
 VALUES (1, 1, 100.00, 'pending'),
-       (1, 2, 50.00, 'shipped'),
+       (1, 2, 50.00, 'pending'),
        (2, 3, 75.00, 'delievered'),
-       (2, 4, 25.00, 'delievered'),
-       (3, 5, 150.00, 'buy in store');
+       (2, 4, 25.00, 'delievered');
 			 
 			 
 			 
@@ -184,8 +186,8 @@ CREATE TABLE order_detail (
       order_No int not null,
 			goods_ID int not null,
 			quantity int not null,
-			CONSTRAINT fk_orderdetail_orderNo FOREIGN KEY (order_No) REFERENCES `order`(idfororder),
-			CONSTRAINT fk_orderdetail_goodsID FOREIGN KEY (goods_ID) REFERENCES goods(goods_id)
+			CONSTRAINT fk_orderdetail_orderNo FOREIGN KEY (order_No) REFERENCES `order`(idfororder) ON UPDATE CASCADE ON DELETE RESTRICT,
+			CONSTRAINT fk_orderdetail_goodsID FOREIGN KEY (goods_ID) REFERENCES goods(goods_id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 
@@ -194,24 +196,23 @@ INSERT INTO order_detail (order_No, goods_ID, quantity)
 VALUES (1, 1, 2),
        (2, 2, 3),
        (3, 3, 1),
-       (4, 4, 4),
-       (5, 5, 5);
+       (4, 4, 4);
 
 			 
 CREATE TABLE Delivery (
   idfordelivery INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   delivery_NO VARCHAR(255) DEFAULT (CONCAT(date_format(now(), "%Y%c%d%H%i%S"),"DELIVER")),
   order_id INT NOT NULL,
-  CONSTRAINT fk_delivery_orderid FOREIGN KEY (order_id) REFERENCES `order`(idfororder) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_delivery_orderid FOREIGN KEY (order_id) REFERENCES `order`(idfororder) ON UPDATE CASCADE,
   delivery_company VARCHAR(255) NOT NULL,
-  delivery_status VARCHAR(255) DEFAULT "order received",
+  delivery_status VARCHAR(255) DEFAULT "pending",
   Delivered_time VARCHAR(50) DEFAULT NULL
 );
 
 ###################################
 INSERT INTO Delivery (order_id, delivery_company, delivery_status) VALUES
       (1, 'DHL', 'pending'),
-      (2, 'FedEx', 'shipped'),
+      (2, 'FedEx', 'pending'),
       (3, 'Express', 'delievered'),
       (4, 'UPS', 'delievered');
 
