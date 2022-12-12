@@ -46,6 +46,7 @@ public class StoreDao {
             s.setStoreId(id);
             s.setStoreName(rs.getString("store_name"));
             s.setCommunity(rs.getString("community"));
+            s.setState(rs.getBoolean("store_status"));
 	}
 	closeConnection();
 	return s;
@@ -63,6 +64,7 @@ public class StoreDao {
             s.setStoreId(rs.getInt("store_id"));
             s.setStoreName(rs.getString("store_name"));
             s.setCommunity(rs.getString("community"));
+            s.setState(rs.getBoolean("store_status"));
             list.add(s);
         }
         closeConnection();
@@ -82,17 +84,37 @@ public class StoreDao {
             s.setStoreId(rs.getInt("store_id"));
             s.setStoreName(rs.getString("store_name"));
             s.setCommunity(rs.getString("community"));
+            s.setState(rs.getBoolean("store_status"));
 	}
 	closeConnection();
 	return s;
+    }
+    public ArrayList<Store> getStoreByCommunity(String community) throws Exception{
+		
+        ArrayList<Store> list = new ArrayList<>();
+        initConnection();
+        String sql = "SELECT * FROM store where community=?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, community);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Store s = new Store();
+            s.setStoreId(rs.getInt("store_id"));
+            s.setStoreName(rs.getString("store_name"));
+            s.setCommunity(rs.getString("community"));
+            s.setState(rs.getBoolean("store_status"));
+            list.add(s);
+        }
+        closeConnection();
+        return list;	
     }
 
     public boolean addStore(Store store) throws Exception{
 
         boolean res = true;
         initConnection();
-        String sql = "INSERT INTO Store( store_name) "
-                        + "VALUES('" + store.getStoreName() +  "')";
+        String sql = "INSERT INTO Store( store_name,community) "
+                        + "VALUES('" + store.getStoreName() +"', '"+store.getCommunity()+  "')";
         //System.out.println(sql);
         try {
             Statement stat = conn.createStatement();
@@ -110,7 +132,7 @@ public class StoreDao {
 
         boolean res = true;
         initConnection();
-        String sql = "DELETE FROM Store WHERE store_id='" + storeId + "'";
+        String sql = "UPDATE Store SET store_status= '1' where store_id = "+ storeId ;
 
         try {
             Statement stat = conn.createStatement();
@@ -128,7 +150,7 @@ public class StoreDao {
 
         boolean res = true;
         initConnection();
-        String sql = "UPDATE Store SET store_name='" + store.getStoreName() +"'" + "where store_id = "+ store.getStoreId() ;
+        String sql = "UPDATE Store SET store_name='" + store.getStoreName() +"',community = '" + store.getCommunity()+ "' where store_id = '"+ store.getStoreId() +"'";
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);

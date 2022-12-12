@@ -81,26 +81,33 @@ public class AddPatientJFrame extends javax.swing.JFrame {
         setLocation(new java.awt.Point(350, 200));
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Name:");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Community Name:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Year of Birth (yyyy):");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Phone Number:");
 
+        jTextFieldName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldNameMouseClicked(evt);
             }
         });
 
+        jTextFieldPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldPhoneNumber.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldPhoneNumberMouseClicked(evt);
             }
         });
 
+        jTextFieldDOB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldDOB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextFieldDOBMouseClicked(evt);
@@ -116,10 +123,15 @@ public class AddPatientJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelName.setForeground(new java.awt.Color(255, 0, 0));
 
+        jComboBoxCName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabelPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPhoneNumber.setForeground(new java.awt.Color(255, 0, 0));
 
+        jLabelDOB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelDOB.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N

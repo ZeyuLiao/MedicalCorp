@@ -2,50 +2,55 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.patient;
+package ui.store;
 
 import javax.swing.table.DefaultTableModel;
-import model.Patient;
-import dao.PatientDao;
+import dao.StoreDao;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Store;
 
 
 /**
  *
  * @author Ruolin 
  */
-public class PatientCrud extends javax.swing.JPanel {
+public class StoreCrud extends javax.swing.JPanel {
 
     /**
      * Creates new form HomePage
      */
-    PatientDao pDao;
-    public PatientCrud() throws Exception{
-        this.pDao = new PatientDao();
+    StoreDao sDao;
+    public StoreCrud() throws Exception{
+        this.sDao = new StoreDao();
         initComponents();
         showTable();
     }
-    private Object[] addTableRow(Object[] row,Patient p){
-        row[0] = p.getPatientId();
-        row[1] = p.getName();
-        row[2] = p.getPhoneNumber();
-        row[3] = p.getDOB();
-        row[4] = p.getCommunityName();
+    private Object[] addTableRow(Object[] row,Store s){
+        String state;
+        if(s.isState()==false){
+            state = "Active";
+        }else{
+            state = "Deleted";
+        }
+        row[0] = s.getStoreId();
+        row[1] = s.getStoreName();
+        row[2] = s.getCommunity();
+        row[3] = state;
         return row;
     }
     private void showTable() throws Exception{
-        DefaultTableModel model = (DefaultTableModel)jTablePatient.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
         model.setRowCount(0);
         
-        ArrayList<Patient> pList = pDao.getAllPatient();
+        ArrayList<Store> List = sDao.getAllStore();
         
-        for(Patient p:pList){
+        for(Store s:List){
             Object[] row = new Object[10];
-            addTableRow(row,p);
+            addTableRow(row,s);
             
             model.addRow(row);     
         }
@@ -62,7 +67,7 @@ public class PatientCrud extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePatient = new javax.swing.JTable();
+        jTableStore = new javax.swing.JTable();
         jButtonAdd = new javax.swing.JButton();
         jComboBoxSearch = new javax.swing.JComboBox<>();
         jButtonView = new javax.swing.JButton();
@@ -74,38 +79,34 @@ public class PatientCrud extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabelName = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabelDOB = new javax.swing.JLabel();
-        jLabelId = new javax.swing.JLabel();
-        jLabelCommunityName = new javax.swing.JLabel();
+        jLabelCommunity = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabelPhoneNumber = new javax.swing.JLabel();
+        jLabelState = new javax.swing.JLabel();
         jButtonRefresh = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(968, 429));
 
-        jTablePatient.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTablePatient.setModel(new javax.swing.table.DefaultTableModel(
+        jTableStore.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTableStore.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "patientId", "Name", "PhoneNumber", "DOB", "CommunityName"
+                "Pharmacy Id", "Name", "Community", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTablePatient);
+        jScrollPane1.setViewportView(jTableStore);
 
         jButtonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_add.png"))); // NOI18N
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +116,7 @@ public class PatientCrud extends javax.swing.JPanel {
         });
 
         jComboBoxSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Name", "DOB", "Phone Number", "Community Name" }));
+        jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Name", "Community" }));
 
         jButtonView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_view.png"))); // NOI18N
         jButtonView.addActionListener(new java.awt.event.ActionListener() {
@@ -146,29 +147,19 @@ public class PatientCrud extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Patient Name:");
+        jLabel1.setText("Name:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Patient Id:");
+        jLabel2.setText("Community:");
 
         jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Community Name:");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("DOB:");
-
-        jLabelDOB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabelId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabelCommunityName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelCommunity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("PhoneNumber:");
+        jLabel5.setText("Status");
 
-        jLabelPhoneNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelState.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -176,26 +167,15 @@ public class PatientCrud extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                            .addComponent(jLabelId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelCommunityName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelPhoneNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                    .addComponent(jLabelCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelState, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -207,23 +187,15 @@ public class PatientCrud extends javax.swing.JPanel {
                     .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(3, 3, 3)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCommunityName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(172, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelState, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelRightLayout = new javax.swing.GroupLayout(jPanelRight);
@@ -298,7 +270,7 @@ public class PatientCrud extends javax.swing.JPanel {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
-        AddPatientJFrame add = new AddPatientJFrame();
+        AddStoreJFrame add = new AddStoreJFrame();
 //        add.setBounds(100, 100, 750, 500);
         add.setVisible(true);
         try {
@@ -311,20 +283,21 @@ public class PatientCrud extends javax.swing.JPanel {
 
     private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
         // TODO add your handling code here:
-        int selectedIndex = jTablePatient.getSelectedRow();
+        int selectedIndex = jTableStore.getSelectedRow();
         if(selectedIndex < 0){
             JOptionPane.showMessageDialog(this,"Please select a row to view");
             return;
         }
-        DefaultTableModel model = (DefaultTableModel)jTablePatient.getModel();
-        int patientId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
+        DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
+        int storeId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         try{
-            Patient p = pDao.getPatientById(patientId);
-            jLabelId.setText(p.getPatientId()+"");
-            jLabelName.setText(p.getName());
-            jLabelPhoneNumber.setText(p.getPhoneNumber());
-            jLabelDOB.setText(p.getDOB());
-            jLabelCommunityName.setText(p.getCommunityName());
+            Store s = sDao.getStoreById(storeId);
+            jLabelCommunity.setText(s.getCommunity());
+            jLabelName.setText(s.getStoreName());
+            if(s.isState()==true)
+                jLabelState.setText("Deleted");
+            else
+                jLabelState.setText("Active");
         }
         catch(Exception e){
             e.printStackTrace();
@@ -335,18 +308,18 @@ public class PatientCrud extends javax.swing.JPanel {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-        int selectedIndex = jTablePatient.getSelectedRow();
+        int selectedIndex = jTableStore.getSelectedRow();
         if(selectedIndex < 0){
             JOptionPane.showMessageDialog(this,"Please select a row to delete");
             return;
         }
-        DefaultTableModel model = (DefaultTableModel)jTablePatient.getModel();
-        int patientId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
+        DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
+        int storeId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         
-        int n = JOptionPane.showConfirmDialog(null, "Confirm to delete Patient "+patientId + "account?", "",JOptionPane.YES_NO_OPTION);//0/1
+        int n = JOptionPane.showConfirmDialog(null, "Confirm to delete Pharmacy "+storeId + "?", "",JOptionPane.YES_NO_OPTION);//0/1
         try{
             if(n==0)
-                pDao.deletePatient(patientId);
+                sDao.deleteStore(storeId);
             showTable();
         }
         catch(Exception e){
@@ -357,15 +330,15 @@ public class PatientCrud extends javax.swing.JPanel {
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        int selectedIndex = jTablePatient.getSelectedRow();
+        int selectedIndex = jTableStore.getSelectedRow();
         if(selectedIndex < 0){
             JOptionPane.showMessageDialog(this,"Please select a row to update");
             return;
         }
-        DefaultTableModel model = (DefaultTableModel)jTablePatient.getModel();
-        int patientId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
+        DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
+        int storeId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         try {
-            UpdatePatientJFrame up = new UpdatePatientJFrame(patientId);
+            UpdateStoreJFrame up = new UpdateStoreJFrame(storeId);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -376,37 +349,32 @@ public class PatientCrud extends javax.swing.JPanel {
         
         String keyword = jComboBoxSearch.getSelectedItem().toString();
         String input = JOptionPane.showInputDialog("Please input a value");
-        ArrayList<Patient> pList = new ArrayList<>();  
+        ArrayList<Store> pList = new ArrayList<>();  
         try{
             switch(keyword){
                 case "Id": { 
-                    Patient p = pDao.getPatientById(Integer.parseInt(input)); 
+                    Store p = sDao.getStoreById(Integer.parseInt(input)); 
                     pList.add(p); 
                     break;}
                 case "Name":{ 
-                    pList = pDao.getPatientByName(input);  
+                    Store p = sDao.getStoreByName(input);
+                    pList.add(p); 
                     break;}
-                case "DOB":{ 
-                    pList = pDao.getPatientByDOB(input);
-                    break;}
-                case "Phone Number":{ 
-                    pList = pDao.getPatientByPhoneNumber(input);
-                    break;}
-                case "Community Name":{ 
-                    pList = pDao.getPatientByAddress(input);
+                case "Community":{ 
+                    pList = sDao.getStoreByCommunity(input);
                     break;}
 
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        DefaultTableModel model = (DefaultTableModel)jTablePatient.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
         
         model.setRowCount(0);
         
-        for(Patient p:pList){
-            Object[] row = new Object[10];
-            addTableRow(row,p);
+        for(Store s:pList){
+            Object[] row = new Object[6];
+            addTableRow(row,s);
             
             model.addRow(row);     
         }
@@ -431,17 +399,13 @@ public class PatientCrud extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBoxSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelCommunityName;
-    private javax.swing.JLabel jLabelDOB;
-    private javax.swing.JLabel jLabelId;
+    private javax.swing.JLabel jLabelCommunity;
     private javax.swing.JLabel jLabelName;
-    private javax.swing.JLabel jLabelPhoneNumber;
+    private javax.swing.JLabel jLabelState;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelRight;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTablePatient;
+    private javax.swing.JTable jTableStore;
     // End of variables declaration//GEN-END:variables
 }

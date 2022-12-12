@@ -12,6 +12,16 @@ public class Store {
     private int storeId;
     private String storeName;
     private String Community;
+    private boolean state;
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+    
 
     public String getCommunity() {
         return Community;
@@ -39,7 +49,8 @@ public class Store {
 
     @Override
     public String toString() {
-        return "Store{" + "storeId=" + storeId + ", storeName=" + storeName + ", Community=" + Community + '}';
+        return "Store{" + "storeId=" + storeId + ", storeName=" + storeName + ", Community=" + Community + ", state=" + state + '}';
     }
+
 
 }

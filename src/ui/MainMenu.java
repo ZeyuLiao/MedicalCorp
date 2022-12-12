@@ -18,6 +18,7 @@ import ui.patient.MyOrder;
 import ui.patient.MyProfile;
 import ui.patient.PatientCrud;
 import ui.patient.Shopping;
+import ui.store.StoreCrud;
 
 
 /**
@@ -58,6 +59,9 @@ public class MainMenu extends javax.swing.JFrame {
                 
                 MyOrder mo = new MyOrder(id);
                 jTabbedPaneMenu.addTab("My Order", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), mo);
+                
+                StoreCrud sc = new StoreCrud();
+                jTabbedPaneMenu.addTab("Store", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), sc);
             }
             //Choose Doctor
             case 1 -> {
