@@ -80,19 +80,19 @@ public class MainMenu extends javax.swing.JFrame {
                 jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//icon_profile.png"), pp);
                 
             }
-            //Choose Hospital Admin
+            //Choose Hospital Admin *
             case 2 -> {
                 DoctorCrud dc = new DoctorCrud();
                 jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//icon_patient.png"), dc);
                 
             }
-            //Choose Community Admin
+            //Choose Community Admin *
             case 3 ->{
                HospitalCrud hc = new HospitalCrud();
                jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//hospital.png"), hc);
             }
             
-            //Choose System Admin
+            //Choose System Admin *
             case 4-> {
                CommunityCRUD cc = new CommunityCRUD();
                HospitalCrud  hc = new HospitalCrud();
@@ -103,6 +103,16 @@ public class MainMenu extends javax.swing.JFrame {
                jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//hospital.png"), hc);
                jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//icon_profile.png"), pc);
                
+            }
+            
+            //Delivery Admin
+            case 5 -> {
+            
+            }
+            
+            //goods Admin
+            case 6 -> {
+            
             }
             
             default -> {
