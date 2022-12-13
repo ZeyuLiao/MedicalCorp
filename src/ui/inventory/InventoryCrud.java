@@ -31,16 +31,16 @@ public class InventoryCrud extends javax.swing.JPanel {
     StoreDao sDao;
     Store s;
     GoodsDao gDao;
-    public InventoryCrud(String role) throws Exception{
+    public InventoryCrud(int id) throws Exception{
         this.iDao = new InventoryDao();
         this.sDao = new StoreDao();
         this.gDao = new GoodsDao();
-        this.s = sDao.getStoreByName(role);
+        this.s = sDao.getStoreById(id);
         if(s.isState()==true){
                 JOptionPane.showMessageDialog(this,"Store is deleted");
         }
         initComponents();
-        jLabelStoreName.setText(role);
+        jLabelStoreName.setText(s.getStoreName());
         showTable();
     }
     private Object[] addTableRow(Object[] row,Inventory i) throws Exception{

@@ -7,7 +7,9 @@ package ui;
 import dao.DoctorDao;
 import dao.LoginDao;
 import dao.PatientDao;
+import dao.StoreDao;
 import static java.awt.Image.SCALE_DEFAULT;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -15,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import model.Doctor;
 import model.Patient;
+import model.Store;
 import model.User;
 import ui.community.CommunityCRUD;
 import ui.deliver.DeliverManagePanel;
@@ -22,6 +25,7 @@ import ui.deliver.DeliverPanel;
 import ui.doctors.DoctorHomePage;
 import ui.goods.GoodsCrud;
 import ui.hospital.HospitalCrud;
+import ui.inventory.InventoryCrud;
 import ui.patient.AddPatientJFrame;
 import ui.patient.Appointment;
 
@@ -190,6 +194,13 @@ public class Entrance extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Please input your id!");
                 return;
             }
+            StoreDao sDao = new StoreDao();
+            ArrayList<Store> stores = sDao.getAllStore();
+            ArrayList<String> storeName = new ArrayList<>();
+            for(Store s:stores){
+                storeName.add(s.getStoreName());
+            }
+            
             MainMenu menu = new MainMenu();
             switch (jComboBoxUserType.getSelectedIndex()) {
                 case 0:
@@ -249,10 +260,6 @@ public class Entrance extends javax.swing.JFrame {
                                 dispose();
                                 return;
                                 
-                            case "InventoryAdmin":
-                                menu.MainMenu(8, Integer.parseInt(txtUserID.getText()));
-                                dispose();
-                                return;
                                 
                             case "Examin":
                                 menu.MainMenu(9, Integer.parseInt(txtUserID.getText()));
@@ -270,8 +277,15 @@ public class Entrance extends javax.swing.JFrame {
                                 
                             case "UPS":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
+                                
+                            
                         }
-
+                        if(storeName.contains(rRes.getRole())){
+                            menu.MainMenu(8, sDao.getStoreByName(rRes.getRole()).getStoreId());
+                            dispose();
+                            return;                        
+                        }
+                        
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Wrong account ID or wrong password!");
                     }

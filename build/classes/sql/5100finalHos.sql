@@ -72,7 +72,11 @@ INSERT into login(user_name,role,pwd) VALUES
 ('Emma','Patient',MD5(123)),
 
 ('Aaron Hendler','Doctor',MD5('d123')), #17
-('Stephen Herman','Doctor',MD5('d123'));
+
+('ShoppersAdmin','Shoppers',MD5(12345)),
+('RexallAdmin','Rexall',MD5(12345)),
+('HealthCareAdmin','HealthCareAdmin',MD5(12345)),
+('drugMartAdmin','drugMartAdmin',MD5(12345)),
 
 CREATE TABLE patient (
 	patient_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

@@ -126,7 +126,7 @@ public class MainMenu extends javax.swing.JFrame {
             
             //InventoryAdmin
             case 8 -> {
-                InventoryCrud ic = new InventoryCrud("Shoppers");
+                InventoryCrud ic = new InventoryCrud(id);
                 jTabbedPaneMenu.addTab("Inventory", new javax.swing.ImageIcon("src//icon//heroicons-ui_63.png"), ic);
             
             }
@@ -144,6 +144,8 @@ public class MainMenu extends javax.swing.JFrame {
         }       
         
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
