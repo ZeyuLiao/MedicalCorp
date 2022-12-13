@@ -215,28 +215,3 @@ INSERT INTO Delivery (order_id, delivery_company, delivery_status) VALUES
       (2, 'FedEx', 'pending'),
       (3, 'Express', 'delievered'),
       (4, 'UPS', 'delievered');
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-	
-	
-	
-	
-
-	
-
-
-
-
