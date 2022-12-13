@@ -264,7 +264,12 @@ public class DeliverPanel extends javax.swing.JFrame {
         jLabellogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel6.add(jLabellogo);
         jLabellogo.setBounds(10, 0, 90, 40);
-        ImageIcon deliverlogo = new ImageIcon("src//image//dhl_logo.png");
+        ImageIcon deliverlogo;
+        String Company = "Express";
+        if(Company == "DHL") deliverlogo = new ImageIcon("src//image//dhl_logo.png");
+        else if(Company == "Express") deliverlogo = new ImageIcon("src//image//express_logo.png");
+        else if(Company == "UPS") deliverlogo = new ImageIcon("src//image//ups_logo.png");
+        else deliverlogo = new ImageIcon("src//image//fedex_logo.png");
         deliverlogo.setImage(deliverlogo.getImage().getScaledInstance(jLabellogo.getWidth(),jLabellogo.getHeight(),SCALE_DEFAULT));
         jLabellogo.setIcon(deliverlogo);
 

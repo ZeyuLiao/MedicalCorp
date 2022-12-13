@@ -418,7 +418,7 @@
                         <Property name="horizontalAlignment" type="int" value="0"/>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon deliverlogo = new ImageIcon(&quot;src//image//dhl_logo.png&quot;);&#xa;deliverlogo.setImage(deliverlogo.getImage().getScaledInstance(jLabellogo.getWidth(),jLabellogo.getHeight(),SCALE_DEFAULT));&#xa;jLabellogo.setIcon(deliverlogo);"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon deliverlogo; &#xa;String Company = &quot;Express&quot;;&#xa;if(Company == &quot;DHL&quot;) deliverlogo = new ImageIcon(&quot;src//image//dhl_logo.png&quot;);         &#xa;else if(Company == &quot;Express&quot;) deliverlogo = new ImageIcon(&quot;src//image//express_logo.png&quot;);&#xa;else if(Company == &quot;UPS&quot;) deliverlogo = new ImageIcon(&quot;src//image//ups_logo.png&quot;);&#xa;else deliverlogo = new ImageIcon(&quot;src//image//fedex_logo.png&quot;);&#xa;deliverlogo.setImage(deliverlogo.getImage().getScaledInstance(jLabellogo.getWidth(),jLabellogo.getHeight(),SCALE_DEFAULT));&#xa;jLabellogo.setIcon(deliverlogo);"/>
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
