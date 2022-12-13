@@ -4,6 +4,7 @@
  */
 package ui.patient;
 
+import dao.DeliverDao;
 import dao.GoodsDao;
 import dao.InventoryDao;
 import dao.OrderDao;
@@ -519,7 +520,8 @@ public class Shopping extends javax.swing.JPanel {
             }
             
             oDao.updateOrderPrice(orderId, price);
-            
+            DeliverDao dDao = new DeliverDao();
+            dDao.addOrder(orderId);
             cartList.remove(storeId);
             showTableCart();
         } catch (Exception ex) {

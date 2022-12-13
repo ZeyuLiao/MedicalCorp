@@ -74,12 +74,12 @@ public class DeliverDao {
         return deliverList;	
     }
 
-    public boolean addOrder(Deliver del) throws Exception{
+    public boolean addOrder(int order_id) throws Exception{
 
         boolean res = true;
         initConnection();
-        String sql = "INSERT INTO `delivery`(order_id,delivery_company, delivery_status) "
-                        + "VALUES('" + del.getOrder_id()+ "','" + del.getDelivery_company()+ "','" + del.getDelivery_status() + "')";
+        String sql = "INSERT INTO `delivery`(order_id) "
+                        + "VALUES('" + order_id + "')";
 //        System.out.println(sql);
         try {
             Statement stat = conn.createStatement();
@@ -115,7 +115,7 @@ public class DeliverDao {
 
         boolean res = true;
         initConnection();
-        String sql = "UPDATE delivery SET delivery_status ='" + status + "', delivery_company ='" + company + "' WHERE Delivery_No = " + Delivery_No;
+        String sql = "UPDATE delivery SET delivery_status ='" + status + "', delivery_company ='" + company + "' WHERE delivery_NO = '" + Delivery_No + "'";
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);
