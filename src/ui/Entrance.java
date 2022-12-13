@@ -248,12 +248,12 @@ public class Entrance extends javax.swing.JFrame {
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
 
                             case "FedEx":
-                                
+                                new DeliverPanel(rRes.getName(), rRes.getRole());
 
                             case "Express":
-
+                                new DeliverPanel(rRes.getName(), rRes.getRole());
                             case "UPS":
-
+                                new DeliverPanel(rRes.getName(), rRes.getRole());
                         }
 
                     } else {

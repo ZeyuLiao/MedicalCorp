@@ -617,7 +617,7 @@ public class DeliverPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         if("".equals(jTextFieldDeliverNO.getText())) JOptionPane.showMessageDialog(this,"Please select a row to view details first");
         else {
-            jTextFieldDeliverCompany.setText("DHL");
+            jTextFieldDeliverCompany.setText(company);
             jPanelConfirmBg.setVisible(true);
         }
     }//GEN-LAST:event_jButtonVerifyActionPerformed
@@ -660,7 +660,7 @@ public class DeliverPanel extends javax.swing.JFrame {
     private void jButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmActionPerformed
         try {
             // TODO add your handling code here:
-            dDao.updateDeliverState(jTextFieldDeliverNO.getText(), "Delivered", "DHL");
+            dDao.updateDeliverState(jTextFieldDeliverNO.getText(), "Delivered", company);
         } catch (Exception ex) {
             Logger.getLogger(DeliverPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -686,7 +686,7 @@ public class DeliverPanel extends javax.swing.JFrame {
     modelHistoryOrder.setRowCount(0);
     for (Deliver d : elist){
         System.out.println(d.getDelivery_status());
-        if("DHL".equals(d.getDelivery_company())){
+        if(company.equals(d.getDelivery_company())){
             Object[] row = new Object[5];
             row[0] = d.getDelivery_NO();
             row[1] = d.getOrder_id();
