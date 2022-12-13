@@ -25,7 +25,7 @@ public class ExaminationList extends javax.swing.JPanel {
     public ExaminationList() {
         initComponents();
         try {
-            encounterList.addAll(eDao.getAllEncounterNotExamined());
+           showTable();
 //            for (Encounter en : encounterList) {
 //                System.out.println(en.toString());
 //            }
@@ -38,7 +38,7 @@ public class ExaminationList extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel)tblExaminList.getModel();
         model.setRowCount(0);
-        
+        encounterList.addAll(eDao.getAllEncounterNotExamined());
         for (Encounter en : encounterList){
                 Object[] row = new Object[3];
                 
