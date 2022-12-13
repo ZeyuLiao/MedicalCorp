@@ -13,6 +13,8 @@ public class User {
     private int logId;
     private String name;
     private String phoneNumber;
+    
+    private String role;
 
     public int getLogId() {
         return logId;
@@ -37,5 +39,20 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "role=" + getRole(); 
+    }
+     
+    
     
 }

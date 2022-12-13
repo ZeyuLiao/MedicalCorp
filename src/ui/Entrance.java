@@ -5,6 +5,7 @@
 package ui;
 
 import dao.DoctorDao;
+import dao.LoginDao;
 import dao.PatientDao;
 import static java.awt.Image.SCALE_DEFAULT;
 import java.util.logging.Level;
@@ -12,6 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import model.Doctor;
+import model.Patient;
 import ui.deliver.DeliverPanel;
 import ui.patient.AddPatientJFrame;
 
@@ -52,13 +55,13 @@ public class Entrance extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBoxUserType = new javax.swing.JComboBox<>();
-        jTextFieldAccount = new javax.swing.JTextField();
+        txtpwd = new javax.swing.JTextField();
         jButtonlogin = new javax.swing.JButton();
         jLabelSignUP = new javax.swing.JLabel();
         jLabelLogo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldAccount1 = new javax.swing.JTextField();
+        txtUserID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,9 +99,9 @@ public class Entrance extends javax.swing.JFrame {
         jPanel1.add(jComboBoxUserType);
         jComboBoxUserType.setBounds(200, 260, 190, 23);
 
-        jTextFieldAccount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jPanel1.add(jTextFieldAccount);
-        jTextFieldAccount.setBounds(200, 350, 190, 23);
+        txtpwd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jPanel1.add(txtpwd);
+        txtpwd.setBounds(200, 350, 190, 23);
 
         jButtonlogin.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButtonlogin.setText("Login");
@@ -146,9 +149,9 @@ public class Entrance extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(110, 360, 93, 17);
 
-        jTextFieldAccount1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jPanel1.add(jTextFieldAccount1);
-        jTextFieldAccount1.setBounds(200, 300, 190, 23);
+        txtUserID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jPanel1.add(txtUserID);
+        txtUserID.setBounds(200, 300, 190, 23);
 
         jPanel2.add(jPanel1);
         jPanel1.setBounds(530, 10, 460, 580);
@@ -175,36 +178,39 @@ public class Entrance extends javax.swing.JFrame {
     private void jButtonloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonloginActionPerformed
         try {
             // TODO add your handling code here:
-            if(jTextFieldAccount.getText().isEmpty()){
+            LoginDao ldao = new LoginDao();
+            if(txtUserID.getText().isEmpty()){
                 JOptionPane.showMessageDialog(rootPane, "Please input your id!");
                 return;
             }
             switch (jComboBoxUserType.getSelectedIndex()) {
                 case 0: 
-                    PatientDao pDao = new PatientDao();
-                    if(pDao.isExist(Integer.parseInt(jTextFieldAccount.getText()))) break;
-                    else  JOptionPane.showMessageDialog(rootPane, "Account doesn't exist!");
+                    Patient pRes = ldao.isValidPatient(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
+                    if(pRes != null){
+                    new 
+                    }
+                    else  
+                    JOptionPane.showMessageDialog(rootPane, "Wrong account No or wrong password!");
                             
-                    
                     return;
                 case 1:
-                    DoctorDao dDao = new DoctorDao();
-                    if(dDao.isExist(Integer.parseInt(jTextFieldAccount.getText()))) break;
-                    else  JOptionPane.showMessageDialog(rootPane, "Account doesn't exist!");
+                   Doctor dRes = ldao.isValidDoctor(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
+                    if(dRes != null) {
+                    
+                    }
+                    else  JOptionPane.showMessageDialog(rootPane, "Wrong account No or wrong password!");
                     
                     return;
                 case 2:
                     
-                    break;    
-                case 3:
                     
-                    break;    
+                    break;     
                     
                 default:
                     break;
             }
             MainMenu menu = new MainMenu();
-            menu.MainMenu(jComboBoxUserType.getSelectedIndex(),Integer.parseInt(jTextFieldAccount.getText()));
+            menu.MainMenu(jComboBoxUserType.getSelectedIndex(),Integer.parseInt(txtpwd.getText()));
             dispose();
         } catch (Exception ex) {
             Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
@@ -270,7 +276,7 @@ public class Entrance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSlogan;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextFieldAccount;
-    private javax.swing.JTextField jTextFieldAccount1;
+    private javax.swing.JTextField txtUserID;
+    private javax.swing.JTextField txtpwd;
     // End of variables declaration//GEN-END:variables
 }

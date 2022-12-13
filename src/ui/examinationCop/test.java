@@ -7,6 +7,8 @@ package ui.examinationCop;
 import model.Diagnose;
 
 import com.alibaba.fastjson.JSON;
+import dao.LoginDao;
+import dao.PatientDao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -45,8 +49,9 @@ public class test {
         // Convert the Diagnose instance to JSON
         String json = JSON.toJSONString(diagnose);
 
-        new test().updateDiagnose(json, "2");
-        System.out.println(new test().getDiagnose("1"));
+//        new test().updateDiagnose(json, "2");
+//        System.out.println(new test().getDiagnose("1"));
+        testPatient();
     }
 
     private Connection conn = null;
@@ -64,6 +69,24 @@ public class test {
         Class.forName(JDBC_DRIVER);
         conn = DriverManager.getConnection(DB_URL, USER, PASS);
     }
+    
+    public static void testPatient() {
+        try {
+            LoginDao dao = new LoginDao();
+            dao.initConnection();
+            System.out.println(dao.isValidPatient(1, "123"));
+            
+            System.out.println(dao.isValidDoctor(1, "d123"));
+           
+            System.out.println(dao.isValidOtherUser(1, "123"));
+            
+        } catch (Exception ex) {
+//            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+    }
+    
+   
 
     public boolean updateDiagnose(Object diagnose, String encounterId) throws Exception {
 
