@@ -199,7 +199,7 @@ public class Entrance extends javax.swing.JFrame {
                         dispose();
 
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
+                        JOptionPane.showMessageDialog(rootPane, "Wrong account ID or wrong password!");
                     }
 
                     return;
@@ -211,7 +211,7 @@ public class Entrance extends javax.swing.JFrame {
                         dispose();
 
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
+                        JOptionPane.showMessageDialog(rootPane, "Wrong account ID or wrong password!");
                     }
 
                     return;
@@ -220,7 +220,7 @@ public class Entrance extends javax.swing.JFrame {
                     User rRes = ldao.isValidOtherUser(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
                     if (rRes != null) {
                         switch (rRes.getRole()) {
-                            case "Sysadmin":
+                            case "SysAdmin":
                                 menu.MainMenu(4, Integer.parseInt(txtUserID.getText()));
                                 dispose();
                                 return;
@@ -243,6 +243,16 @@ public class Entrance extends javax.swing.JFrame {
                                 menu.MainMenu(6, Integer.parseInt(txtUserID.getText()));
                                 dispose();
                                 return;
+                                
+                            case "PharmacyAdmin":
+                                menu.MainMenu(7, Integer.parseInt(txtUserID.getText()));
+                                dispose();
+                                return;
+                                
+                            case "InventoryAdmin":
+                                menu.MainMenu(8, Integer.parseInt(txtUserID.getText()));
+                                dispose();
+                                return;
 
                             case "DHL":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
@@ -257,7 +267,7 @@ public class Entrance extends javax.swing.JFrame {
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
+                        JOptionPane.showMessageDialog(rootPane, "Wrong account ID or wrong password!");
                     }
                     break;
 

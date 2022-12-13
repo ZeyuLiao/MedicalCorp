@@ -93,15 +93,18 @@ public class MainMenu extends javax.swing.JFrame {
             }
             
             //Choose System Admin *
-            case 4-> {
+            case 4 -> {
+               
                CommunityCRUD cc = new CommunityCRUD();
                HospitalCrud  hc = new HospitalCrud();
-               
                PatientCrud pc = new PatientCrud();
+               GoodsCrud gc = new GoodsCrud();
+               
                
                jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//community.png"), cc);
                jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//hospital.png"), hc);
                jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//icon_profile.png"), pc);
+               jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//drug.png"), gc);
                
             }
             
@@ -112,6 +115,16 @@ public class MainMenu extends javax.swing.JFrame {
             
             //goods Admin
             case 6 -> {
+            
+            }
+            
+            // PharmacyAdmin/storeAdmin
+            case 7 -> {
+            
+            }
+            
+            //InventoryAdmin
+            case 8 -> {
             
             }
             
