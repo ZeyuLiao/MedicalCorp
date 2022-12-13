@@ -15,8 +15,15 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import model.Doctor;
 import model.Patient;
+import model.User;
+import ui.community.CommunityCRUD;
+import ui.deliver.DeliverManagePanel;
 import ui.deliver.DeliverPanel;
+import ui.doctors.DoctorHomePage;
+import ui.goods.GoodsCrud;
+import ui.hospital.HospitalCrud;
 import ui.patient.AddPatientJFrame;
+import ui.patient.Appointment;
 
 /**
  *
@@ -27,7 +34,6 @@ public class Entrance extends javax.swing.JFrame {
     /**
      * Creates new form Entrance
      */
-    
 //    public void theme(){
 //        SwingTheme swingTheme=new SwingTheme();
 //        swingTheme.init();
@@ -179,38 +185,90 @@ public class Entrance extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             LoginDao ldao = new LoginDao();
-            if(txtUserID.getText().isEmpty()){
+            ldao.initConnection();
+            if (txtUserID.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Please input your id!");
                 return;
             }
             switch (jComboBoxUserType.getSelectedIndex()) {
-                case 0: 
+                case 0:
                     Patient pRes = ldao.isValidPatient(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
-                    if(pRes != null){
-                    new 
+                    if (pRes != null) {
+                        Appointment appointment = new Appointment(pRes.getPatientId());
+                        //MainMenu mm = new MainMenu();
+                        setContentPane(appointment);
+                        setVisible(true);
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
                     }
-                    else  
-                    JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
-                            
+
                     return;
+
                 case 1:
-                   Doctor dRes = ldao.isValidDoctor(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
-                    if(dRes != null) {
-                    
+                    Doctor dRes = ldao.isValidDoctor(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
+                    if (dRes != null) {
+                        DoctorHomePage dhp = new DoctorHomePage(dRes.getDoctorID());
+                        setContentPane(dhp);
+                        setVisible(true);
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
                     }
-                    else  JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
-                    
+
                     return;
+
                 case 2:
-                    
-                    
-                    break;     
-                    
+                    User rRes = ldao.isValidOtherUser(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
+                    if (rRes != null) {
+                        switch (rRes.getRole()) {
+                            case "Sysadmin":
+
+                                return;
+                            case "CommunityAdmin":
+                                CommunityCRUD cCRUD = new CommunityCRUD();
+                                setContentPane(cCRUD);
+                                setVisible(true);
+                                return;
+
+                            case "HospitalAdmin":
+                                HospitalCrud hCRUD = new HospitalCrud();
+                                setContentPane(hCRUD);
+                                setVisible(true);
+                                return;
+
+                            case "DeliveryAdmin":
+                                DeliverManagePanel dPanel = new DeliverManagePanel();
+                                setContentPane(dPanel);
+                                setVisible(true);
+                                return;
+
+                            case "GoodsAdmin":
+                                GoodsCrud gCRUD = new GoodsCrud();
+                                setContentPane(gCRUD);
+                                setVisible(true);
+                                return;
+
+                            case "DHL":
+
+                            case "FedEx":
+
+                            case "Express":
+
+                            case "UPS":
+
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
+                    }
+                    break;
+
                 default:
                     break;
             }
             MainMenu menu = new MainMenu();
-            menu.MainMenu(jComboBoxUserType.getSelectedIndex(),Integer.parseInt(txtpwd.getText()));
+            menu.MainMenu(jComboBoxUserType.getSelectedIndex(), Integer.parseInt(txtpwd.getText()));
             dispose();
         } catch (Exception ex) {
             Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
@@ -219,12 +277,12 @@ public class Entrance extends javax.swing.JFrame {
 
     private void jLabelSignUPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSignUPMouseEntered
         // TODO add your handling code here:
-        jLabelSignUP.setForeground(new java.awt.Color(51,51,255));
+        jLabelSignUP.setForeground(new java.awt.Color(51, 51, 255));
     }//GEN-LAST:event_jLabelSignUPMouseEntered
 
     private void jLabelSignUPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSignUPMouseExited
         // TODO add your handling code here:
-        jLabelSignUP.setForeground(new java.awt.Color(0,0,0));
+        jLabelSignUP.setForeground(new java.awt.Color(0, 0, 0));
     }//GEN-LAST:event_jLabelSignUPMouseExited
 
     private void jLabelSignUPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSignUPMouseClicked
@@ -244,23 +302,24 @@ public class Entrance extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**     * @param args the command line arguments
+    /**
+     * * @param args the command line arguments
      */
     public static void main(String args[]) throws Exception {
         /* Set the Nimbus look and feel */
-         try{
-             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-             }catch(Exception e){
-             System.out.println("Error Theme");
-             e.printStackTrace();
-             }
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) {
+            System.out.println("Error Theme");
+            e.printStackTrace();
+        }
         // /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Entrance().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
