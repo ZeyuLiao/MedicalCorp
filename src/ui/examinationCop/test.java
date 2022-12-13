@@ -26,33 +26,33 @@ import java.util.logging.Logger;
  */
 public class test {
 
-    public static void main(String[] args) throws Exception {
-
-        Diagnose diagnose = new Diagnose();
-
-        // Set its properties
-        diagnose.setDiagnose("Fluent");
-        List<Diagnose.Examin> dlist = new ArrayList<>();
-        dlist.add(new Diagnose.Examin("X-ray", "Good"));
-        dlist.add(new Diagnose.Examin("CT", "Good"));
-        
-//        diagnose.getExamins().add(new Diagnose.Examin("X-ray", "Good"));
-//        diagnose.getExamins().add(new Diagnose.Examin("CT", "Good"));
-        diagnose.setExamins(dlist);
-        
-        List<String> tlist = new ArrayList<>();
-        tlist.add("glucose21");
-        tlist.add("Amoxicillin");
-//        diagnose.getTreatment().add("glucose");
-//        diagnose.getTreatment().add("Amoxicillin");
-
-        // Convert the Diagnose instance to JSON
-        String json = JSON.toJSONString(diagnose);
-
-//        new test().updateDiagnose(json, "2");
-//        System.out.println(new test().getDiagnose("1"));
-        testPatient();
-    }
+//    public static void main(String[] args) throws Exception {
+//
+//        Diagnose diagnose = new Diagnose();
+//
+//        // Set its properties
+//        diagnose.setDiagnose("Fluent");
+//        List<Diagnose.Examin> dlist = new ArrayList<>();
+//        dlist.add(new Diagnose.Examin("X-ray", "Good"));
+//        dlist.add(new Diagnose.Examin("CT", "Good"));
+//        
+////        diagnose.getExamins().add(new Diagnose.Examin("X-ray", "Good"));
+////        diagnose.getExamins().add(new Diagnose.Examin("CT", "Good"));
+//        diagnose.setExamins(dlist);
+//        
+//        List<String> tlist = new ArrayList<>();
+//        tlist.add("glucose21");
+//        tlist.add("Amoxicillin");
+////        diagnose.getTreatment().add("glucose");
+////        diagnose.getTreatment().add("Amoxicillin");
+//
+//        // Convert the Diagnose instance to JSON
+//        String json = JSON.toJSONString(diagnose);
+//
+////        new test().updateDiagnose(json, "2");
+////        System.out.println(new test().getDiagnose("1"));
+//        testPatient();
+//    }
 
     private Connection conn = null;
 
