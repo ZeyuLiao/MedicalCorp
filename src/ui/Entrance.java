@@ -190,7 +190,7 @@ public class Entrance extends javax.swing.JFrame {
                     new 
                     }
                     else  
-                    JOptionPane.showMessageDialog(rootPane, "Wrong account No or wrong password!");
+                    JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
                             
                     return;
                 case 1:
@@ -198,7 +198,7 @@ public class Entrance extends javax.swing.JFrame {
                     if(dRes != null) {
                     
                     }
-                    else  JOptionPane.showMessageDialog(rootPane, "Wrong account No or wrong password!");
+                    else  JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
                     
                     return;
                 case 2:
