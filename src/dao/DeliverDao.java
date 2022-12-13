@@ -115,7 +115,7 @@ public class DeliverDao {
 
         boolean res = true;
         initConnection();
-        String sql = "UPDATE delivery SET delivery_status ='" + status + "', delivery_company ='" + company + "' WHERE delivery_NO = '" + Delivery_No + "'";
+        String sql = "UPDATE delivery SET delivery_status ='" + status + "', delivery_company ='" + company +"', Delivered_time = current_time WHERE delivery_NO = '" + Delivery_No + "'";
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);
