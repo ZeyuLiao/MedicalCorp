@@ -13,6 +13,7 @@ import ui.doctors.DoctorEncounterPage;
 import ui.goods.GoodsCrud;
 import ui.hospital.HospitalCrud;
 import ui.hospitalAdmin.DoctorCrud;
+import ui.inventory.InventoryCrud;
 import ui.patient.MyEncounter;
 import ui.patient.Appointment;
 import ui.patient.MyOrder;
@@ -60,13 +61,10 @@ public class MainMenu extends javax.swing.JFrame {
                 
                 MyOrder mo = new MyOrder(id);
                 jTabbedPaneMenu.addTab("My Order", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), mo);
-                
-                StoreCrud sc = new StoreCrud();
-                jTabbedPaneMenu.addTab("Store", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), sc);
-                
-                GoodsCrud gc = new GoodsCrud();
-                jTabbedPaneMenu.addTab("Goods", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), gc);
-            
+                                
+                InventoryCrud ic = new InventoryCrud("Shoppers");
+                jTabbedPaneMenu.addTab("Inventory", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), ic);
+ 
             
             }
             //Choose Doctor
@@ -112,6 +110,14 @@ public class MainMenu extends javax.swing.JFrame {
             
             //goods Admin
             case 6 -> {
+                
+                StoreCrud sc = new StoreCrud();
+                jTabbedPaneMenu.addTab("Store", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), sc);
+                
+                GoodsCrud gc = new GoodsCrud();
+                jTabbedPaneMenu.addTab("Goods", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), gc);
+
+               
             
             }
             
