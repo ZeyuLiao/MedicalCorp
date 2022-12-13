@@ -10,6 +10,7 @@ import ui.doctors.DoctorProfilePage;
 import ui.doctors.DoctorHomePage;
 import ui.community.CommunityCRUD;
 import ui.doctors.DoctorEncounterPage;
+import ui.examinationCop.ExaminationList;
 import ui.goods.GoodsCrud;
 import ui.hospital.HospitalCrud;
 import ui.hospitalAdmin.DoctorCrud;
@@ -136,7 +137,8 @@ public class MainMenu extends javax.swing.JFrame {
             
             //
             case 9 -> {
-            
+                ExaminationList el = new ExaminationList();
+                jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//tijian.png"), el);
             }
             
             default -> {
@@ -219,7 +221,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("SERVE ANY TIME");
         jPanelNavigator.add(jLabel1);
-        jLabel1.setBounds(30, 10, 180, 40);
+        jLabel1.setBounds(30, 10, 290, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
