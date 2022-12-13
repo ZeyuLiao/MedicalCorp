@@ -213,7 +213,7 @@ public class MyOrder extends javax.swing.JPanel {
         
         try {
             int orderId = oDao.getOrderIdByOrderNo(orderNo);
-            jLabelOrderNo.setText("Order No.:"+orderNo);
+            jLabelOrderNo.setText("Order No:"+orderNo);
             ArrayList<OrderDetail> list = odDao.getOrderDetailByOrderId(orderId);
             showTableDetail(list);
         } catch (Exception ex) {

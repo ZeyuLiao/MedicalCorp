@@ -11,6 +11,15 @@ package model;
 public class Goods {
     private int goodsId;
     private String goodsName;
+    private boolean state;
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
 
     public int getGoodsId() {
         return goodsId;
@@ -30,7 +39,8 @@ public class Goods {
 
     @Override
     public String toString() {
-        return "Goods{" + "goodsId=" + goodsId + ", goodsName=" + goodsName + '}';
+        return "Goods{" + "goodsId=" + goodsId + ", goodsName=" + goodsName + ", state=" + state + '}';
     }
+
 
 }

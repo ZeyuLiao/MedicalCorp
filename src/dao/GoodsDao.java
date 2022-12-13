@@ -45,6 +45,7 @@ public class GoodsDao {
             s = new Goods();
             s.setGoodsId(id);
             s.setGoodsName(rs.getString("goods_name"));
+            s.setState(rs.getBoolean("goods_status"));
 	}
 	closeConnection();
 	return s;
@@ -61,6 +62,25 @@ public class GoodsDao {
             Goods s = new Goods();
             s.setGoodsId(rs.getInt("goods_id"));
             s.setGoodsName(rs.getString("goods_name"));
+            s.setState(rs.getBoolean("goods_status"));
+            list.add(s);
+        }
+        closeConnection();
+        return list;	
+    }
+    
+    public ArrayList<Goods> getGoodsByStatus(boolean status) throws Exception{
+		
+        ArrayList<Goods> list = new ArrayList<>();
+        initConnection();
+        String sql = "SELECT * FROM Goods where goods_status="+status+"";
+        Statement stat = conn.createStatement();
+        ResultSet rs = stat.executeQuery(sql);
+        while(rs.next()){
+            Goods s = new Goods();
+            s.setGoodsId(rs.getInt("goods_id"));
+            s.setGoodsName(rs.getString("goods_name"));
+            s.setState(rs.getBoolean("goods_status"));
             list.add(s);
         }
         closeConnection();
@@ -79,6 +99,7 @@ public class GoodsDao {
             s = new Goods();
             s.setGoodsId(rs.getInt("goods_id"));
             s.setGoodsName(rs.getString("goods_name"));
+            s.setState(rs.getBoolean("goods_status"));
 	}
 	closeConnection();
 	return s;
@@ -107,7 +128,7 @@ public class GoodsDao {
 
         boolean res = true;
         initConnection();
-        String sql = "DELETE FROM Goods WHERE goods_id='" + goodsId + "'";
+        String sql = "UPDATE Goods SET goods_status= '1' where goods_id = "+ goodsId ;
 
         try {
             Statement stat = conn.createStatement();
