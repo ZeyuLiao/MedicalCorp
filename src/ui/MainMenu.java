@@ -10,6 +10,7 @@ import ui.doctors.DoctorProfilePage;
 import ui.doctors.DoctorHomePage;
 import ui.community.CommunityCRUD;
 import ui.doctors.DoctorEncounterPage;
+import ui.goods.GoodsCrud;
 import ui.hospital.HospitalCrud;
 import ui.hospitalAdmin.DoctorCrud;
 import ui.patient.MyEncounter;
@@ -62,6 +63,11 @@ public class MainMenu extends javax.swing.JFrame {
                 
                 StoreCrud sc = new StoreCrud();
                 jTabbedPaneMenu.addTab("Store", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), sc);
+                
+                GoodsCrud gc = new GoodsCrud();
+                jTabbedPaneMenu.addTab("Goods", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), gc);
+            
+            
             }
             //Choose Doctor
             case 1 -> {
