@@ -109,8 +109,8 @@ public class InventoryDao {
 
         boolean res = true;
         initConnection();
-        String sql = "DELETE FROM Inventory WHERE store_id=" + storeId + "AND goods_id = "+ goodsId;
-
+        String sql = "DELETE FROM Inventory WHERE store_id = " + storeId + " AND goods_id = "+ goodsId;
+        //System.out.println(sql);
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);
