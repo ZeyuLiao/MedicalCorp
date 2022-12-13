@@ -25,7 +25,7 @@ public class DoctorHomePage extends javax.swing.JPanel {
 
     EncounterDao eDao = new EncounterDao();
     PatientDao pDao = new PatientDao();
-    Encounter e;
+    Encounter e = new Encounter();
     private boolean flag = false;
     private final int id;
     /**
