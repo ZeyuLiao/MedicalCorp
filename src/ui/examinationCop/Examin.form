@@ -34,7 +34,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblpatientID" min="-2" pref="89" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="0" min="-2" pref="203" max="-2" attributes="0"/>
+                  <Component id="lblDoctorDiagnose" alignment="0" min="-2" pref="203" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="53" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -97,7 +97,7 @@
                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" pref="169" max="-2" attributes="0"/>
+                          <Component id="lblDoctorDiagnose" min="-2" pref="169" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -136,7 +136,7 @@
         <Property name="text" type="java.lang.String" value="Doctor Instruction:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="lblDoctorDiagnose">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel4"/>
       </Properties>
