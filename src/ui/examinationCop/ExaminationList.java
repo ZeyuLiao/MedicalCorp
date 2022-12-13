@@ -4,18 +4,36 @@
  */
 package ui.examinationCop;
 
+import dao.EncounterDao;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Encounter;
+
 /**
  *
  * @author ziyu
  */
 public class ExaminationList extends javax.swing.JPanel {
 
+    private EncounterDao eDao = new EncounterDao();
+    private List<Encounter> encounterList = new ArrayList<>();
+
     /**
      * Creates new form ExaminationCRUD
      */
     public ExaminationList() {
         initComponents();
- 
+        try {
+            encounterList.addAll(eDao.getAllEncounter());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showTable() throws Exception {
+        DefaultTableModel model = (DefaultTableModel) tblExaminList.getModel();
+        model.setRowCount(0);
     }
 
     /**
@@ -28,11 +46,11 @@ public class ExaminationList extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblExaminList = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblExaminList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -43,7 +61,7 @@ public class ExaminationList extends javax.swing.JPanel {
                 "patientID", "Hospital Name", "Doctor Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblExaminList);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -92,8 +110,8 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -101,6 +119,6 @@ public class ExaminationList extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblExaminList;
     // End of variables declaration//GEN-END:variables
 }

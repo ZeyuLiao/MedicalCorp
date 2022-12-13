@@ -131,7 +131,7 @@ public class MainMenu extends javax.swing.JFrame {
             
             }
             
-            //
+            // 
             case 9 -> {
                 ExaminationList el = new ExaminationList();
                 jTabbedPaneMenu.addTab("", new javax.swing.ImageIcon("src//icon//tijian.png"), el);
