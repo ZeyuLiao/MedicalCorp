@@ -57,6 +57,7 @@ public class Entrance extends javax.swing.JFrame {
         jLabelSignUP = new javax.swing.JLabel();
         jLabelLogo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,7 +124,7 @@ public class Entrance extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelSignUP);
-        jLabelSignUP.setBounds(169, 514, 189, 17);
+        jLabelSignUP.setBounds(169, 514, 195, 17);
         jPanel1.add(jLabelLogo);
         jLabelLogo.setBounds(80, 90, 340, 70);
         ImageIcon logoHospital = new ImageIcon("src//image//Logo.png");
@@ -137,7 +138,12 @@ public class Entrance extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(220, 410, 79, 23);
+        jButton1.setBounds(220, 410, 78, 23);
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel5.setText("User ID: ");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(100, 360, 93, 17);
 
         jPanel2.add(jPanel1);
         jPanel1.setBounds(530, 10, 460, 580);
@@ -253,6 +259,7 @@ public class Entrance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelSignUP;
     private javax.swing.JLabel jLabelSlogan;
