@@ -190,14 +190,13 @@ public class Entrance extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Please input your id!");
                 return;
             }
+            MainMenu menu = new MainMenu();
             switch (jComboBoxUserType.getSelectedIndex()) {
                 case 0:
                     Patient pRes = ldao.isValidPatient(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
                     if (pRes != null) {
-                        Appointment appointment = new Appointment(pRes.getPatientId());
-                        //MainMenu mm = new MainMenu();
-                        setContentPane(appointment);
-                        setVisible(true);
+                        menu.MainMenu(0, Integer.parseInt(txtUserID.getText()));
+                        dispose();
 
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
@@ -208,9 +207,8 @@ public class Entrance extends javax.swing.JFrame {
                 case 1:
                     Doctor dRes = ldao.isValidDoctor(Integer.parseInt(txtUserID.getText()), txtpwd.getText());
                     if (dRes != null) {
-                        DoctorHomePage dhp = new DoctorHomePage(dRes.getDoctorID());
-                        setContentPane(dhp);
-                        setVisible(true);
+                        menu.MainMenu(1, Integer.parseInt(txtUserID.getText()));
+                        dispose();
 
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Wrong account No. or wrong password!");
@@ -223,36 +221,34 @@ public class Entrance extends javax.swing.JFrame {
                     if (rRes != null) {
                         switch (rRes.getRole()) {
                             case "Sysadmin":
-
+                                menu.MainMenu(4, Integer.parseInt(txtUserID.getText()));
+                                dispose();
                                 return;
                             case "CommunityAdmin":
-                                CommunityCRUD cCRUD = new CommunityCRUD();
-                                setContentPane(cCRUD);
-                                setVisible(true);
+                                menu.MainMenu(3, Integer.parseInt(txtUserID.getText()));
+                                dispose();
                                 return;
 
                             case "HospitalAdmin":
-                                HospitalCrud hCRUD = new HospitalCrud();
-                                setContentPane(hCRUD);
-                                setVisible(true);
+                                menu.MainMenu(2, Integer.parseInt(txtUserID.getText()));
+                                dispose();
                                 return;
 
                             case "DeliveryAdmin":
-                                DeliverManagePanel dPanel = new DeliverManagePanel();
-                                setContentPane(dPanel);
-                                setVisible(true);
+                                menu.MainMenu(5, Integer.parseInt(txtUserID.getText()));
+                                dispose();
                                 return;
 
                             case "GoodsAdmin":
-                                GoodsCrud gCRUD = new GoodsCrud();
-                                setContentPane(gCRUD);
-                                setVisible(true);
+                                menu.MainMenu(6, Integer.parseInt(txtUserID.getText()));
+                                dispose();
                                 return;
 
                             case "DHL":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
 
                             case "FedEx":
+                                
 
                             case "Express":
 
@@ -268,9 +264,7 @@ public class Entrance extends javax.swing.JFrame {
                 default:
                     break;
             }
-            MainMenu menu = new MainMenu();
-            menu.MainMenu(jComboBoxUserType.getSelectedIndex(), Integer.parseInt(txtpwd.getText()));
-            dispose();
+
         } catch (Exception ex) {
             Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -296,7 +290,7 @@ public class Entrance extends javax.swing.JFrame {
         // TODO add your handling code here:
         String Delivery_NO = "NotAssigned";
         try {
-            new DeliverPanel("Zeyu Liao","DHL");
+            new DeliverPanel("Zeyu Liao", "DHL");
         } catch (Exception ex) {
             Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
         }
