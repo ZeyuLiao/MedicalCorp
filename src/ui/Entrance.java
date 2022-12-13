@@ -58,6 +58,7 @@ public class Entrance extends javax.swing.JFrame {
         jLabelLogo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jTextFieldAccount1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,21 +84,21 @@ public class Entrance extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("User type:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(100, 300, 93, 17);
+        jLabel3.setBounds(100, 260, 93, 17);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("User ID: ");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(100, 360, 93, 17);
+        jLabel4.setBounds(110, 300, 93, 17);
 
         jComboBoxUserType.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jComboBoxUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctors", "Hospital Admins", "Community Admin", "System Admin" }));
+        jComboBoxUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctors", "Others" }));
         jPanel1.add(jComboBoxUserType);
-        jComboBoxUserType.setBounds(210, 300, 190, 23);
+        jComboBoxUserType.setBounds(200, 260, 190, 23);
 
         jTextFieldAccount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jPanel1.add(jTextFieldAccount);
-        jTextFieldAccount.setBounds(210, 360, 190, 23);
+        jTextFieldAccount.setBounds(200, 350, 190, 23);
 
         jButtonlogin.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButtonlogin.setText("Login");
@@ -141,9 +142,13 @@ public class Entrance extends javax.swing.JFrame {
         jButton1.setBounds(220, 410, 78, 23);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel5.setText("User ID: ");
+        jLabel5.setText("Password:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(100, 360, 93, 17);
+        jLabel5.setBounds(110, 360, 93, 17);
+
+        jTextFieldAccount1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jPanel1.add(jTextFieldAccount1);
+        jTextFieldAccount1.setBounds(200, 300, 190, 23);
 
         jPanel2.add(jPanel1);
         jPanel1.setBounds(530, 10, 460, 580);
@@ -266,5 +271,6 @@ public class Entrance extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldAccount;
+    private javax.swing.JTextField jTextFieldAccount1;
     // End of variables declaration//GEN-END:variables
 }
