@@ -36,7 +36,7 @@ CREATE TABLE encounter (
 	patient_id INT NOT NULL,
 	state boolean,
 	symptom VARCHAR ( 100 ),
-	diagnosis VARCHAR ( 100 ),
+	diagnosis text,
 	start_date DATE,
 	end_date DATE, 
 	blood_pressure INT,
@@ -62,15 +62,16 @@ INSERT into login(user_name,role,pwd) VALUES
 ('Courier1','DHL',MD5('c123')),
 ('Courier2','FedEx',MD5('c123')),
 ('Courier3','Express',MD5('c123')),
-('Courier4','UPS',MD5('c123')), #1-10前六管理员 后四快递员
+('Courier4','UPS',MD5('c123')), 
+('ExaminStaff','Examin',MD5('e123')), #1-11前六管理员 后四快递员 最后一个检测员
 
-('Alex','Patient',MD5(123)), #11
+('Alex','Patient',MD5(123)), #12
 ('Bob','Patient',MD5(123)),
 ('Cathy','Patient',MD5(123)),
 ('Dana','Patient',MD5(123)),
 ('Emma','Patient',MD5(123)),
 
-('Aaron Hendler','Doctor',MD5('d123')), #16
+('Aaron Hendler','Doctor',MD5('d123')), #17
 ('Stephen Herman','Doctor',MD5('d123'));
 
 CREATE TABLE patient (
