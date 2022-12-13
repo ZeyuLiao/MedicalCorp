@@ -108,6 +108,24 @@ public class StoreDao {
         closeConnection();
         return list;	
     }
+    public ArrayList<Store> getStoreByStatus(boolean status) throws Exception{
+		
+        ArrayList<Store> list = new ArrayList<>();
+        initConnection();
+        String sql = "SELECT * FROM Store where store_status="+status+"";
+        Statement stat = conn.createStatement();
+        ResultSet rs = stat.executeQuery(sql);
+        while(rs.next()){
+            Store s = new Store();
+            s.setStoreId(rs.getInt("store_id"));
+            s.setStoreName(rs.getString("store_name"));
+            s.setCommunity(rs.getString("community"));
+            s.setState(rs.getBoolean("store_status"));
+            list.add(s);
+        }
+        closeConnection();
+        return list;	
+    }
 
     public boolean addStore(Store store) throws Exception{
 

@@ -2,53 +2,51 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.store;
+package ui.goods;
 
+import ui.goods.*;
 import javax.swing.table.DefaultTableModel;
-import dao.StoreDao;
+import dao.GoodsDao;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import model.Store;
+import model.Goods;
 
 
 /**
  *
  * @author Ruolin 
  */
-public class StoreCrud extends javax.swing.JPanel {
+public class GoodsCrud extends javax.swing.JPanel {
 
     /**
      * Creates new form HomePage
      */
-    StoreDao sDao;
-    public StoreCrud() throws Exception{
-        this.sDao = new StoreDao();
+    GoodsDao gDao;
+    public GoodsCrud() throws Exception{
+        this.gDao = new GoodsDao();
         initComponents();
         showTable();
     }
-    private Object[] addTableRow(Object[] row,Store s){
+    private Object[] addTableRow(Object[] row,Goods s){
         String state;
         if(s.isState()==false){
             state = "Active";
         }else{
             state = "Deleted";
         }
-        row[0] = s.getStoreId();
-        row[1] = s.getStoreName();
-        row[2] = s.getCommunity();
-        row[3] = state;
+        row[0] = s.getGoodsId();
+        row[1] = s.getGoodsName();
+        row[2] = state;
         return row;
     }
     private void showTable() throws Exception{
         DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
         model.setRowCount(0);
         
-        ArrayList<Store> List = sDao.getAllStore();
+        ArrayList<Goods> List = gDao.getAllGoods();
         
-        for(Store s:List){
+        for(Goods s:List){
             Object[] row = new Object[10];
             addTableRow(row,s);
             
@@ -77,9 +75,7 @@ public class StoreCrud extends javax.swing.JPanel {
         jPanelRight = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabelName = new javax.swing.JLabel();
-        jLabelCommunity = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabelState = new javax.swing.JLabel();
         jButtonRefresh = new javax.swing.JButton();
@@ -89,17 +85,17 @@ public class StoreCrud extends javax.swing.JPanel {
         jTableStore.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTableStore.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Pharmacy Id", "Name", "Community", "Status"
+                "Id", "Name", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -116,7 +112,7 @@ public class StoreCrud extends javax.swing.JPanel {
         });
 
         jComboBoxSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Name", "Community", "Status" }));
+        jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Name", "Status" }));
 
         jButtonView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icon_view.png"))); // NOI18N
         jButtonView.addActionListener(new java.awt.event.ActionListener() {
@@ -149,12 +145,7 @@ public class StoreCrud extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Name:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Community:");
-
         jLabelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabelCommunity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Status");
@@ -167,31 +158,25 @@ public class StoreCrud extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                    .addComponent(jLabelCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelState, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabelState, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelState, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -270,7 +255,7 @@ public class StoreCrud extends javax.swing.JPanel {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
-        AddStoreJFrame add = new AddStoreJFrame();
+        AddGoodsJFrame add = new AddGoodsJFrame();
 //        add.setBounds(100, 100, 750, 500);
         add.setVisible(true);
         try {
@@ -289,11 +274,10 @@ public class StoreCrud extends javax.swing.JPanel {
             return;
         }
         DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
-        int storeId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
+        int goodsId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         try{
-            Store s = sDao.getStoreById(storeId);
-            jLabelCommunity.setText(s.getCommunity());
-            jLabelName.setText(s.getStoreName());
+            Goods s = gDao.getGoodsById(goodsId);
+            jLabelName.setText(s.getGoodsName());
             if(s.isState()==true)
                 jLabelState.setText("Deleted");
             else
@@ -314,12 +298,12 @@ public class StoreCrud extends javax.swing.JPanel {
             return;
         }
         DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
-        int storeId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
+        int goodsId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         
-        int n = JOptionPane.showConfirmDialog(null, "Confirm to delete Pharmacy "+storeId + "?", "",JOptionPane.YES_NO_OPTION);//0/1
+        int n = JOptionPane.showConfirmDialog(null, "Confirm to delete Item "+goodsId + "?", "",JOptionPane.YES_NO_OPTION);//0/1
         try{
             if(n==0)
-                sDao.deleteStore(storeId);
+                gDao.deleteGoods(goodsId);
             showTable();
         }
         catch(Exception e){
@@ -338,7 +322,7 @@ public class StoreCrud extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)jTableStore.getModel();
         int storeId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         try {
-            UpdateStoreJFrame up = new UpdateStoreJFrame(storeId);
+            UpdateGoodsJFrame up = new UpdateGoodsJFrame(storeId);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -349,25 +333,22 @@ public class StoreCrud extends javax.swing.JPanel {
         
         String keyword = jComboBoxSearch.getSelectedItem().toString();
         String input = JOptionPane.showInputDialog("Please input a value");
-        ArrayList<Store> pList = new ArrayList<>();  
+        ArrayList<Goods> pList = new ArrayList<>();  
         try{
             switch(keyword){
                 case "Id": { 
-                    Store p = sDao.getStoreById(Integer.parseInt(input)); 
+                    Goods p = gDao.getGoodsById(Integer.parseInt(input)); 
                     pList.add(p); 
                     break;}
                 case "Name":{ 
-                    Store p = sDao.getStoreByName(input);
+                    Goods p = gDao.getGoodsByName(input);
                     pList.add(p); 
-                    break;}
-                case "Community":{ 
-                    pList = sDao.getStoreByCommunity(input);
                     break;}
                 case "Status":{ 
                     if(input.toLowerCase().equals("active")){
-                        pList = sDao.getStoreByStatus(false);
+                        pList = gDao.getGoodsByStatus(false);
                     }else if(input.toLowerCase().equals("deleted")){
-                        pList = sDao.getStoreByStatus(true);
+                        pList = gDao.getGoodsByStatus(true);
                     }else{
                         JOptionPane.showInputDialog("Please input active / deleted");
                     }
@@ -381,7 +362,7 @@ public class StoreCrud extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for(Store s:pList){
+        for(Goods s:pList){
             Object[] row = new Object[6];
             addTableRow(row,s);
             
@@ -407,9 +388,7 @@ public class StoreCrud extends javax.swing.JPanel {
     private javax.swing.JButton jButtonView;
     private javax.swing.JComboBox<String> jComboBoxSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelCommunity;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelState;
     private javax.swing.JPanel jPanel1;
