@@ -358,7 +358,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel6" min="-2" pref="77" max="-2" attributes="0"/>
+                              <Component id="jLabelUserName" min="-2" pref="77" max="-2" attributes="0"/>
                               <EmptySpace pref="9" max="32767" attributes="0"/>
                               <Component id="jButtonLogout" min="-2" pref="72" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -368,14 +368,14 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jLabel6" alignment="3" pref="24" max="32767" attributes="0"/>
+                              <Component id="jLabelUserName" alignment="3" pref="24" max="32767" attributes="0"/>
                               <Component id="jButtonLogout" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel6">
+                    <Component class="javax.swing.JLabel" name="jLabelUserName">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="Zeyu Liao"/>
@@ -418,7 +418,7 @@
                         <Property name="horizontalAlignment" type="int" value="0"/>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon deliverlogo; &#xa;String Company = &quot;Express&quot;;&#xa;if(Company == &quot;DHL&quot;) deliverlogo = new ImageIcon(&quot;src//image//dhl_logo.png&quot;);         &#xa;else if(Company == &quot;Express&quot;) deliverlogo = new ImageIcon(&quot;src//image//express_logo.png&quot;);&#xa;else if(Company == &quot;UPS&quot;) deliverlogo = new ImageIcon(&quot;src//image//ups_logo.png&quot;);&#xa;else deliverlogo = new ImageIcon(&quot;src//image//fedex_logo.png&quot;);&#xa;deliverlogo.setImage(deliverlogo.getImage().getScaledInstance(jLabellogo.getWidth(),jLabellogo.getHeight(),SCALE_DEFAULT));&#xa;jLabellogo.setIcon(deliverlogo);"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon deliverlogo;&#xa;switch (company) {&#xa;    case &quot;DHL&quot;:&#xa;        deliverlogo = new ImageIcon(&quot;src//image//dhl_logo.png&quot;);&#xa;        break;&#xa;    case &quot;Express&quot;:&#xa;        deliverlogo = new ImageIcon(&quot;src//image//express_logo.png&quot;);&#xa;        break;&#xa;    case &quot;Fedex&quot;:&#xa;        deliverlogo = new ImageIcon(&quot;src//image//fedex_logo.png&quot;);    &#xa;        break;&#xa;    default:&#xa;        deliverlogo = new ImageIcon(&quot;src//image//ups_logo.png&quot;);&#xa;        break;&#xa;} &#xa;&#xa;deliverlogo.setImage(deliverlogo.getImage().getScaledInstance(jLabellogo.getWidth(),jLabellogo.getHeight(),SCALE_DEFAULT));&#xa;jLabellogo.setIcon(deliverlogo);"/>
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -726,7 +726,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel5" min="-2" pref="77" max="-2" attributes="0"/>
+                              <Component id="jLabelHUserName" min="-2" pref="77" max="-2" attributes="0"/>
                               <EmptySpace pref="9" max="32767" attributes="0"/>
                               <Component id="jButtonHLogout" min="-2" pref="72" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -736,14 +736,14 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jLabel5" alignment="3" pref="24" max="32767" attributes="0"/>
+                              <Component id="jLabelHUserName" alignment="3" pref="24" max="32767" attributes="0"/>
                               <Component id="jButtonHLogout" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel5">
+                    <Component class="javax.swing.JLabel" name="jLabelHUserName">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="Zeyu Liao"/>
@@ -770,7 +770,7 @@
                         <Property name="horizontalAlignment" type="int" value="0"/>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon Hdeliverlogo = new ImageIcon(&quot;src//image//dhl_logo.png&quot;);&#xa;Hdeliverlogo.setImage(Hdeliverlogo.getImage().getScaledInstance(jLabelHLogo.getWidth(),jLabelHLogo.getHeight(),SCALE_DEFAULT));&#xa;jLabelHLogo.setIcon(Hdeliverlogo);"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon Hdeliverlogo;&#xa;switch (company) {&#xa;    case &quot;DHL&quot;:&#xa;        Hdeliverlogo = new ImageIcon(&quot;src//image//dhl_logo.png&quot;);&#xa;        break;&#xa;    case &quot;Express&quot;:&#xa;        Hdeliverlogo = new ImageIcon(&quot;src//image//express_logo.png&quot;);&#xa;        break;&#xa;    case &quot;Fedex&quot;:&#xa;        Hdeliverlogo = new ImageIcon(&quot;src//image//fedex_logo.png&quot;);    &#xa;        break;&#xa;    default:&#xa;        Hdeliverlogo = new ImageIcon(&quot;src//image//ups_logo.png&quot;);&#xa;        break;&#xa;}    &#xa;Hdeliverlogo.setImage(Hdeliverlogo.getImage().getScaledInstance(jLabelHLogo.getWidth(),jLabelHLogo.getHeight(),SCALE_DEFAULT));&#xa;jLabelHLogo.setIcon(Hdeliverlogo);"/>
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

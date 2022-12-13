@@ -118,12 +118,18 @@ public class LoginDao {
         while (rs.next()) {
             user = new User();
             String role = rs.getString("role");
-
+            user.setLogId(rs.getInt("logid"));
+            user.setName(rs.getString("user_name"));
             user.setRole(role);
         }
         rs.close();
-        stmt.close();
-        
+        stmt.close();     
         return user;
+    }    
+    
+    public User getUser(int logid){
+        System.out.println("dao.LoginDao.getUser()");
+        return null;
+       
     }
 }

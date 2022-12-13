@@ -26,12 +26,19 @@ public class DeliverPanel extends javax.swing.JFrame {
      */
     
     DeliverDao dDao = new DeliverDao();
+    private String userName = "";
+    private String company = "";
     
-    public DeliverPanel(String Delivery_NO) throws Exception {
+    public DeliverPanel(String userNameString, String role) throws Exception {
+        this.userName = userNameString;
+        this.company = role;
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
-        jPanelConfirmBg.setVisible(false);
+        jLabelUserName.setText(userName);
+        jLabelHUserName.setText(userName);
+        jPanelConfirmBg.setVisible(false);   
+        
         populateTable();
     }
 
@@ -63,7 +70,7 @@ public class DeliverPanel extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabelBarcode = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelUserName = new javax.swing.JLabel();
         jButtonLogout = new javax.swing.JButton();
         jButtonVerify = new javax.swing.JButton();
         jButtonView = new javax.swing.JButton();
@@ -88,7 +95,7 @@ public class DeliverPanel extends javax.swing.JFrame {
         jLabelDeliverComp3 = new javax.swing.JLabel();
         jButtonViewDetail1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelHUserName = new javax.swing.JLabel();
         jButtonHLogout = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabelHLogo = new javax.swing.JLabel();
@@ -218,8 +225,8 @@ public class DeliverPanel extends javax.swing.JFrame {
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Zeyu Liao");
+        jLabelUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelUserName.setText("Zeyu Liao");
 
         jButtonLogout.setText("Logout");
         jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +240,7 @@ public class DeliverPanel extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -241,7 +248,7 @@ public class DeliverPanel extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(jLabelUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addComponent(jButtonLogout))
         );
 
@@ -265,11 +272,21 @@ public class DeliverPanel extends javax.swing.JFrame {
         jPanel6.add(jLabellogo);
         jLabellogo.setBounds(10, 0, 90, 40);
         ImageIcon deliverlogo;
-        String Company = "Express";
-        if(Company == "DHL") deliverlogo = new ImageIcon("src//image//dhl_logo.png");
-        else if(Company == "Express") deliverlogo = new ImageIcon("src//image//express_logo.png");
-        else if(Company == "UPS") deliverlogo = new ImageIcon("src//image//ups_logo.png");
-        else deliverlogo = new ImageIcon("src//image//fedex_logo.png");
+        switch (company) {
+            case "DHL":
+            deliverlogo = new ImageIcon("src//image//dhl_logo.png");
+            break;
+            case "Express":
+            deliverlogo = new ImageIcon("src//image//express_logo.png");
+            break;
+            case "Fedex":
+            deliverlogo = new ImageIcon("src//image//fedex_logo.png");
+            break;
+            default:
+            deliverlogo = new ImageIcon("src//image//ups_logo.png");
+            break;
+        }
+
         deliverlogo.setImage(deliverlogo.getImage().getScaledInstance(jLabellogo.getWidth(),jLabellogo.getHeight(),SCALE_DEFAULT));
         jLabellogo.setIcon(deliverlogo);
 
@@ -455,8 +472,8 @@ public class DeliverPanel extends javax.swing.JFrame {
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Zeyu Liao");
+        jLabelHUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelHUserName.setText("Zeyu Liao");
 
         jButtonHLogout.setText("Logout");
         jButtonHLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -470,7 +487,7 @@ public class DeliverPanel extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelHUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jButtonHLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -478,7 +495,7 @@ public class DeliverPanel extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(jLabelHUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addComponent(jButtonHLogout))
         );
 
@@ -487,7 +504,21 @@ public class DeliverPanel extends javax.swing.JFrame {
         jLabelHLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel8.add(jLabelHLogo);
         jLabelHLogo.setBounds(10, 0, 90, 40);
-        ImageIcon Hdeliverlogo = new ImageIcon("src//image//dhl_logo.png");
+        ImageIcon Hdeliverlogo;
+        switch (company) {
+            case "DHL":
+            Hdeliverlogo = new ImageIcon("src//image//dhl_logo.png");
+            break;
+            case "Express":
+            Hdeliverlogo = new ImageIcon("src//image//express_logo.png");
+            break;
+            case "Fedex":
+            Hdeliverlogo = new ImageIcon("src//image//fedex_logo.png");
+            break;
+            default:
+            Hdeliverlogo = new ImageIcon("src//image//ups_logo.png");
+            break;
+        }
         Hdeliverlogo.setImage(Hdeliverlogo.getImage().getScaledInstance(jLabelHLogo.getWidth(),jLabelHLogo.getHeight(),SCALE_DEFAULT));
         jLabelHLogo.setIcon(Hdeliverlogo);
 
@@ -679,8 +710,6 @@ public class DeliverPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelBarcode;
     private javax.swing.JLabel jLabelDeliverComp;
     private javax.swing.JLabel jLabelDeliverComp1;
@@ -689,6 +718,8 @@ public class DeliverPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDeliverNO;
     private javax.swing.JLabel jLabelDeliverNO1;
     private javax.swing.JLabel jLabelHLogo;
+    private javax.swing.JLabel jLabelHUserName;
+    private javax.swing.JLabel jLabelUserName;
     private javax.swing.JLabel jLabellogo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

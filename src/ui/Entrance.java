@@ -250,6 +250,7 @@ public class Entrance extends javax.swing.JFrame {
                                 return;
 
                             case "DHL":
+                                new DeliverPanel(rRes.getName(), rRes.getRole());
 
                             case "FedEx":
 
@@ -295,7 +296,7 @@ public class Entrance extends javax.swing.JFrame {
         // TODO add your handling code here:
         String Delivery_NO = "NotAssigned";
         try {
-            new DeliverPanel(Delivery_NO);
+            new DeliverPanel("Zeyu Liao","DHL");
         } catch (Exception ex) {
             Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
         }
