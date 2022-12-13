@@ -7,6 +7,7 @@ package dao;
 import java.sql.*;
 import java.util.ArrayList;
 import model.Patient;
+import model.User;
 
 /**
  *
@@ -172,9 +173,43 @@ public class PatientDao {
 
         boolean res = true;
         initConnection();
-        String sql = "INSERT INTO Patient( name,phone_number,DOB,community_name ) "
+        String insertUserSql = "insert into login(user_name, role, pwd) values (?, ?, ?)";
+        
+        try {
+            PreparedStatement stat = conn.prepareStatement(insertUserSql);
+            stat.setString(1, patient.getName());
+            stat.setString(2, "patient");
+            stat.setString(3, "123");
+            stat.executeUpdate();
+            stat.close();
+        }catch(Exception e) {
+            e.printStackTrace();
+            res = false;
+        }
+        
+        String getUserSql = "select * from login where user_name = ?";
+        
+//        User user = new User();
+        String logID = ""; // todo
+        
+        try {
+            PreparedStatement stat = conn.prepareStatement(getUserSql);
+            stat.setString(1, patient.getName());
+            ResultSet set = stat.executeQuery();
+            
+            if (set.next()) {
+                logID = set.getString("logid");
+            }
+            
+            stat.close();
+        }catch(Exception e) {
+            e.printStackTrace();
+            res = false;
+        }
+        
+        String sql = "INSERT INTO Patient( name,phone_number,DOB,community_name,logID ) "
                         + "VALUES('" + patient.getName() + "','" + patient.getPhoneNumber() + 
-                        "','" + patient.getDOB() + "','" + patient.getCommunityName() + "')";
+                        "','" + patient.getDOB() + "','" + patient.getCommunityName() + "','" + logID + "')";
         //System.out.println(sql);
         try {
             Statement stat = conn.createStatement();

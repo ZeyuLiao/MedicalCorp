@@ -4,6 +4,7 @@
  */
 package ui.doctors;
 
+import com.alibaba.fastjson.JSON;
 import dao.EncounterDao;
 import dao.PatientDao;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Diagnose;
 import model.Encounter;
 import model.Patient;
 import ui.MainMenu;
@@ -317,14 +319,24 @@ public class DoctorHomePage extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Please Check vital signs First");
             return;
         }
-        if( "".equals(jTextAreaDiagnose.getText())){
+        
+        String diagnoseText = jTextAreaDiagnose.getText();
+        
+        if( "".equals(diagnoseText)){
             JOptionPane.showMessageDialog(this,"Please give diagnose");
             return;
         }
         
-        e.setDiagnosis(jTextAreaDiagnose.getText());
+        Diagnose diagnoseJsonBean = new Diagnose();
+        diagnoseJsonBean.setDiagnose(diagnoseText);
+        
+        e.setDiagnosis(JSON.toJSONString(diagnoseJsonBean));
+//        e.setDiagnosis(jTextAreaDiagnose.getText());
         e.setEndDate(LocalDate.now());
         e.setState(true);
+        
+        
+        
         if(jTableEncounter.getColumnCount()==0) MainMenu.notification(true);
         else MainMenu.notification(false);
         

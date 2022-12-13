@@ -107,6 +107,35 @@ public class EncounterDao {
         closeConnection();
         return eList;	
     }
+    
+    
+    public ArrayList<Encounter> getAllEncounterNotExamined() throws Exception{
+		
+        ArrayList<Encounter> eList = new ArrayList<>();
+        initConnection();
+        String sql = "SELECT * FROM Encounter where diagnosis is not null and diagnosis not like \"%examin%\"";
+        Statement stat = conn.createStatement();
+        ResultSet rs = stat.executeQuery(sql);
+        while(rs.next()){
+            Encounter e = new Encounter();
+            e.setDoctorId(rs.getInt("doctor_id"));
+            e.setDiagnosis(rs.getString("diagnosis"));
+            e.setEncounterId(rs.getInt("encounter_id"));
+            if(rs.getDate("end_date") != null) e.setEndDate(rs.getDate("end_date").toLocalDate());
+            else e.setEndDate(null);
+            e.setStartDate(rs.getDate("start_date").toLocalDate());
+            e.setState(rs.getBoolean("state"));
+            e.setSymptom(rs.getString("symptom"));
+            e.setBlood_pressure(rs.getInt("blood_pressure"));
+            e.setHeart_beat_rate(rs.getInt("heart_beat_rate"));
+            e.setBlood_sugar(rs.getDouble("blood_sugar"));
+            e.setWhite_blood_cells(rs.getDouble("blood_sugar"));
+            e.setPatientId(rs.getInt("patient_id"));
+            eList.add(e);
+        }
+        closeConnection();
+        return eList;	
+    }
 
     public ArrayList<Encounter> getEncounterByPatientId(int id) throws Exception{
 		
