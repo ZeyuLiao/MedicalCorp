@@ -63,9 +63,7 @@ public class MainMenu extends javax.swing.JFrame {
                 MyOrder mo = new MyOrder(id);
                 jTabbedPaneMenu.addTab("My Order", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), mo);
                                 
-                InventoryCrud ic = new InventoryCrud("Shoppers");
-                jTabbedPaneMenu.addTab("Inventory", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), ic);
- 
+                
             
             }
             //Choose Doctor
@@ -114,24 +112,22 @@ public class MainMenu extends javax.swing.JFrame {
             
             //goods Admin
             case 6 -> {
-                
-                StoreCrud sc = new StoreCrud();
-                jTabbedPaneMenu.addTab("Store", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), sc);
-                
                 GoodsCrud gc = new GoodsCrud();
-                jTabbedPaneMenu.addTab("Goods", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), gc);
-
-               
+                jTabbedPaneMenu.addTab("Medicines Management", new javax.swing.ImageIcon("src//icon//drug.png"), gc);
             
             }
             
             // PharmacyAdmin/storeAdmin
             case 7 -> {
-            
+                StoreCrud sc = new StoreCrud();
+                jTabbedPaneMenu.addTab("Pharmacy Management", new javax.swing.ImageIcon("src//icon//heroicons-ui_104.png"), sc);
+
             }
             
             //InventoryAdmin
             case 8 -> {
+                InventoryCrud ic = new InventoryCrud("Shoppers");
+                jTabbedPaneMenu.addTab("Inventory", new javax.swing.ImageIcon("src//icon//heroicons-ui_63.png"), ic);
             
             }
             
