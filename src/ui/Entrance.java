@@ -253,6 +253,11 @@ public class Entrance extends javax.swing.JFrame {
                                 menu.MainMenu(8, Integer.parseInt(txtUserID.getText()));
                                 dispose();
                                 return;
+                                
+                            case "Examin":
+                                menu.MainMenu(9, Integer.parseInt(txtUserID.getText()));
+                                dispose();
+                                return;
 
                             case "DHL":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
@@ -262,6 +267,7 @@ public class Entrance extends javax.swing.JFrame {
 
                             case "Express":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
+                                
                             case "UPS":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
                         }

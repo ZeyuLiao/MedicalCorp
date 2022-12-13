@@ -15,6 +15,7 @@ public class ExaminationList extends javax.swing.JPanel {
      */
     public ExaminationList() {
         initComponents();
+ 
     }
 
     /**
