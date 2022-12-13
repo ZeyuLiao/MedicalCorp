@@ -169,7 +169,7 @@ public class PatientDao {
     }
 
     //logId? 
-    public boolean addPatient(Patient patient) throws Exception{
+    public boolean addPatient(Patient patient,String pwd) throws Exception{
 
         boolean res = true;
         initConnection();
@@ -179,7 +179,7 @@ public class PatientDao {
             PreparedStatement stat = conn.prepareStatement(insertUserSql);
             stat.setString(1, patient.getName());
             stat.setString(2, "patient");
-            stat.setString(3, "123");
+            stat.setString(3, pwd);
             stat.executeUpdate();
             stat.close();
         }catch(Exception e) {
