@@ -74,10 +74,12 @@ public class LoginDao {
     public Doctor isValidDoctor(int DoctorID, String pwd) throws Exception {
         // Create a Statement object to execute the query
         Statement stmt = conn.createStatement();
-
+        System.out.println(DoctorID + pwd);
         // Execute the query and retrieve the result set
-        ResultSet rs = stmt.executeQuery("select * FROM doctorList join login using (logid) where doctor_id = " + DoctorID + " and pwd = md5('" + pwd + "');");
+        ResultSet rs = stmt.executeQuery("select * FROM doctorList join login using (logid) where doctor_id = " + DoctorID + " and pwd = md5('" + pwd + "')");
 
+        System.out.println(rs);
+        
         Doctor doctor = null;
 
         // Iterate over the result set and print the results
@@ -105,7 +107,7 @@ public class LoginDao {
         // Close the result set, statement, and connection objects
         rs.close();
         stmt.close();
-
+        System.out.println(doctor.getDoctorID());
         return doctor;
     }
 
