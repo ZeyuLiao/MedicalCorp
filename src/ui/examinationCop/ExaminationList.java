@@ -25,15 +25,31 @@ public class ExaminationList extends javax.swing.JPanel {
     public ExaminationList() {
         initComponents();
         try {
-            encounterList.addAll(eDao.getAllEncounter());
+            encounterList.addAll(eDao.getAllEncounterNotExamined());
+//            for (Encounter en : encounterList) {
+//                System.out.println(en.toString());
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void showTable() throws Exception {
-        DefaultTableModel model = (DefaultTableModel) tblExaminList.getModel();
+        
+        DefaultTableModel model = (DefaultTableModel)tblExaminList.getModel();
         model.setRowCount(0);
+        
+        for (Encounter en : encounterList){
+                Object[] row = new Object[3];
+                
+                row[0] = en.getEncounterId();
+                row[1] = en.getPatientId();
+                row[2] = en.getDoctorId();          
+                model.addRow(row);  
+                }
+        
+        
+        
     }
 
     /**
@@ -58,7 +74,7 @@ public class ExaminationList extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "patientID", "Hospital Name", "Doctor Name"
+                "EncounterID", "patientID", "Doctor Name"
             }
         ));
         jScrollPane1.setViewportView(tblExaminList);
@@ -122,3 +138,4 @@ public class ExaminationList extends javax.swing.JPanel {
     private javax.swing.JTable tblExaminList;
     // End of variables declaration//GEN-END:variables
 }
+

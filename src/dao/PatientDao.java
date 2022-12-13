@@ -173,7 +173,7 @@ public class PatientDao {
 
         boolean res = true;
         initConnection();
-        String insertUserSql = "insert into login(user_name, role, pwd) values (?, ?, ?)";
+        String insertUserSql = "insert into login(user_name, role, pwd) values (?, ?, md5(?))";
         
         try {
             PreparedStatement stat = conn.prepareStatement(insertUserSql);

@@ -113,7 +113,7 @@ public class EncounterDao {
 		
         ArrayList<Encounter> eList = new ArrayList<>();
         initConnection();
-        String sql = "SELECT * FROM Encounter where diagnosis is not null and diagnosis not like \"%examin%\"";
+        String sql = "select * from encounter where diagnosis is not null and diagnosis not like '%examin%'";
         Statement stat = conn.createStatement();
         ResultSet rs = stat.executeQuery(sql);
         while(rs.next()){
