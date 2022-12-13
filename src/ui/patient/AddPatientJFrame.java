@@ -148,6 +148,7 @@ public class AddPatientJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Password:");
 
         jLabelPwd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -171,16 +172,11 @@ public class AddPatientJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                                        .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(60, 60, 60)
-                                        .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(60, 60, 60)
+                                .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -189,14 +185,15 @@ public class AddPatientJFrame extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabelPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabelDOB, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                        .addComponent(jLabelPwd, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabelPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextFieldPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                                    .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabelPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabelDOB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jComboBoxCName, javax.swing.GroupLayout.Alignment.LEADING, 0, 240, Short.MAX_VALUE)
                                             .addComponent(jPasswordField, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -204,7 +201,7 @@ public class AddPatientJFrame extends javax.swing.JFrame {
                         .addGap(15, 15, 15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,6 +265,7 @@ public class AddPatientJFrame extends javax.swing.JFrame {
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
         // TODO add your handling code here:
         Patient p = new Patient();
+        PatientDao pDao = new PatientDao();
         boolean flag = true;
         String name = jTextFieldName.getText();
         String DOB = jTextFieldDOB.getText();
@@ -275,6 +273,15 @@ public class AddPatientJFrame extends javax.swing.JFrame {
         if(name.isEmpty()){
             jLabelName.setText("Name is empty");
             flag = false;
+        }
+        try {
+            if(pDao.getPatientByName(name)!=null){
+                JOptionPane.showMessageDialog(this,"User Name is Exist. Please Use Another One or Login.");
+                jLabelName.setText("Wrong Name");
+                flag = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         if(DOB.isEmpty()){
             jLabelDOB.setText("Year of birth is empty");
@@ -313,10 +320,10 @@ public class AddPatientJFrame extends javax.swing.JFrame {
         p.setCommunityName(jComboBoxCName.getSelectedItem().toString());
         p.setPhoneNumber(phoneNumber);
         String pwd = String.valueOf(jPasswordField.getPassword());
-        PatientDao pDao = new PatientDao();
+        
         try {
             pDao.addPatient(p,pwd);
-            JOptionPane.showMessageDialog(rootPane, "Your ID is:" + pDao.getPatientByName(p.getName()).get(0).getPatientId());
+            JOptionPane.showMessageDialog(rootPane, "Your ID is:" + pDao.getPatientByName(p.getName()).getPatientId());
             JOptionPane.showMessageDialog(this,"Success");
             dispose();
         } catch (Exception ex) {

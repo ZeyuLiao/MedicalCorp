@@ -384,7 +384,8 @@ public class PatientCrud extends javax.swing.JPanel {
                     pList.add(p); 
                     break;}
                 case "Name":{ 
-                    pList = pDao.getPatientByName(input);  
+                    Patient p = pDao.getPatientByName(input);
+                    pList.add(p);  
                     break;}
                 case "DOB":{ 
                     pList = pDao.getPatientByDOB(input);
