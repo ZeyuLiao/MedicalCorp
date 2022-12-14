@@ -175,8 +175,7 @@ public class DoctorDao {
         initConnection();
         String sql = "INSERT INTO doctorlist( doctor_name,hospital_name,department,phone_number,photo_address,logID) "
                         + "VALUES('" + doctor.getName() + "','" + doctor.getHospitalName() + 
-                        "','" + doctor.getDepartment() + "','" + doctor.getPhoneNumber()+ "','" + doctor.getPhotoAddress()+ "','" +doctor.getLogid()+ "')";
-        System.out.println(sql);
+                        "','" + doctor.getDepartment() + "','" + doctor.getPhoneNumber()+ "','" + doctor.getPhotoAddress()+ "','" +doctor.getLogId()+ "')";
         try {
             Statement stat = conn.createStatement();
             stat.executeUpdate(sql);

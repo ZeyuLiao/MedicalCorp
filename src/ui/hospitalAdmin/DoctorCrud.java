@@ -420,7 +420,6 @@ public class DoctorCrud extends javax.swing.JPanel {
 
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
         DefaultTableModel model = (DefaultTableModel)jTableDoctor.getModel();
         

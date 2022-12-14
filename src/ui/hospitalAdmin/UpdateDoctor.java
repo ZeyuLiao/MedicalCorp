@@ -321,7 +321,6 @@ public class UpdateDoctor extends javax.swing.JFrame {
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
         // TODO add your handling code here:
-        System.out.println(Arrays.toString(flag));
         if(flag[0] == 0 || flag[1] == 0 || flag[2] == 0){
             JOptionPane.showMessageDialog(null, "Some inputs exist error, Please check your inputs", "alert", JOptionPane.ERROR_MESSAGE);
             return;
@@ -331,7 +330,6 @@ public class UpdateDoctor extends javax.swing.JFrame {
         d.setHospitalName(jComboBoxCHospital.getSelectedItem().toString());
         d.setPhoneNumber(jTextFieldPhoneNumber.getText());
         d.setPhotoAddress("C://Users//ZeyuLiao//Documents//photo.jpg");
-        System.out.println("ui.hospitalAdmin.UpdateDoctor.jButtonSubmitActionPerformed()");
         DoctorDao dDao = new DoctorDao();
         try {
             dDao.updateDoctor(d);
@@ -354,7 +352,6 @@ public class UpdateDoctor extends javax.swing.JFrame {
             File f = ch.getSelectedFile();
             String fname = f.getAbsolutePath();
             this.filepath = fname;
-            System.out.println(filepath);
             ImageIcon img = new ImageIcon(fname);
             img.setImage(img.getImage().getScaledInstance(jLabelPhoto.getWidth(),jLabelPhoto.getHeight(),SCALE_DEFAULT));
             jLabelPhoto.setIcon(img);

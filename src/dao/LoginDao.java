@@ -130,7 +130,11 @@ public class LoginDao {
         stmt.executeUpdate("INSERT INTO login (user_name,role,pwd) VALUES('" + accountName + "','" + role + "',md5('" + pwd + "'))");
         String sql2 = "SELECT logid FROM login WHERE user_name= '"+accountName+"'";
         ResultSet rs = stmt.executeQuery(sql2);
-        int logid = rs.getInt("logid");    
+        int logid = 0;
+        while(rs.next())
+        {
+           logid = rs.getInt("logid");
+        } 
         stmt.close(); 
         return logid;
     }

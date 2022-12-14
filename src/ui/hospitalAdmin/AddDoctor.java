@@ -348,11 +348,12 @@ public class AddDoctor extends javax.swing.JFrame {
         d.setHospitalName(jComboBoxCHospital.getSelectedItem().toString());
         d.setPhoneNumber(jTextFieldPhoneNumber.getText());
         d.setPhotoAddress(filepath);
+
         int logid;
         LoginDao ldao = new LoginDao();
         try {
             logid = ldao.addNewLogin(jTextFieldName.getText(), "Doctor", jTextFieldpassword.getText());
-            
+            d.setLogId(logid);
         } catch (Exception ex) {
             if(!"Before start of result set".equals(ex.getMessage())) {
                JOptionPane.showMessageDialog(null, "Duplicate Name!" );
