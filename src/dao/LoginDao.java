@@ -108,7 +108,7 @@ public class LoginDao {
         // Close the result set, statement, and connection objects
         rs.close();
         stmt.close();
-        System.out.println(doctor.getDoctorID());
+//        System.out.println(doctor.getDoctorID());
         return doctor;
     }
 
