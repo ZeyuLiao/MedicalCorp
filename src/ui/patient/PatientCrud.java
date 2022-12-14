@@ -366,6 +366,7 @@ public class PatientCrud extends javax.swing.JPanel {
         int patientId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         try {
             UpdatePatientJFrame up = new UpdatePatientJFrame(patientId);
+            showTable();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

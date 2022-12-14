@@ -21,6 +21,7 @@ import ui.patient.MyOrder;
 import ui.patient.MyProfile;
 import ui.patient.PatientCrud;
 import ui.patient.Shopping;
+import ui.store.StoreAdminManage;
 import ui.store.StoreCrud;
 
 
@@ -120,8 +121,12 @@ public class MainMenu extends javax.swing.JFrame {
             // PharmacyAdmin/storeAdmin
             case 7 -> {
                 StoreCrud sc = new StoreCrud();
-                jTabbedPaneMenu.addTab("Pharmacy Management", new javax.swing.ImageIcon("src//icon//heroicons-ui_104.png"), sc);
-
+                jTabbedPaneMenu.addTab("Pharmacy ", new javax.swing.ImageIcon("src//icon//heroicons-ui_104.png"), sc);
+                
+                StoreAdminManage sa = new StoreAdminManage();
+                jTabbedPaneMenu.addTab("Admin ", new javax.swing.ImageIcon("src//icon//icon_patient.png"), sa);
+                
+                
             }
             
             //InventoryAdmin
