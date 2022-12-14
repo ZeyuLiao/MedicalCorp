@@ -307,6 +307,7 @@ public class AddStoreAdminJFrame extends javax.swing.JFrame {
         } catch (Exception ex) {
             //Logger.getLogger(AddPatient.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this,"Dupicate Account Name");
+            return;
         }
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 

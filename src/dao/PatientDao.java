@@ -248,15 +248,18 @@ public class PatientDao {
         initConnection();
         String sql = "UPDATE Patient SET name='" + patient.getName() + "', phone_number='" + patient.getPhoneNumber() 
                 + "', DOB='" + patient.getDOB() + "', community_name='" + patient.getCommunityName() + "'" + "where patient_id = "+ patient.getPatientId() ;
-        try {
-            Statement stat = conn.createStatement();
-            stat.executeUpdate(sql);
-        }catch(Exception e) {
-            e.printStackTrace();
-            res = false;
-        } finally {
-            closeConnection();
-        }
+//        try {
+//            Statement stat = conn.createStatement();
+//            stat.executeUpdate(sql);
+//        }catch(Exception e) {
+//            e.printStackTrace();
+//            res = false;
+//        } finally {
+//            closeConnection();
+//        }
+        Statement stat = conn.createStatement();
+        stat.executeUpdate(sql);
+        closeConnection();
         return res;
     }
     
