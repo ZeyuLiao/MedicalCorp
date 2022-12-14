@@ -329,7 +329,8 @@ public class CommunityCRUD extends javax.swing.JPanel {
         try {
             UpdateCommunity up = new UpdateCommunity(communityId);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,"duplicate value");
+            return;
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
