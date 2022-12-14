@@ -25,7 +25,7 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private EncounterDao eDao = new EncounterDao();
     private List<Encounter> encounterList = new ArrayList<>();
-    private Hashmap<String,String> etl = new Hashmap<>();
+    public Hashmap<String,String> etl = new Hashmap<>();
 
     /**
      * Creates new form ExaminationCRUD
@@ -60,16 +60,16 @@ public class ExaminationList extends javax.swing.JPanel {
 
     }
 
-    private void poptable() throws Exception {
-        DefaultTableModel model2 = (DefaultTableModel) tblExaminOutcome.getModel(); 
-        model2.setRowCount(0);
-        for (Object e : etl) {
-        Object[] rows = new Object[2];
-            rows[0] = ;
-            rows[1] = .getPatientId();
-            model2.addRow(row);
-        }
-    }
+//    private void refreshtable() throws Exception {
+//        DefaultTableModel model2 = (DefaultTableModel) tblExaminOutcome.getModel(); 
+//        model2.setRowCount(0);
+//        for (Examin e : etl) {
+//        Object[] rows = new Object[2];
+//            rows[0] = ;
+//            rows[1] = ;
+//            model2.addRow(rows);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,7 +91,10 @@ public class ExaminationList extends javax.swing.JPanel {
         jrbCT = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblExaminOutcome = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
+        txtOutcome = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -172,10 +175,30 @@ public class ExaminationList extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblExaminOutcome);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
+            }
+        });
+
+        txtOutcome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOutcomeActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
             }
         });
 
@@ -200,22 +223,30 @@ public class ExaminationList extends javax.swing.JPanel {
                         .addComponent(lblDoctorDiagnose, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrbRBT)
-                            .addComponent(jrbXray)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(223, 223, 223)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jrbCT)
-                                    .addComponent(jrbBU))))
-                        .addGap(127, 127, 127))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(258, 258, 258))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnAdd)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemove)
+                        .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jrbXray)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(223, 223, 223)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jrbCT)
+                                        .addComponent(jrbBU)))
+                                .addComponent(jrbRBT))
+                            .addGap(127, 127, 127))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnSubmit)
+                            .addGap(256, 256, 256))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(103, 103, 103)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +254,7 @@ public class ExaminationList extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -238,11 +269,16 @@ public class ExaminationList extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jrbRBT)
                             .addComponent(jrbBU))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdd)
+                            .addComponent(btnRemove)
+                            .addComponent(txtOutcome))
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addGap(36, 36, 36))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSubmit)))
+                .addGap(19, 19, 19))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -259,40 +295,54 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private void jrbXrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbXrayActionPerformed
         // TODO add your handling code here:
-        etl.add(jrbXray.getText());
+        etl.put(jrbXray.getText(),txtOutcome.getText());
         
     }//GEN-LAST:event_jrbXrayActionPerformed
 
     private void jrbRBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbRBTActionPerformed
         // TODO add your handling code here:
-         etl.add(jrbRBT.getText());
+         etl.put(jrbRBT.getText(),txtOutcome.getText());
     }//GEN-LAST:event_jrbRBTActionPerformed
 
     private void tblExaminOutcomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblExaminOutcomeMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblExaminOutcomeMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         if(etl == null){
             JOptionPane.showMessageDialog(this, "please select at least one examination!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void jrbCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCTActionPerformed
         // TODO add your handling code here:
-         etl.add(jrbCT.getText());
+         etl.put(jrbCT.getText(),txtOutcome.getText());
     }//GEN-LAST:event_jrbCTActionPerformed
 
     private void jrbBUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbBUActionPerformed
         // TODO add your handling code here:
-        etl.add(jrbBU.getText());
+        etl.put(jrbBU.getText(),txtOutcome.getText());
         
     }//GEN-LAST:event_jrbBUActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void txtOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOutcomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOutcomeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -304,5 +354,6 @@ public class ExaminationList extends javax.swing.JPanel {
     private javax.swing.JLabel lblDoctorDiagnose;
     private javax.swing.JTable tblExaminList;
     private javax.swing.JTable tblExaminOutcome;
+    private javax.swing.JTextField txtOutcome;
     // End of variables declaration//GEN-END:variables
 }
