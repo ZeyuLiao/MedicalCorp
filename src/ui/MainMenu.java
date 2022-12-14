@@ -21,6 +21,7 @@ import ui.patient.MyOrder;
 import ui.patient.MyProfile;
 import ui.patient.PatientCrud;
 import ui.patient.Shopping;
+import ui.store.StoreAdminManage;
 import ui.store.StoreCrud;
 
 
@@ -50,18 +51,18 @@ public class MainMenu extends javax.swing.JFrame {
             //Choose Patient
             case 0 -> {
                 MyProfile mp = new MyProfile(id);
-                jTabbedPaneMenu.addTab("My Profile",new javax.swing.ImageIcon("src//icon//heroicons-ui_63.png"),mp);
+                jTabbedPaneMenu.addTab("My Profile",mp);
                 Appointment ap = new Appointment(id);
-                jTabbedPaneMenu.addTab("Appointment", new javax.swing.ImageIcon("src//icon//icon_appointment.png"), ap);
+                jTabbedPaneMenu.addTab("Appointment", ap);
                 //jTabbedPaneMenu.addTab("Appointment", ap);
                 MyEncounter me = new MyEncounter(id);
-                jTabbedPaneMenu.addTab("My Encounter", new javax.swing.ImageIcon("src//icon//icon_home.png"), me);
+                jTabbedPaneMenu.addTab("My Encounter", me);
                 
                 Shopping sh = new Shopping(id);
-                jTabbedPaneMenu.addTab("Online Pharmacy", new javax.swing.ImageIcon("src//icon//heroicons-ui_66.png"), sh);
+                jTabbedPaneMenu.addTab("Online Pharmacy", sh);
                 
                 MyOrder mo = new MyOrder(id);
-                jTabbedPaneMenu.addTab("My Order", new javax.swing.ImageIcon("src//icon//heroicons-ui_49.png"), mo);
+                jTabbedPaneMenu.addTab("My Order", mo);
                                 
                 
             
@@ -120,8 +121,12 @@ public class MainMenu extends javax.swing.JFrame {
             // PharmacyAdmin/storeAdmin
             case 7 -> {
                 StoreCrud sc = new StoreCrud();
-                jTabbedPaneMenu.addTab("Pharmacy Management", new javax.swing.ImageIcon("src//icon//heroicons-ui_104.png"), sc);
-
+                jTabbedPaneMenu.addTab("Pharmacy ", new javax.swing.ImageIcon("src//icon//heroicons-ui_104.png"), sc);
+                
+                StoreAdminManage sa = new StoreAdminManage();
+                jTabbedPaneMenu.addTab("Admin ", new javax.swing.ImageIcon("src//icon//icon_patient.png"), sa);
+                
+                
             }
             
             //InventoryAdmin

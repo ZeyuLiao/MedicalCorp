@@ -1,31 +1,35 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.deliver;
+package ui.store;
 
 import dao.LoginDao;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+import dao.StoreDao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Deliver;
 import model.DeliverMan;
-import ui.Entrance;
+import model.Store;
 
 /**
  *
- * @author ZeyuLiao
+ * @author Ruolin
  */
-public class DeliverManagePanel extends javax.swing.JFrame {
+public class StoreAdminManage extends javax.swing.JPanel {
 
     /**
-     * Creates new form DeliverManagePanel
+     * Creates new form StoreAdminManage
      */
-    public DeliverManagePanel() throws Exception {
+    ArrayList<String> storeName;
+    public StoreAdminManage() throws Exception {
         initComponents();
-        setLocationRelativeTo(null);
+        StoreDao sDao = new StoreDao();
+        ArrayList<Store> stores = sDao.getAllStore();
+        this.storeName = new ArrayList<>();
+        for(Store s:stores){
+                storeName.add(s.getStoreName());
+        }
         setVisible(true);
         populateTable();
     }
@@ -39,9 +43,10 @@ public class DeliverManagePanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAllDeliverMan = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldLoginId = new javax.swing.JTextField();
@@ -51,11 +56,9 @@ public class DeliverManagePanel extends javax.swing.JFrame {
         jTextFieldCompany = new javax.swing.JTextField();
         jButtonAdd = new javax.swing.JButton();
         jButtonView = new javax.swing.JButton();
-        jButtonUpdate = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
-        jButtonLogout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1.setPreferredSize(new java.awt.Dimension(968, 429));
 
         jTableAllDeliverMan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,19 +73,27 @@ public class DeliverManagePanel extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableAllDeliverMan);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jPanel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Login ID");
 
         jTextFieldLoginId.setEditable(false);
+        jTextFieldLoginId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jLabelAccountName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelAccountName.setText("Account Name");
 
         jTextFieldAccountName.setEditable(false);
+        jTextFieldAccountName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jLabelCompany.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelCompany.setText("Company");
 
         jTextFieldCompany.setEditable(false);
+        jTextFieldCompany.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -119,6 +130,7 @@ public class DeliverManagePanel extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        jButtonAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonAdd.setText("Add");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +138,7 @@ public class DeliverManagePanel extends javax.swing.JFrame {
             }
         });
 
+        jButtonView.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonView.setText("View");
         jButtonView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,154 +146,110 @@ public class DeliverManagePanel extends javax.swing.JFrame {
             }
         });
 
-        jButtonUpdate.setText("Update");
-        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateActionPerformed(evt);
-            }
-        });
-
+        jButtonDelete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonDelete.setText("Delete");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteActionPerformed(evt);
-            }
-        });
 
-        jButtonLogout.setText("Logout");
-        jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLogoutActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonView, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAdd)
+                    .addComponent(jButtonView)
+                    .addComponent(jButtonDelete)))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(32, Short.MAX_VALUE)
-                        .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonView, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jButtonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAdd)
-                    .addComponent(jButtonView)
-                    .addComponent(jButtonUpdate)
-                    .addComponent(jButtonDelete)))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 822, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 441, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         // TODO add your handling code here:
-    new AddDeliverMan(this, rootPaneCheckingEnabled);
+        AddStoreAdminJFrame add = new AddStoreAdminJFrame(); 
+        add.setVisible(true);
         try {
             populateTable();
         } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(DeliverManagePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_jButtonAddActionPerformed
-
-    private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        new Entrance().setVisible(true);
-    }//GEN-LAST:event_jButtonLogoutActionPerformed
 
     private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
         // TODO add your handling code here:
         int selectRowIndex = jTableAllDeliverMan.getSelectedRow();
-            if(selectRowIndex <0){
-                JOptionPane.showMessageDialog(this,"Please select a row to view details");
-                return;
-            }
-            DefaultTableModel model = (DefaultTableModel) jTableAllDeliverMan.getModel();
-            String loginId = model.getValueAt(selectRowIndex,0).toString();
-            String accountName = model.getValueAt(selectRowIndex,1).toString();
-            String Company = model.getValueAt(selectRowIndex,2).toString();
-            
+        if(selectRowIndex <0){
+            JOptionPane.showMessageDialog(this,"Please select a row to view details");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) jTableAllDeliverMan.getModel();
+        String loginId = model.getValueAt(selectRowIndex,0).toString();
+        String accountName = model.getValueAt(selectRowIndex,1).toString();
+        String Company = model.getValueAt(selectRowIndex,2).toString();
 
         jTextFieldLoginId.setText(loginId);
         jTextFieldAccountName.setText(accountName);
         jTextFieldCompany.setText(Company);
     }//GEN-LAST:event_jButtonViewActionPerformed
-
-    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonUpdateActionPerformed
-
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
-        int selectRowIndex = jTableAllDeliverMan.getSelectedRow();
-            if(selectRowIndex <0){
-                JOptionPane.showMessageDialog(this,"Please select a row to delete!");
-                return;
-            }
-        DefaultTableModel model = (DefaultTableModel) jTableAllDeliverMan.getModel();
-        LoginDao ldao = new LoginDao();
-        try {
-            ldao.deleteDeliverMan(Integer.parseInt(model.getValueAt(selectRowIndex,0).toString()));
-        } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(DeliverManagePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        JOptionPane.showMessageDialog(this,"Delete Successfully!");
-        try {
-            populateTable();
-        } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(DeliverManagePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
-
     private void populateTable() throws Exception{
     DefaultTableModel modelDeliverMan = (DefaultTableModel) jTableAllDeliverMan.getModel();
     modelDeliverMan.setRowCount(0);
     LoginDao ldao = new LoginDao();
     ArrayList<DeliverMan> elist = ldao.getAllDeliverMen();
     for (DeliverMan dm : elist){
-        if("DHL".equals(dm.getRole())|| "Express".equals(dm.getRole()) ||"FedEx".equals(dm.getRole())||"UPS".equals(dm.getRole())){
+        if(storeName.contains(dm.getRole())){
             Object[] row = new Object[3];
             row[0] = dm.getLoginId();
             row[1] = dm.getAccountName();
@@ -290,18 +259,16 @@ public class DeliverManagePanel extends javax.swing.JFrame {
         }
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonLogout;
-    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JButton jButtonView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAccountName;
     private javax.swing.JLabel jLabelCompany;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAllDeliverMan;
     private javax.swing.JTextField jTextFieldAccountName;

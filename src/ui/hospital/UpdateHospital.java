@@ -64,7 +64,7 @@ public class UpdateHospital extends javax.swing.JFrame {
         }
         cmbCommunity = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblHosName.setText("Hospital Name:");
 

@@ -366,6 +366,7 @@ public class PatientCrud extends javax.swing.JPanel {
         int patientId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         try {
             UpdatePatientJFrame up = new UpdatePatientJFrame(patientId);
+            showTable();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -384,7 +385,8 @@ public class PatientCrud extends javax.swing.JPanel {
                     pList.add(p); 
                     break;}
                 case "Name":{ 
-                    pList = pDao.getPatientByName(input);  
+                    Patient p = pDao.getPatientByName(input);
+                    pList.add(p);  
                     break;}
                 case "DOB":{ 
                     pList = pDao.getPatientByDOB(input);

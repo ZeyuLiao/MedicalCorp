@@ -178,11 +178,11 @@ VALUES (1, 1, 10.00),
 
 
 
-INSERT INTO `ORDER` (store_id, Patient_id, total_price, delivery_status)
-VALUES (1, 1, 100.00, 'pending'),
-       (1, 2, 50.00, 'pending'),
-       (2, 3, 75.00, 'delievered'),
-       (2, 4, 25.00, 'delievered');
+-- INSERT INTO `ORDER` (store_id, Patient_id, total_price, delivery_status)
+-- VALUES (1, 1, 100.00, 'pending'),
+--        (1, 2, 50.00, 'pending'),
+--        (2, 3, 75.00, 'delievered'),
+--        (2, 4, 25.00, 'delievered');
 			 
 			 
 			 
@@ -195,13 +195,13 @@ CREATE TABLE order_detail (
 			CONSTRAINT fk_orderdetail_goodsID FOREIGN KEY (goods_ID) REFERENCES goods(goods_id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
-
-#########################################################
-INSERT INTO order_detail (order_No, goods_ID, quantity)
-VALUES (1, 1, 2),
-       (2, 2, 3),
-       (3, 3, 1),
-       (4, 4, 4);
+-- 
+-- #########################################################
+-- INSERT INTO order_detail (order_No, goods_ID, quantity)
+-- VALUES (1, 1, 2),
+--        (2, 2, 3),
+--        (3, 3, 1),
+--        (4, 4, 4);
 
 			 
 CREATE TABLE Delivery (
@@ -213,10 +213,10 @@ CREATE TABLE Delivery (
   delivery_status VARCHAR(255) DEFAULT "pending",
   Delivered_time VARCHAR(50) DEFAULT NULL
 );
-
-###################################
-INSERT INTO Delivery (order_id, delivery_company, delivery_status) VALUES
-      (1, 'DHL', 'pending'),
-      (2, 'FedEx', 'pending'),
-      (3, 'Express', 'delievered'),
-      (4, 'UPS', 'delievered');
+-- 
+-- ###################################
+-- INSERT INTO Delivery (order_id, delivery_company, delivery_status) VALUES
+--       (1, 'DHL', 'pending'),
+--       (2, 'FedEx', 'pending'),
+--       (3, 'Express', 'delievered'),
+--       (4, 'UPS', 'delievered');

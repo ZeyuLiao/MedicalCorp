@@ -7,6 +7,7 @@ package dao;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.*;
 
@@ -107,7 +108,7 @@ public class LoginDao {
         // Close the result set, statement, and connection objects
         rs.close();
         stmt.close();
-        System.out.println(doctor.getDoctorID());
+//        System.out.println(doctor.getDoctorID());
         return doctor;
     }
 
@@ -129,9 +130,64 @@ public class LoginDao {
         return user;
     }    
     
-    public User getUser(int logid){
+    public void addNewLogin(String accountName, String role, String pwd) throws SQLException{
         System.out.println("dao.LoginDao.getUser()");
-        return null;
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("INSERT INTO login (user_name,role,pwd) VALUES('" + accountName + "','" + role + "',md5('" + pwd + "'))");
+        stmt.close(); 
        
     }
+    
+    public ArrayList<DeliverMan> getAllDeliverMen() throws Exception{
+
+        ArrayList<DeliverMan> deliverList = new ArrayList<>();
+        initConnection();
+        String sql = "SELECT * FROM login";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while(rs.next()){
+            DeliverMan dm = new DeliverMan();
+            dm.setLoginId(rs.getInt("logid"));
+            dm.setAccountName(rs.getString("user_name"));
+            dm.setRole(rs.getString("role"));
+            deliverList.add(dm);
+        }
+        stmt.close();
+        return deliverList;	
+    }
+    
+      //delete
+    public boolean deleteDeliverMan(int loginId) throws Exception{
+
+        boolean res = true;
+        initConnection();
+        String sql = "DELETE FROM login WHERE logid='" + loginId + "'";
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        }catch(Exception e) {
+            e.printStackTrace();
+            res = false;
+        } 
+        return res;
+    }
+    
+//    public DeliverMan getDeliverManbyLoginID(int LoginId) throws Exception{
+//
+//
+//        initConnection();
+//        String sql = "SELECT * FROM Patient WHERE logid= '"+LoginId+"'";
+//        Statement stmt = conn.createStatement();
+//        ResultSet rs = stmt.executeQuery(sql);
+//        DeliverMan dm = new DeliverMan();
+//        while(rs.next()){
+//            dm.setLoginId(rs.getInt("user_name"));
+//            dm.setAccountName(rs.getString("user_name"));
+//            dm.setRole(rs.getString("role"));
+//        }
+//        stmt.close();
+//        return dm;	
+//    }
 }

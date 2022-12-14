@@ -75,27 +75,28 @@ public class PatientDao {
         return pList;	
     }
 
-    public ArrayList<Patient> getPatientByName(String name) throws Exception{
+    public Patient getPatientByName(String name) throws Exception{
 
-        ArrayList<Patient> pList = new ArrayList<>();
+        //ArrayList<Patient> pList = new ArrayList<>();
         initConnection();
+        Patient patient = null;
         String sql = "SELECT * FROM Patient WHERE name=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, name);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            Patient patient = new Patient();
+            patient = new Patient();
             patient.setPatientId(rs.getInt("patient_id"));
             patient.setLogId(rs.getInt("logId"));
             patient.setName(rs.getString("name"));
             patient.setPhoneNumber(rs.getString("phone_number"));
             patient.setDOB(rs.getString("DOB"));
             patient.setCommunityName(rs.getString("community_name"));
-            pList.add(patient);
+            //pList.add(patient);
         }
         closeConnection();
 
-        return pList;
+        return patient;
     }
 
     public ArrayList<Patient> getPatientByAddress(String communityName) throws Exception{
@@ -169,7 +170,7 @@ public class PatientDao {
     }
 
     //logId? 
-    public boolean addPatient(Patient patient) throws Exception{
+    public boolean addPatient(Patient patient,String pwd) throws Exception{
 
         boolean res = true;
         initConnection();
@@ -179,7 +180,7 @@ public class PatientDao {
             PreparedStatement stat = conn.prepareStatement(insertUserSql);
             stat.setString(1, patient.getName());
             stat.setString(2, "patient");
-            stat.setString(3, "123");
+            stat.setString(3, pwd);
             stat.executeUpdate();
             stat.close();
         }catch(Exception e) {

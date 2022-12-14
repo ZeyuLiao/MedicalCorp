@@ -51,7 +51,7 @@ public class UpdateGoodsJFrame extends javax.swing.JFrame {
         jLabelName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Update Profile");
         setIconImage(Entrance.logo.getImage());
 
