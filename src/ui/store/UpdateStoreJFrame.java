@@ -78,7 +78,7 @@ public class UpdateStoreJFrame extends javax.swing.JFrame {
         jComboBoxCName = new javax.swing.JComboBox<>(str);
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Update Profile");
         setIconImage(Entrance.logo.getImage());
 
