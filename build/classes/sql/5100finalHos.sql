@@ -72,6 +72,7 @@ INSERT into login(user_name,role,pwd) VALUES
 ('Emma','Patient',MD5(123)),
 
 ('Aaron Hendler','Doctor',MD5('d123')), #17
+('Stephen Herman','Doctor',MD5('d123')),
 
 ('ShoppersAdmin','Shoppers',MD5(12345)),
 ('RexallAdmin','Rexall',MD5(12345)),

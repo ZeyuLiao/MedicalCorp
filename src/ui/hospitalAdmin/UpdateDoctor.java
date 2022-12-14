@@ -44,6 +44,7 @@ public class UpdateDoctor extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         initComponents();
+        setLocationRelativeTo(null);
         jLabelNameNotice.setVisible(false);
         jLabelPhoneNumberNotice.setVisible(false);
         jLabelDepartmentNotice.setVisible(false);
