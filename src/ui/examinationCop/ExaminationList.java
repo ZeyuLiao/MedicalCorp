@@ -4,11 +4,18 @@
  */
 package ui.examinationCop;
 
+import com.alibaba.fastjson.JSON;
+import com.mysql.cj.xdevapi.JsonString;
 import dao.EncounterDao;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Diagnose;
 import model.Encounter;
+import ui.MainMenu;
+import java.util.HashMap;
 
 /**
  *
@@ -18,6 +25,7 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private EncounterDao eDao = new EncounterDao();
     private List<Encounter> encounterList = new ArrayList<>();
+    private Hashmap<String,String> etl = new Hashmap<>();
 
     /**
      * Creates new form ExaminationCRUD
@@ -25,7 +33,8 @@ public class ExaminationList extends javax.swing.JPanel {
     public ExaminationList() {
         initComponents();
         try {
-           showTable();
+            showTable();
+            
 //            for (Encounter en : encounterList) {
 //                System.out.println(en.toString());
 //            }
@@ -35,21 +44,31 @@ public class ExaminationList extends javax.swing.JPanel {
     }
 
     private void showTable() throws Exception {
-        
-        DefaultTableModel model = (DefaultTableModel)tblExaminList.getModel();
+
+        DefaultTableModel model = (DefaultTableModel) tblExaminList.getModel();
         model.setRowCount(0);
         encounterList.addAll(eDao.getAllEncounterNotExamined());
-        for (Encounter en : encounterList){
-                Object[] row = new Object[3];
-                
-                row[0] = en.getEncounterId();
-                row[1] = en.getPatientId();
-                row[2] = en.getDoctorId();          
-                model.addRow(row);  
-                }
-        
-        
-        
+        for (Encounter en : encounterList) {
+            System.out.println(en.toString());
+            Object[] row = new Object[3];
+
+            row[0] = en.getEncounterId();
+            row[1] = en.getPatientId();
+            row[2] = en.getDoctorId();
+            model.addRow(row);
+        }
+
+    }
+
+    private void poptable() throws Exception {
+        DefaultTableModel model2 = (DefaultTableModel) tblExaminOutcome.getModel(); 
+        model2.setRowCount(0);
+        for (Object e : etl) {
+        Object[] rows = new Object[2];
+            rows[0] = ;
+            rows[1] = .getPatientId();
+            model2.addRow(row);
+        }
     }
 
     /**
@@ -64,7 +83,17 @@ public class ExaminationList extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblExaminList = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblDoctorDiagnose = new javax.swing.JLabel();
+        jrbXray = new javax.swing.JRadioButton();
+        jrbRBT = new javax.swing.JRadioButton();
+        jrbBU = new javax.swing.JRadioButton();
+        jrbCT = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblExaminOutcome = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         tblExaminList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,17 +103,76 @@ public class ExaminationList extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "EncounterID", "patientID", "Doctor Name"
+                "Encounter ID", "patient ID", "Doctor ID"
             }
         ));
+        tblExaminList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblExaminListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblExaminList);
+        if (tblExaminList.getColumnModel().getColumnCount() > 0) {
+            tblExaminList.getColumnModel().getColumn(2).setHeaderValue("Doctor ID");
+        }
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/jiankang.png"))); // NOI18N
         jLabel1.setText("HealthPro Examination Corperation");
 
-        jButton1.setText("Choose");
+        jLabel3.setText("Doctor Instruction:");
+
+        lblDoctorDiagnose.setBackground(new java.awt.Color(204, 204, 204));
+        lblDoctorDiagnose.setAutoscrolls(true);
+
+        jrbXray.setText("X-ray");
+        jrbXray.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbXrayActionPerformed(evt);
+            }
+        });
+
+        jrbRBT.setText("routine blood test");
+        jrbRBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbRBTActionPerformed(evt);
+            }
+        });
+
+        jrbBU.setText("b-ultrasonics");
+        jrbBU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbBUActionPerformed(evt);
+            }
+        });
+
+        jrbCT.setText("CT");
+        jrbCT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbCTActionPerformed(evt);
+            }
+        });
+
+        tblExaminOutcome.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Examin", "Outcome"
+            }
+        ));
+        tblExaminOutcome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblExaminOutcomeMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblExaminOutcome);
+
+        jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -96,46 +184,125 @@ public class ExaminationList extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(lblDoctorDiagnose, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrbRBT)
+                            .addComponent(jrbXray)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(407, 407, 407)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGap(223, 223, 223)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jrbCT)
+                                    .addComponent(jrbBU))))
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(258, 258, 258))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDoctorDiagnose, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrbXray)
+                            .addComponent(jrbCT))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jrbRBT)
+                            .addComponent(jrbBU))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void tblExaminListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblExaminListMouseClicked
         // TODO add your handling code here:
 
+        int selectRowIndex = tblExaminList.getSelectedRow();
 
+        Diagnose diag = JSON.parseObject(encounterList.get(selectRowIndex).getDiagnosis(), Diagnose.class);
+        lblDoctorDiagnose.setText(diag.getDiagnose());
+
+
+    }//GEN-LAST:event_tblExaminListMouseClicked
+
+    private void jrbXrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbXrayActionPerformed
+        // TODO add your handling code here:
+        etl.add(jrbXray.getText());
+        
+    }//GEN-LAST:event_jrbXrayActionPerformed
+
+    private void jrbRBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbRBTActionPerformed
+        // TODO add your handling code here:
+         etl.add(jrbRBT.getText());
+    }//GEN-LAST:event_jrbRBTActionPerformed
+
+    private void tblExaminOutcomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblExaminOutcomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblExaminOutcomeMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(etl == null){
+            JOptionPane.showMessageDialog(this, "please select at least one examination!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jrbCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCTActionPerformed
+        // TODO add your handling code here:
+         etl.add(jrbCT.getText());
+    }//GEN-LAST:event_jrbCTActionPerformed
+
+    private void jrbBUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbBUActionPerformed
+        // TODO add your handling code here:
+        etl.add(jrbBU.getText());
+        
+    }//GEN-LAST:event_jrbBUActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton jrbBU;
+    private javax.swing.JRadioButton jrbCT;
+    private javax.swing.JRadioButton jrbRBT;
+    private javax.swing.JRadioButton jrbXray;
+    private javax.swing.JLabel lblDoctorDiagnose;
     private javax.swing.JTable tblExaminList;
+    private javax.swing.JTable tblExaminOutcome;
     // End of variables declaration//GEN-END:variables
 }
-

@@ -76,7 +76,7 @@ INSERT into login(user_name,role,pwd) VALUES
 ('ShoppersAdmin','Shoppers',MD5(12345)),
 ('RexallAdmin','Rexall',MD5(12345)),
 ('HealthCareAdmin','HealthCareAdmin',MD5(12345)),
-('drugMartAdmin','drugMartAdmin',MD5(12345)),
+('drugMartAdmin','drugMartAdmin',MD5(12345));
 
 CREATE TABLE patient (
 	patient_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -91,11 +91,11 @@ CREATE TABLE patient (
 );
 INSERT INTO patient ( `name`, phone_number, DOB, community_name, logID)
 VALUES
-	( 'Alex', '6477823360', '1990','Toronto Downtown', 11),
-	( 'Bob', '1211111111', '1980','Toronto Downtown', 12 ),
-	( 'Cathy', '1131111111', '1970','Markham', 13),
-	( 'Dana', '1114111111', '1960','Scarborough',14),
-	( 'Emma', '1111511111', '2000','North York' , 15);
+	( 'Alex', '6477823360', '1990','Toronto Downtown', 12),
+	( 'Bob', '1211111111', '1980','Toronto Downtown', 13 ),
+	( 'Cathy', '1131111111', '1970','Markham', 14),
+	( 'Dana', '1114111111', '1960','Scarborough',15),
+	( 'Emma', '1111511111', '2000','North York' , 16);
 	
 	create table DoctorList(
 doctor_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -111,8 +111,8 @@ CONSTRAINT fk_doctor_logID FOREIGN KEY (logID) REFERENCES login(logid) ON UPDATE
 );
 
 INSERT into DoctorList (doctor_name, hospital_name,department,phone_number,photo_address,logid)
-VALUES ('Aaron Hendler','Downtown Hospital','Emergency Clinic','4378861089','src//photo//Aaron_Hendler.jpg',16),
-('Stephen Herman','North York Hospital','pharmacy','6477879723','src//photo//Stephen_Herman.jpg',17);
+VALUES ('Aaron Hendler','Downtown Hospital','Emergency Clinic','4378861089','src//photo//Aaron_Hendler.jpg',17),
+('Stephen Herman','North York Hospital','pharmacy','6477879723','src//photo//Stephen_Herman.jpg',18);
 	
 	
 	CREATE table goods(
