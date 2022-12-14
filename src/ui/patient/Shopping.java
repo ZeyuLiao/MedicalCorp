@@ -523,6 +523,7 @@ public class Shopping extends javax.swing.JPanel {
             DeliverDao dDao = new DeliverDao();
             dDao.addOrder(orderId);
             cartList.remove(storeId);
+            JOptionPane.showMessageDialog(this,"Success. Your Order No is "+orderNo);
             showTableCart();
         } catch (Exception ex) {
             ex.printStackTrace();

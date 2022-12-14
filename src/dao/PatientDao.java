@@ -79,13 +79,13 @@ public class PatientDao {
 
         //ArrayList<Patient> pList = new ArrayList<>();
         initConnection();
-        Patient patient = new Patient();
+        Patient patient = null;
         String sql = "SELECT * FROM Patient WHERE name=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, name);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            
+            patient = new Patient();
             patient.setPatientId(rs.getInt("patient_id"));
             patient.setLogId(rs.getInt("logId"));
             patient.setName(rs.getString("name"));
