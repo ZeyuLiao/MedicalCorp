@@ -16,6 +16,8 @@ import model.Diagnose;
 import model.Encounter;
 import ui.MainMenu;
 import java.util.HashMap;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -25,7 +27,10 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private EncounterDao eDao = new EncounterDao();
     private List<Encounter> encounterList = new ArrayList<>();
-    public Hashmap<String,String> etl = new Hashmap<>();
+    public HashMap<String, String> etl = new HashMap<>();
+    private ButtonGroup group = new ButtonGroup();
+    private Diagnose diag;
+    private Encounter selectedEncounter;
 
     /**
      * Creates new form ExaminationCRUD
@@ -34,7 +39,7 @@ public class ExaminationList extends javax.swing.JPanel {
         initComponents();
         try {
             showTable();
-            
+
 //            for (Encounter en : encounterList) {
 //                System.out.println(en.toString());
 //            }
@@ -58,6 +63,11 @@ public class ExaminationList extends javax.swing.JPanel {
             model.addRow(row);
         }
 
+        group.add(jrbBU);
+        group.add(jrbCT);
+        group.add(jrbRBT);
+        group.add(jrbXray);
+
     }
 
 //    private void refreshtable() throws Exception {
@@ -70,7 +80,6 @@ public class ExaminationList extends javax.swing.JPanel {
 //            model2.addRow(rows);
 //        }
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,7 +103,6 @@ public class ExaminationList extends javax.swing.JPanel {
         btnSubmit = new javax.swing.JButton();
         txtOutcome = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
-        btnRemove = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -195,13 +203,6 @@ public class ExaminationList extends javax.swing.JPanel {
             }
         });
 
-        btnRemove.setText("Remove");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,8 +228,6 @@ public class ExaminationList extends javax.swing.JPanel {
                         .addComponent(txtOutcome, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(btnAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRemove)
                         .addContainerGap())
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -272,7 +271,6 @@ public class ExaminationList extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
-                            .addComponent(btnRemove)
                             .addComponent(txtOutcome))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,21 +285,21 @@ public class ExaminationList extends javax.swing.JPanel {
 
         int selectRowIndex = tblExaminList.getSelectedRow();
 
-        Diagnose diag = JSON.parseObject(encounterList.get(selectRowIndex).getDiagnosis(), Diagnose.class);
+        diag = JSON.parseObject(encounterList.get(selectRowIndex).getDiagnosis(), Diagnose.class);
         lblDoctorDiagnose.setText(diag.getDiagnose());
 
-
+        selectedEncounter = encounterList.get(selectRowIndex);
     }//GEN-LAST:event_tblExaminListMouseClicked
 
     private void jrbXrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbXrayActionPerformed
         // TODO add your handling code here:
-        etl.put(jrbXray.getText(),txtOutcome.getText());
-        
+        etl.put(jrbXray.getText(), txtOutcome.getText());
+
     }//GEN-LAST:event_jrbXrayActionPerformed
 
     private void jrbRBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbRBTActionPerformed
         // TODO add your handling code here:
-         etl.put(jrbRBT.getText(),txtOutcome.getText());
+        etl.put(jrbRBT.getText(), txtOutcome.getText());
     }//GEN-LAST:event_jrbRBTActionPerformed
 
     private void tblExaminOutcomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblExaminOutcomeMouseClicked
@@ -310,29 +308,69 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        if(etl == null){
+        if (etl == null) {
             JOptionPane.showMessageDialog(this, "please select at least one examination!");
         }
+        
+        diag.setExamins(etl);
+        String jsonString = JSON.toJSONString(diag);
+        
+        if (null != selectedEncounter) {
+            selectedEncounter.setDiagnosis(jsonString);
+        }
+        
+        try {
+            eDao.updateEncounter(selectedEncounter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void jrbCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCTActionPerformed
         // TODO add your handling code here:
-         etl.put(jrbCT.getText(),txtOutcome.getText());
+        etl.put(jrbCT.getText(), txtOutcome.getText());
     }//GEN-LAST:event_jrbCTActionPerformed
 
     private void jrbBUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbBUActionPerformed
         // TODO add your handling code here:
-        etl.put(jrbBU.getText(),txtOutcome.getText());
-        
+        etl.put(jrbBU.getText(), txtOutcome.getText());
+
     }//GEN-LAST:event_jrbBUActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
+        DefaultTableModel model2 = (DefaultTableModel) tblExaminOutcome.getModel(); 
+        String outcome = txtOutcome.getText();
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRemoveActionPerformed
+        String key = "";
+        
+        if (jrbBU.isSelected()) {
+            key = jrbBU.getText();
+        } else if (jrbCT.isSelected()) {
+            key = jrbCT.getText();
+        } else if (jrbRBT.isSelected()) {
+            key = jrbRBT.getText();
+        } else {
+            // xray
+            key = jrbXray.getText();
+        }
+        
+        etl.put(key, outcome);
+        
+        model2.setRowCount(0);
+        for (String option : etl.keySet()) {
+            String value = etl.get(option);
+            
+            
+            Object[] row = new Object[3];
+
+            row[0] = option;
+            row[1] = value;
+            model2.addRow(row);
+            
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void txtOutcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOutcomeActionPerformed
         // TODO add your handling code here:
@@ -341,7 +379,6 @@ public class ExaminationList extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

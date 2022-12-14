@@ -4,7 +4,9 @@
  */
 package model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,7 +16,7 @@ import java.util.List;
 
 public class Diagnose {
     private String diagnose;
-    private List<Examin> examins;
+    private HashMap<String, String> examins;
     private List<String> treatment; 
 
     public String getDiagnose() {
@@ -33,13 +35,15 @@ public class Diagnose {
         this.treatment = treatment;
     }
 
-    public List<Examin> getExamins() {
+    public HashMap<String, String> getExamins() {
         return examins;
     }
 
-    public void setExamins(List<Examin> examins) {
+    public void setExamins(HashMap<String, String> examins) {
         this.examins = examins;
     }
+
+    
     
     public static class Examin {
         private String option;
