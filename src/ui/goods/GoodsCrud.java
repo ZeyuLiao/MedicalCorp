@@ -323,6 +323,7 @@ public class GoodsCrud extends javax.swing.JPanel {
         int storeId = Integer.parseInt(model.getValueAt(selectedIndex,0).toString());
         try {
             UpdateGoodsJFrame up = new UpdateGoodsJFrame(storeId);
+            showTable();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

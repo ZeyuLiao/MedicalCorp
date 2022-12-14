@@ -95,7 +95,7 @@
                                                       </Group>
                                                       <Component id="jTextFieldAccountName" alignment="0" pref="256" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <Component id="jLabelPwdNtc" alignment="1" min="-2" pref="58" max="-2" attributes="0"/>
+                                                  <Component id="jLabelPwdNtc" alignment="1" min="-2" pref="236" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">

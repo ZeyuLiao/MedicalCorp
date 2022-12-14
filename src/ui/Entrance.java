@@ -69,7 +69,6 @@ public class Entrance extends javax.swing.JFrame {
         jButtonlogin = new javax.swing.JButton();
         jLabelSignUP = new javax.swing.JLabel();
         jLabelLogo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtUserID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -97,12 +96,12 @@ public class Entrance extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("User type:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(100, 260, 93, 17);
+        jLabel3.setBounds(100, 260, 93, 20);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("User ID: ");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(110, 300, 93, 17);
+        jLabel4.setBounds(100, 310, 93, 17);
 
         jComboBoxUserType.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jComboBoxUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctors", "Others" }));
@@ -111,7 +110,7 @@ public class Entrance extends javax.swing.JFrame {
 
         txtpwd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jPanel1.add(txtpwd);
-        txtpwd.setBounds(200, 350, 190, 23);
+        txtpwd.setBounds(200, 360, 190, 23);
 
         jButtonlogin.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButtonlogin.setText("Login");
@@ -138,30 +137,26 @@ public class Entrance extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelSignUP);
-        jLabelSignUP.setBounds(169, 514, 195, 17);
+        jLabelSignUP.setBounds(169, 514, 199, 17);
         jPanel1.add(jLabelLogo);
         jLabelLogo.setBounds(80, 90, 340, 70);
         ImageIcon logoHospital = new ImageIcon("src//image//Logo.png");
         logoHospital.setImage(logoHospital.getImage().getScaledInstance(jLabelLogo.getWidth(),jLabelLogo.getHeight(),SCALE_DEFAULT));
         jLabelLogo.setIcon(logoHospital);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(220, 410, 78, 23);
-
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText("Password:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(110, 360, 93, 17);
+        jLabel5.setBounds(100, 360, 93, 17);
 
         txtUserID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtUserID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserIDActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtUserID);
-        txtUserID.setBounds(200, 300, 190, 23);
+        txtUserID.setBounds(200, 310, 190, 23);
 
         jPanel2.add(jPanel1);
         jPanel1.setBounds(530, 10, 460, 580);
@@ -320,16 +315,9 @@ public class Entrance extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_jLabelSignUPMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void txtUserIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserIDActionPerformed
         // TODO add your handling code here:
-        String Delivery_NO = "NotAssigned";
-        try {
-            new DeliverManagePanel();
-        } catch (Exception ex) {
-            Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtUserIDActionPerformed
 
     /**
      * * @param args the command line arguments
@@ -352,7 +340,6 @@ public class Entrance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonlogin;
     private javax.swing.JComboBox<String> jComboBoxUserType;
     private javax.swing.JLabel jLabel1;

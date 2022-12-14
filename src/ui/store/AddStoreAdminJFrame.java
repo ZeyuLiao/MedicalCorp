@@ -166,7 +166,7 @@ public class AddStoreAdminJFrame extends javax.swing.JFrame {
                                                     .addGap(144, 144, 144)
                                                     .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addComponent(jTextFieldAccountName, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
-                                            .addComponent(jLabelPwdNtc, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabelPwdNtc, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(jComboBoxCName, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
