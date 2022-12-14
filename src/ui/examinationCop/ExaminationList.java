@@ -31,6 +31,7 @@ public class ExaminationList extends javax.swing.JPanel {
     private ButtonGroup group = new ButtonGroup();
     private Diagnose diag;
     private Encounter selectedEncounter;
+    private boolean isSubmitted = false;
 
     /**
      * Creates new form ExaminationCRUD
@@ -293,13 +294,11 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private void jrbXrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbXrayActionPerformed
         // TODO add your handling code here:
-        etl.put(jrbXray.getText(), txtOutcome.getText());
 
     }//GEN-LAST:event_jrbXrayActionPerformed
 
     private void jrbRBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbRBTActionPerformed
         // TODO add your handling code here:
-        etl.put(jrbRBT.getText(), txtOutcome.getText());
     }//GEN-LAST:event_jrbRBTActionPerformed
 
     private void tblExaminOutcomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblExaminOutcomeMouseClicked
@@ -308,43 +307,53 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        if (etl == null) {
-            JOptionPane.showMessageDialog(this, "please select at least one examination!");
+        if (isSubmitted) {
+            JOptionPane.showMessageDialog(this, "Already Submitted.");
+            return;
         }
-        
+        if (etl.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "please excute at least one examination according to the diagnose");
+            return;
+        }
+
         diag.setExamins(etl);
         String jsonString = JSON.toJSONString(diag);
-        
+
         if (null != selectedEncounter) {
             selectedEncounter.setDiagnosis(jsonString);
         }
-        
+
         try {
             eDao.updateEncounter(selectedEncounter);
+            JOptionPane.showMessageDialog(this, "success!");
+            isSubmitted = true;
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
+            //e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void jrbCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbCTActionPerformed
         // TODO add your handling code here:
-        etl.put(jrbCT.getText(), txtOutcome.getText());
     }//GEN-LAST:event_jrbCTActionPerformed
 
     private void jrbBUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbBUActionPerformed
         // TODO add your handling code here:
-        etl.put(jrbBU.getText(), txtOutcome.getText());
 
     }//GEN-LAST:event_jrbBUActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model2 = (DefaultTableModel) tblExaminOutcome.getModel(); 
+        DefaultTableModel model2 = (DefaultTableModel) tblExaminOutcome.getModel();
         String outcome = txtOutcome.getText();
+        if (outcome.equals("")) {
+            JOptionPane.showMessageDialog(this, "please enter the outcome of the examination");
+            return;
+        }
 
         String key = "";
-        
+
         if (jrbBU.isSelected()) {
             key = jrbBU.getText();
         } else if (jrbCT.isSelected()) {
@@ -355,20 +364,19 @@ public class ExaminationList extends javax.swing.JPanel {
             // xray
             key = jrbXray.getText();
         }
-        
+
         etl.put(key, outcome);
-        
+
         model2.setRowCount(0);
         for (String option : etl.keySet()) {
             String value = etl.get(option);
-            
-            
+
             Object[] row = new Object[3];
 
             row[0] = option;
             row[1] = value;
             model2.addRow(row);
-            
+
         }
     }//GEN-LAST:event_btnAddActionPerformed
 

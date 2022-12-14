@@ -401,6 +401,7 @@ public class PatientCrud extends javax.swing.JPanel {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,"duplacate value");
         }
         DefaultTableModel model = (DefaultTableModel)jTablePatient.getModel();
         

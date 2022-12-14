@@ -106,13 +106,21 @@ public class AddCommunity extends javax.swing.JFrame {
         // TODO add your handling code here:
        Community community = new Community();
        String communityName = txtCommunityName.getText();
-       
-       if(communityName == null){
+       CommunityDao communityDao = new CommunityDao();
+       if(communityName.equals("")){
            JOptionPane.showMessageDialog(this,"Please enter a valid community name");
            return;
+       } else try {
+           if(communityDao.getCommunityByName(communityName) != null){
+               JOptionPane.showMessageDialog(this,"community name duplicates, please enter a new one");
+               return;
+               
+           }
+       } catch (Exception ex) {
+           ex.printStackTrace();
        }
        community.setCommunityName(communityName);
-       CommunityDao communityDao = new CommunityDao();
+       
         try {
             communityDao.addCommunity(community);
             dispose();
