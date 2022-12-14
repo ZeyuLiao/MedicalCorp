@@ -134,15 +134,20 @@ public class StoreDao {
         String sql = "INSERT INTO Store( store_name,community) "
                         + "VALUES('" + store.getStoreName() +"', '"+store.getCommunity()+  "')";
         //System.out.println(sql);
-        try {
-            Statement stat = conn.createStatement();
-            stat.executeUpdate(sql);
-        }catch(Exception e) {
-            e.printStackTrace();
-            res = false;
-        } finally {
-            closeConnection();
-        }
+        Statement stat = conn.createStatement();
+        stat.executeUpdate(sql);
+        
+//        try {
+//                Statement stat = conn.createStatement();
+//                stat.executeUpdate(sql);
+//            
+//        }catch(Exception e) {
+//            e.printStackTrace();
+//            res = false;
+//        } finally {
+//            closeConnection();
+//        }
+        closeConnection();
         return res;
     }
 
@@ -169,15 +174,18 @@ public class StoreDao {
         boolean res = true;
         initConnection();
         String sql = "UPDATE Store SET store_name='" + store.getStoreName() +"',community = '" + store.getCommunity()+ "' where store_id = '"+ store.getStoreId() +"'";
-        try {
-            Statement stat = conn.createStatement();
-            stat.executeUpdate(sql);
-        }catch(Exception e) {
-            e.printStackTrace();
-            res = false;
-        } finally {
-            closeConnection();
-        }
+//        try {
+//            Statement stat = conn.createStatement();
+//            stat.executeUpdate(sql);
+//        }catch(Exception e) {
+//            e.printStackTrace();
+//            res = false;
+//        } finally {
+//            closeConnection();
+//        }
+        Statement stat = conn.createStatement();
+        stat.executeUpdate(sql);
+        closeConnection();
         return res;
     }
 

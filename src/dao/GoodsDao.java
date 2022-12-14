@@ -112,15 +112,18 @@ public class GoodsDao {
         String sql = "INSERT INTO Goods( goods_name) "
                         + "VALUES('" + goods.getGoodsName() +  "')";
         //System.out.println(sql);
-        try {
-            Statement stat = conn.createStatement();
-            stat.executeUpdate(sql);
-        }catch(Exception e) {
-            e.printStackTrace();
-            res = false;
-        } finally {
-            closeConnection();
-        }
+//        try {
+//            Statement stat = conn.createStatement();
+//            stat.executeUpdate(sql);
+//        }catch(Exception e) {
+//            e.printStackTrace();
+//            res = false;
+//        } finally {
+//            closeConnection();
+//        }
+        Statement stat = conn.createStatement();
+        stat.executeUpdate(sql);
+        closeConnection();
         return res;
     }
 

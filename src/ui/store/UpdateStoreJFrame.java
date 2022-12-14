@@ -196,8 +196,8 @@ public class UpdateStoreJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Success");
             dispose();
         } catch (Exception ex) {
-            //Logger.getLogger(AddPatient.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Dupicate Store Name");
+            return;
         }
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 

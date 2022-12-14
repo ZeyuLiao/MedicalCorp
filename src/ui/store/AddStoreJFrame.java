@@ -191,12 +191,13 @@ public class AddStoreJFrame extends javax.swing.JFrame {
         StoreDao sDao = new StoreDao();
         try {
             sDao.addStore(s);
-            JOptionPane.showMessageDialog(this,"Success");
-            dispose();
+            
         } catch (Exception ex) {
-            //Logger.getLogger(AddPatient.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Dupicate Store Name");
+            return;
         }
+        JOptionPane.showMessageDialog(this,"Success");
+        dispose();
     }//GEN-LAST:event_jButtonSubmitActionPerformed
 
     /**
