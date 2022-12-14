@@ -165,11 +165,19 @@ public class AddStoreJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNameMouseClicked
+        // TODO add your handling code here:
+        String name = jTextFieldName.getText();
+        if(name.isEmpty()){
+            jLabelName.setText("Name is empty");
+        }
+    }//GEN-LAST:event_jTextFieldNameMouseClicked
+
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
         // TODO add your handling code here:
         Store s = new Store();
         boolean flag = true;
-        String name = jTextFieldName.getText(); 
+        String name = jTextFieldName.getText();
         if(name.isEmpty()){
             jLabel1.setText("Name is empty");
             flag = false;
@@ -190,14 +198,6 @@ public class AddStoreJFrame extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButtonSubmitActionPerformed
-
-    private void jTextFieldNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldNameMouseClicked
-        // TODO add your handling code here:
-        String name = jTextFieldName.getText();
-        if(name.isEmpty()){
-            jLabelName.setText("Name is empty");
-        }
-    }//GEN-LAST:event_jTextFieldNameMouseClicked
 
     /**
      * @param args the command line arguments
