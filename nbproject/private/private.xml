@@ -3,16 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/ui/doctors/DoctorHomePage.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/ui/examinationCop/ExaminationList.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/ui/examinationCop/test.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/ui/doctors/DoctorEncounterPage.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/ui/Entrance.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/dao/LoginDao.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/model/Diagnose.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/ui/examinationCop/Examin.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/dao/EncounterDao.java</file>
-            <file>file:/Users/ziyu/Documents/GitHub/MedicalCorp/src/sql/5100finalHos.sql</file>
+            <file>file:/C:/Users/ZeyuLiao/Documents/NetBeansProjects/MedicalCorp/src/ui/hospitalAdmin/AddDoctor.java</file>
+            <file>file:/C:/Users/ZeyuLiao/Documents/NetBeansProjects/MedicalCorp/src/ui/hospitalAdmin/DoctorCrud.java</file>
+            <file>file:/C:/Users/ZeyuLiao/Documents/NetBeansProjects/MedicalCorp/src/dao/DoctorDao.java</file>
+            <file>file:/C:/Users/ZeyuLiao/Documents/NetBeansProjects/MedicalCorp/src/dao/LoginDao.java</file>
+            <file>file:/C:/Users/ZeyuLiao/Documents/NetBeansProjects/MedicalCorp/src/ui/hospitalAdmin/UpdateDoctor.java</file>
+            <file>file:/C:/Users/ZeyuLiao/Documents/NetBeansProjects/MedicalCorp/src/ui/deliver/DeliverManagePanel.java</file>
+            <file>file:/C:/Users/ZeyuLiao/Documents/NetBeansProjects/MedicalCorp/src/sql/5100finalHos.sql</file>
         </group>
     </open-files>
 </project-private>

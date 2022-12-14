@@ -110,15 +110,16 @@ public class AddCommunity extends javax.swing.JFrame {
        if(communityName.equals("")){
            JOptionPane.showMessageDialog(this,"Please enter a valid community name");
            return;
-       } else try {
-           if(communityDao.getCommunityByName(communityName) != null){
-               JOptionPane.showMessageDialog(this,"community name duplicates, please enter a new one");
-               return;
-               
-           }
-       } catch (Exception ex) {
-           ex.printStackTrace();
-       }
+       } 
+//       else try {
+//           if(communityDao.getCommunityByName(communityName) != null){
+//               JOptionPane.showMessageDialog(this,"community name duplicates, please enter a new one");
+//               return;
+//               
+//           }
+//       } catch (Exception ex) {
+//           ex.printStackTrace();
+//       }
        community.setCommunityName(communityName);
        
         try {

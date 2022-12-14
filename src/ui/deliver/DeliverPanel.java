@@ -5,6 +5,7 @@
 package ui.deliver;
 
 import dao.DeliverDao;
+import dao.OrderDao;
 import static java.awt.Image.SCALE_DEFAULT;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -618,6 +619,7 @@ public class DeliverPanel extends javax.swing.JFrame {
 
     private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
         // TODO add your handling code here:
+        jPanelConfirmBg.setVisible(false);
         int selectRowIndex = jTableNewOrder.getSelectedRow();
             if(selectRowIndex <0){
                 JOptionPane.showMessageDialog(this,"Please select a row to view details");
@@ -684,6 +686,8 @@ public class DeliverPanel extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             dDao.updateDeliverState(jTextFieldDeliverNO.getText(), "Delivered", company);
+            OrderDao oDao = new OrderDao();
+            oDao.updateOrderState(Integer.parseInt(jTextFieldOrderID.getText()), "Delivered");
         } catch (Exception ex) {
             Logger.getLogger(DeliverPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
