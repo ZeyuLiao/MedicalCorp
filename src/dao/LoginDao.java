@@ -154,6 +154,24 @@ public class LoginDao {
         return deliverList;	
     }
     
+      //delete
+    public boolean deleteDeliverMan(int loginId) throws Exception{
+
+        boolean res = true;
+        initConnection();
+        String sql = "DELETE FROM login WHERE logid='" + loginId + "'";
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        }catch(Exception e) {
+            e.printStackTrace();
+            res = false;
+        } 
+        return res;
+    }
+    
 //    public DeliverMan getDeliverManbyLoginID(int LoginId) throws Exception{
 //
 //

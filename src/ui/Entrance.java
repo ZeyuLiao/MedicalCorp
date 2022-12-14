@@ -246,7 +246,7 @@ public class Entrance extends javax.swing.JFrame {
                                 return;
 
                             case "DeliveryAdmin":
-                                menu.MainMenu(5, Integer.parseInt(txtUserID.getText()));
+                                new DeliverManagePanel();
                                 dispose();
                                 return;
 
@@ -267,17 +267,21 @@ public class Entrance extends javax.swing.JFrame {
                                 return;
 
                             case "DHL":
+                                System.out.println("ui.Entrance.jButtonloginActionPerformed()");
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
+                                return;
 
                             case "FedEx":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
+                                return;
 
                             case "Express":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
+                                return;
                                 
                             case "UPS":
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
-                                
+                                return;
                             
                         }
                         if(storeName.contains(rRes.getRole())){
@@ -320,7 +324,7 @@ public class Entrance extends javax.swing.JFrame {
         // TODO add your handling code here:
         String Delivery_NO = "NotAssigned";
         try {
-            new DeliverPanel("Zeyu Liao", "DHL");
+            new DeliverManagePanel();
         } catch (Exception ex) {
             Logger.getLogger(Entrance.class.getName()).log(Level.SEVERE, null, ex);
         }

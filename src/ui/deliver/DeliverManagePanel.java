@@ -141,6 +141,11 @@ public class DeliverManagePanel extends javax.swing.JFrame {
         });
 
         jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
 
         jButtonLogout.setText("Logout");
         jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -246,6 +251,28 @@ public class DeliverManagePanel extends javax.swing.JFrame {
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectRowIndex = jTableAllDeliverMan.getSelectedRow();
+            if(selectRowIndex <0){
+                JOptionPane.showMessageDialog(this,"Please select a row to delete!");
+                return;
+            }
+        DefaultTableModel model = (DefaultTableModel) jTableAllDeliverMan.getModel();
+        LoginDao ldao = new LoginDao();
+        try {
+            ldao.deleteDeliverMan(Integer.parseInt(model.getValueAt(selectRowIndex,0).toString()));
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(DeliverManagePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(this,"Delete Successfully!");
+        try {
+            populateTable();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(DeliverManagePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void populateTable() throws Exception{
     DefaultTableModel modelDeliverMan = (DefaultTableModel) jTableAllDeliverMan.getModel();

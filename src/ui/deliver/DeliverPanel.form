@@ -225,22 +225,22 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabelDeliverNO" max="32767" attributes="0"/>
                                   <Component id="jTextFieldDeliverNO" min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jTextFieldOrderID" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabelDeliverComp" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldDeliverCompany" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jPanelConfirmBg" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -540,18 +540,26 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel4" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jButtonViewDetail" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButtonViewDetail1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jPanel8" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="183" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jButtonRefresh" min="-2" pref="78" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jButtonViewDetail" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jButtonViewDetail1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jPanel8" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -564,12 +572,16 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jPanel1" max="32767" attributes="0"/>
-                              <Component id="jButtonViewDetail" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jButtonViewDetail1" alignment="0" max="32767" attributes="0"/>
                               <Component id="jPanel8" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel4" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButtonViewDetail" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jButtonViewDetail1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jButtonRefresh" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -601,7 +613,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelDeliverComp3" max="32767" attributes="0"/>
                                   <Component id="jLabelDeliverComp2" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jLabelDeliverComp1" alignment="0" pref="148" max="32767" attributes="0"/>
+                                  <Component id="jLabelDeliverComp1" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabelDeliverNO1" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -645,7 +657,7 @@
                                   <Component id="jLabelDeliverComp3" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                                   <Component id="jTextFieldHDeliverTime" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="48" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -712,6 +724,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonViewDetail1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel1">
                   <Properties>
@@ -780,6 +795,14 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="jButtonRefresh">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Refresh"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRefreshActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
