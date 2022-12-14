@@ -25,7 +25,7 @@ public class ExaminationList extends javax.swing.JPanel {
 
     private EncounterDao eDao = new EncounterDao();
     private List<Encounter> encounterList = new ArrayList<>();
-    public Hashmap<String,String> etl = new Hashmap<>();
+    public HashMap<String,String> etl = new HashMap<>();
 
     /**
      * Creates new form ExaminationCRUD
