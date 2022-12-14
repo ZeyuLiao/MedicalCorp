@@ -130,8 +130,9 @@ public class LoginDao {
         return user;
     }    
     
-    public void addNewLogin(String accountName, String role, String pwd) throws SQLException{
+    public void addNewLogin(String accountName, String role, String pwd) throws SQLException, Exception{
         System.out.println("dao.LoginDao.getUser()");
+        initConnection();
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("INSERT INTO login (user_name,role,pwd) VALUES('" + accountName + "','" + role + "',md5('" + pwd + "'))");
         stmt.close(); 
