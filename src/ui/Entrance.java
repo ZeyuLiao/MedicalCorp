@@ -262,7 +262,6 @@ public class Entrance extends javax.swing.JFrame {
                                 return;
 
                             case "DHL":
-                                System.out.println("ui.Entrance.jButtonloginActionPerformed()");
                                 new DeliverPanel(rRes.getName(), rRes.getRole());
                                 return;
 

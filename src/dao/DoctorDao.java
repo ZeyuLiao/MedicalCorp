@@ -173,9 +173,9 @@ public class DoctorDao {
 
         boolean res = true;
         initConnection();
-        String sql = "INSERT INTO doctorlist( doctor_name,hospital_name,department,phone_number,photo_address ) "
+        String sql = "INSERT INTO doctorlist( doctor_name,hospital_name,department,phone_number,photo_address,logID) "
                         + "VALUES('" + doctor.getName() + "','" + doctor.getHospitalName() + 
-                        "','" + doctor.getDepartment() + "','" + doctor.getPhoneNumber()+ "','" + doctor.getPhotoAddress()+ "')";
+                        "','" + doctor.getDepartment() + "','" + doctor.getPhoneNumber()+ "','" + doctor.getPhotoAddress()+ "','" +doctor.getLogid()+ "')";
         System.out.println(sql);
         try {
             Statement stat = conn.createStatement();

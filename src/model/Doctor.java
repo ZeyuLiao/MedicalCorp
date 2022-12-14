@@ -13,6 +13,7 @@ public class Doctor extends User {
     private String hospitalName;
     private String department;
     private String photoAddress;
+    private int logid;
 
     public int getDoctorID() {
         return doctorID;
@@ -44,13 +45,23 @@ public class Doctor extends User {
 
     public void setPhotoAddress(String photoAddress) {
         this.photoAddress = photoAddress;
-    }  
+    }
+
+    public int getLogid() {
+        return logid;
+    }
+
+    public void setLogid(int logid) {
+        this.logid = logid;
+    }
+    
+    
     
     @Override
     public String toString(){
         return "id:"+this.getDoctorID()+",name:"+this.getName()+"hospital:"+this.getHospitalName()+
                 ",phone:"+this.getPhoneNumber()+",photo:"+
-                this.getPhotoAddress();
+                this.getPhotoAddress()+",logid:"+getLogid();
     }
 
    

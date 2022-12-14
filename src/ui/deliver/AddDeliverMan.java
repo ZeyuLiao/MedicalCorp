@@ -5,6 +5,8 @@
 package ui.deliver;
 
 import dao.LoginDao;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,9 +48,6 @@ public class AddDeliverMan extends javax.swing.JDialog {
         jComboBoxCName = new javax.swing.JComboBox<>();
         jLabelPwdNtc = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -101,12 +100,6 @@ public class AddDeliverMan extends javax.swing.JDialog {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Sign up");
 
-        jLabel6.setText("Password must coutain :");
-
-        jLabel7.setText("Uppercase, Lowercase characters and numbers");
-
-        jLabel8.setText("the length is between 4-10 digits");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,30 +113,20 @@ public class AddDeliverMan extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(129, 129, 129))
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7))
-                                .addGap(11, 149, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextFieldPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(144, 144, 144)
-                                            .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(jTextFieldAccountName, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
-                                    .addComponent(jComboBoxCName, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelPwdNtc, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(39, 39, 39))))))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(144, 144, 144)
+                                    .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jTextFieldAccountName, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                            .addComponent(jComboBoxCName, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPwdNtc, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,14 +147,8 @@ public class AddDeliverMan extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelPwdNtc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelPwdNtc, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -204,44 +181,36 @@ public class AddDeliverMan extends javax.swing.JDialog {
         if(accountName.isEmpty()){
             jLabelName.setText("Account Name is empty");
             flag = false;
-            System.out.println(flag);
-        }
-        else if(!Pwd.matches("^[A-Za-z0-9]+$") /*&& Pwd.length() > 10 && Pwd.length() < 4*/){
-            jLabelPwdNtc.setText("Wrong format");
+        }else if(Pwd.isEmpty()){
+            jLabelPwdNtc.setText("Please input your Password");
             flag = false;
-            System.out.println(flag);
-        } 
-        else if(Pwd.length()< 4){
-            jLabelPwdNtc.setText("Password is too short");
-            flag = false;
-            System.out.println(flag);
-        }
-        else if(Pwd.length() >10){
-            jLabelPwdNtc.setText("Password is too short");
-            flag = false;
-            System.out.println(flag);
-        } 
-        else{
-            System.out.println("0");
+        }else{
             flag = true;
-            System.out.println(flag);
         }      
-        
-        System.out.println(flag);
+
         if(flag==false){
             JOptionPane.showMessageDialog(this,"Wrong Information");
             return;
         }
         
 
+
         try {
             ldao.initConnection();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(AddDeliverMan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        try {
             ldao.addNewLogin(jTextFieldAccountName.getText(),jComboBoxCName.getSelectedItem().toString(),jTextFieldPwd.getText());
         } catch (Exception ex) {
-            //Logger.getLogger(AddPatient.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this,"Dupicate Account Name");
-            return;
+            if(!"Before start of result set".equals(ex.getMessage())) {
+               JOptionPane.showMessageDialog(null, "Duplicate Name!" );
+            //java.util.logging.Logger.getLogger(AddDeliverMan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //JOptionPane.showMessageDialog(this,"Dupicate Account Name");
+            return;               
+            }
         }
+
         JOptionPane.showMessageDialog(this,"Success");
         dispose();
     }//GEN-LAST:event_jButtonSubmitActionPerformed
@@ -276,9 +245,6 @@ public class AddDeliverMan extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelPwdNtc;
     private javax.swing.JPanel jPanel1;

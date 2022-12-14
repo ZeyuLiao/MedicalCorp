@@ -46,7 +46,6 @@ public class LoginDao {
         // Iterate over the result set and print the results
         while (rs.next()) {
             patient = new Patient();
-            // System.out.println(rs.getString("patient_id") + " " + rs.getString("pwd"));
             String logID = rs.getString("logID");
             String name = rs.getString("name");
             String phoneNumber = rs.getString("phone_number");
@@ -75,18 +74,14 @@ public class LoginDao {
     public Doctor isValidDoctor(int DoctorID, String pwd) throws Exception {
         // Create a Statement object to execute the query
         Statement stmt = conn.createStatement();
-        System.out.println(DoctorID + pwd);
         // Execute the query and retrieve the result set
         ResultSet rs = stmt.executeQuery("select * FROM doctorList join login using (logid) where doctor_id = " + DoctorID + " and pwd = md5('" + pwd + "')");
-
-        System.out.println(rs);
         
         Doctor doctor = null;
 
         // Iterate over the result set and print the results
         while (rs.next()) {
             doctor = new Doctor();
-            // System.out.println(rs.getString("patient_id") + " " + rs.getString("pwd"));
             String doctorID = rs.getString("doctor_id");
             String name = rs.getString("doctor_name");
             String hospitalname = rs.getString("hospital_name");
@@ -108,7 +103,6 @@ public class LoginDao {
         // Close the result set, statement, and connection objects
         rs.close();
         stmt.close();
-//        System.out.println(doctor.getDoctorID());
         return doctor;
     }
 
@@ -130,13 +124,15 @@ public class LoginDao {
         return user;
     }    
     
-    public void addNewLogin(String accountName, String role, String pwd) throws SQLException, Exception{
-        System.out.println("dao.LoginDao.getUser()");
+    public int addNewLogin(String accountName, String role, String pwd) throws SQLException, Exception{
         initConnection();
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("INSERT INTO login (user_name,role,pwd) VALUES('" + accountName + "','" + role + "',md5('" + pwd + "'))");
+        String sql2 = "SELECT logid FROM login WHERE user_name= '"+accountName+"'";
+        ResultSet rs = stmt.executeQuery(sql2);
+        int logid = rs.getInt("logid");    
         stmt.close(); 
-       
+        return logid;
     }
     
     public ArrayList<DeliverMan> getAllDeliverMen() throws Exception{

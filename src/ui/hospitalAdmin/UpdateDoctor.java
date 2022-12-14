@@ -146,7 +146,14 @@ public class UpdateDoctor extends javax.swing.JFrame {
         jLabelNameNotice.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabelNameNotice.setText("You must input your name");
 
+        String[] str = new String[hName.size()];
+        int i = 0;
+        for(String h:hName){
+            str[i] = h;
+            i++;
+        }
         jComboBoxCHospital.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jComboBoxCHospital.setModel(new javax.swing.DefaultComboBoxModel<>(str));
 
         jLabelPhoneNumberNotice.setFont(new java.awt.Font("Times New Roman", 0, 8)); // NOI18N
         jLabelPhoneNumberNotice.setForeground(new java.awt.Color(255, 51, 51));

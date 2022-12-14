@@ -348,13 +348,20 @@ public class AddDoctor extends javax.swing.JFrame {
         d.setHospitalName(jComboBoxCHospital.getSelectedItem().toString());
         d.setPhoneNumber(jTextFieldPhoneNumber.getText());
         d.setPhotoAddress(filepath);
-        
+        int logid;
         LoginDao ldao = new LoginDao();
         try {
-            ldao.addNewLogin(jTextFieldName.getText(), "Doctor", jTextFieldpassword.getText());
+            logid = ldao.addNewLogin(jTextFieldName.getText(), "Doctor", jTextFieldpassword.getText());
+            
         } catch (Exception ex) {
-            Logger.getLogger(AddDoctor.class.getName()).log(Level.SEVERE, null, ex);
+            if(!"Before start of result set".equals(ex.getMessage())) {
+               JOptionPane.showMessageDialog(null, "Duplicate Name!" );
+            //java.util.logging.Logger.getLogger(AddDeliverMan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //JOptionPane.showMessageDialog(this,"Dupicate Account Name");
+            return;               
+            }
         }
+        
         
         DoctorDao dDao = new DoctorDao();
         try {
